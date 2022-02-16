@@ -3193,9 +3193,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 1056567583}
   cam: {fileID: 963194228}
-  gravity: -9.81
-  speed: 10
   turnSmoothTime: 0.1
+  maxVelocity: 40
+  acceleration: 20
+  rollAngle: 0
 --- !u!143 &1056567583
 CharacterController:
   m_ObjectHideFlags: 0
@@ -4354,7 +4355,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1632182676
 MonoBehaviour:
   m_ObjectHideFlags: 0
