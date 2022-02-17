@@ -113,7 +113,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.45
+    m_StopTime: 0.6666667
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -392,14 +392,21 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.41666666
-    functionName: Combo
+  - time: 0.33333334
+    functionName: Lunge
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.45
+  - time: 0.55
+    functionName: Combo
+    data: 
+    objectReferenceParameter: {fileID: 7060227324258998739, guid: aab57041883ed3d498217e7ec448295d, type: 3}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.6666667
     functionName: ComboReset
     data: 
     objectReferenceParameter: {fileID: 0}
