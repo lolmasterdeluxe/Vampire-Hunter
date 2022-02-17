@@ -41,8 +41,8 @@ public class BasicMeleeWeapon : MeleeWeapon
             playerAnimation.Play("Attack1");
             comboStep = 1;
             Debug.Log("Melee Weapon Attack.");
-            DealDamage(target, itemInfo.damage);
-            
+            WeaponInfo weaponInfo = (WeaponInfo)itemInfo;
+            DealDamage(target, weaponInfo.damage);
             return;
         }
         if (comboStep != 0)
@@ -66,13 +66,15 @@ public class BasicMeleeWeapon : MeleeWeapon
         {
             Parent.GetComponent<Rigidbody>().velocity *= 0;
             playerAnimation.Play("Attack2");
-            DealDamage(target, itemInfo.damage);
+            WeaponInfo weaponInfo = (WeaponInfo)itemInfo;
+            DealDamage(target, weaponInfo.damage);
         }
         if (comboStep == 3)
         {
             Parent.GetComponent<Rigidbody>().velocity *= 0;
             playerAnimation.Play("Attack3");
-            DealDamage(target, itemInfo.damage);
+            WeaponInfo weaponInfo = (WeaponInfo)itemInfo;
+            DealDamage(target, weaponInfo.damage);
         }
     }
 
