@@ -78,12 +78,11 @@ public class CarriageInteraction : MonoBehaviour
 
     public void Teleport(int index)
     {
-        string target = "Carriage_" + index;
+        string target = "Carriage (" + index + ")";
         //Debug.Log("target" + target);
         GameObject travelDestination = GameObject.Find(target);
         Vector3 targetPosition = travelDestination.transform.position;
         player.transform.position = targetPosition + new Vector3(-40,0,3);
         QuitCarriage();
-        //GameObject.Find("Carriage_place1").GetComponent<Position>
     }
 }
