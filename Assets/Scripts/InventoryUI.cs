@@ -35,9 +35,9 @@ public class InventoryUI : MonoBehaviour
         }
         for (int i = 0; i < inv.Length; i++)
         {
-            if (player.GetComponent<PlayerInventory>().slots[i] != 0)
+            if (player.GetComponent<PlayerInventory>().armour[i] != 0)
             {
-                inv[i].sprite = inventorySystem.items[player.GetComponent<PlayerInventory>().slots[i]].itemInfo.itemImage;
+                inv[i].sprite = inventorySystem.items[player.GetComponent<PlayerInventory>().armour[i]].itemInfo.itemImage;
                 inv[i].gameObject.SetActive(true);
             }
             else

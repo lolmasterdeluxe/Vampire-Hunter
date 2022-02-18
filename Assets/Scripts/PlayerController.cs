@@ -9,6 +9,11 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public GameObject Inventory_UI;
+
+    private void Start()
+    {
+        Inventory_UI.SetActive(false);
+    }
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.I))

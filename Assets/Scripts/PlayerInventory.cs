@@ -11,4 +11,5 @@ public class PlayerInventory : MonoBehaviour
 {
     public int[] slots = new int[6];
     public int[] hotbar = new int[4];
+    public int[] armour = new int[4];
 }
