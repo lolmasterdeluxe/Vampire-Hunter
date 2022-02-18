@@ -63,7 +63,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 m_Rigidbody.velocity *= 0;  
                 moveDir = Quaternion.Euler(0f, transform.eulerAngles.y, 0f) * (Vector3.forward);
-                m_Rigidbody.AddForce((moveDir.normalized * 300 - (Vector3.up.normalized * 150)));
+                m_Rigidbody.AddForce(moveDir.normalized * 300);
                 ToRoll = false;
                 IsDodging[1] = false;
                 dodgeTime = 0.5d;
@@ -95,7 +95,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 //smoothness of the slowdown is controlled by the 0.99f, 
                 //0.5f is less smooth, 0.9999f is more smooth
-                m_Rigidbody.velocity *= 0.9f;
+                m_Rigidbody.velocity *= 0.8f;
             }
         }
     }

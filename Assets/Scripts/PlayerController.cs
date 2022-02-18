@@ -31,6 +31,10 @@ public class PlayerController : MonoBehaviour
                 Cursor.visible = false;
             }
         }
+        if (Input.GetMouseButtonDown(0))
+        {
+            FindAndUseWeapon(0);
+        }
 
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
@@ -55,8 +59,8 @@ public class PlayerController : MonoBehaviour
         int itemID = GetComponent<PlayerInventory>().hotbar[key];
         if (itemID != 0)
         {
-            Weapon weapon = (Weapon)FindObjectOfType<InventorySystem>().items[itemID];
-            weapon.Attack(gameObject);
+            //Weapon weapon = (Weapon)FindObjectOfType<InventorySystem>().items[itemID];
+            ((Weapon)FindObjectOfType<InventorySystem>().items[itemID]).Attack(gameObject);
         }
     }
 }

@@ -9,9 +9,12 @@ using UnityEngine;
  */
 public class BasicMeleeWeapon : MeleeWeapon
 {
-    public Animator playerAnimation;
-    public GameObject target;
-    public GameObject Parent;
+    [SerializeField]
+    private Animator playerAnimation;
+    [SerializeField]
+    private GameObject target;
+    [SerializeField]
+    private GameObject Parent;
     private Vector3 moveDir;
 
     bool comboPossible, lunge = false;
