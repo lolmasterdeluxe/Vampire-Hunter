@@ -11,4 +11,6 @@ public class ItemInfo : ScriptableObject
     public string itemName;
     public string itemDescription;
     public Sprite itemImage;
+
+    public GameObject model3D;
 }

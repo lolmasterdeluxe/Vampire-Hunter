@@ -11,4 +11,5 @@ using UnityEngine;
 public class WeaponInfo : ItemInfo
 {
     public int damage;
+    public Animator animator;
 }
