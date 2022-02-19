@@ -8,10 +8,11 @@ using UnityEngine;
  */
 public class PlayerController : MonoBehaviour
 {
-    public GameObject Inventory_UI;
+    GameObject Inventory_UI;
 
     private void Start()
     {
+        Inventory_UI = FindObjectOfType<InventoryUI>().gameObject;
         Inventory_UI.SetActive(false);
     }
     private void Update()
