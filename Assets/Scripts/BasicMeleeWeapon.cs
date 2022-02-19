@@ -5,7 +5,8 @@ using UnityEngine;
 /**
  * Author: Ho Junliang 
  * Created: 15/2/2022
- * Edited: Muhammad Rifdi bin Sabbri
+ * Editor: Muhammad Rifdi bin Sabbri
+ * Edited: 16/2/2022
  */
 public class BasicMeleeWeapon : MeleeWeapon
 {
@@ -15,25 +16,48 @@ public class BasicMeleeWeapon : MeleeWeapon
     private GameObject target;
     [SerializeField]
     private GameObject Parent;
-    private Vector3 moveDir;
+    [SerializeField]
+    private GameObject RangedWeaponArm;
+    [SerializeField]
+    private Transform Camera;
+    [SerializeField]
+    private float turnSmoothTime = 0.1f;
 
-    bool comboPossible, lunge = false;
-    int comboStep;
+    private Vector3 lungeDir, direction;
+    private float horizontal, vertical, angle, targetAngle, turnSmoothVelocity;
+
+    private bool comboPossible, lunge = false, changeDir = false;
+    private int comboStep;
 
     private void Update()
     {
-        moveDir = Quaternion.Euler(0f, Parent.GetComponent<Transform>().eulerAngles.y, 0f) * (Vector3.forward);
+        horizontal = Input.GetAxisRaw("Horizontal");
+        vertical = Input.GetAxisRaw("Vertical");
+        direction = new Vector3(horizontal, 0f, vertical).normalized;
         if (Input.GetMouseButtonDown(0))
         {
             Attack(target);
+            RangedWeaponArm.GetComponent<BasicRangedWeapon>().enabled = false;
+            Parent.GetComponent<PlayerMovement>().enabled = false;
         }
     }
     private void FixedUpdate()
     {
         if (lunge)
         {
-            Parent.GetComponent<Rigidbody>().AddForce((moveDir.normalized * 200));
+            lungeDir = Quaternion.Euler(0f, Parent.GetComponent<Transform>().eulerAngles.y, 0f) * (Vector3.forward);
+            Parent.GetComponent<Rigidbody>().AddForce((lungeDir.normalized * 200));
             lunge = false;
+        }
+        if (changeDir)
+        {
+            if (direction.magnitude >= 0.1f)
+            {
+                targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + Camera.eulerAngles.y;
+                Debug.Log("Dir magnitude: " + direction.magnitude);
+            }
+            angle = Mathf.SmoothDampAngle(Parent.GetComponent<Transform>().eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
+            Parent.GetComponent<Transform>().rotation = Quaternion.Euler(0f, angle, 0f);
         }
     }
     public override void Attack(GameObject target)
@@ -56,12 +80,12 @@ public class BasicMeleeWeapon : MeleeWeapon
                 comboStep += 1;
             }
         }
-
     }
 
     public void ComboPossible()
     {
         comboPossible = true;
+        changeDir = true;
     }
     public void Combo(GameObject target)
     {
@@ -79,17 +103,34 @@ public class BasicMeleeWeapon : MeleeWeapon
             WeaponInfo weaponInfo = (WeaponInfo)itemInfo;
             DealDamage(target, weaponInfo.damage);
         }
+        if (comboStep == 4)
+        {
+            Parent.GetComponent<Rigidbody>().velocity *= 0;
+            playerAnimation.Play("Attack4");
+            WeaponInfo weaponInfo = (WeaponInfo)itemInfo;
+            DealDamage(target, weaponInfo.damage);
+        }
+        if (comboStep == 5)
+        {
+            Parent.GetComponent<Rigidbody>().velocity *= 0;
+            playerAnimation.Play("Attack5");
+            WeaponInfo weaponInfo = (WeaponInfo)itemInfo;
+            DealDamage(target, weaponInfo.damage);
+        }
     }
 
     public void ComboReset()
     {
         comboPossible = false;
         comboStep = 0;
+        Parent.GetComponent<PlayerMovement>().enabled = true;
+        RangedWeaponArm.GetComponent<BasicRangedWeapon>().enabled = true;
     }
 
     public void Lunge()
     {
         lunge = true;
+        changeDir = false;
     }
 
 }

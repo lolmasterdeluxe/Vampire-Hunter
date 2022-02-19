@@ -5,11 +5,15 @@ using UnityEngine;
 /**
  * Author: Ho Junliang 
  * Created: 15/2/2022
+ * Editor: Muhammad Rifdi bin Sabbri
+ * Edited: 16/2/2022
  */
 public class BasicRangedWeapon : RangedWeapon
 {
     [SerializeField]
-    private Transform Parent;
+    private GameObject Parent;
+    [SerializeField]
+    private GameObject MeleeWeaponArm;
     [SerializeField]
     private int NumberOfBullets = 1;
     [SerializeField]
@@ -75,9 +79,24 @@ public class BasicRangedWeapon : RangedWeapon
 
     }
 
+    private void LockMovement(int IsTrue)
+    {
+        if (IsTrue == 0)
+        {
+            Parent.GetComponent<Rigidbody>().velocity *= 0;
+            MeleeWeaponArm.GetComponent<BasicMeleeWeapon>().enabled = false;
+            Parent.GetComponent<PlayerMovement>().enabled = false;
+        }
+        else
+        {
+            MeleeWeaponArm.GetComponent<BasicMeleeWeapon>().enabled = true;
+            Parent.GetComponent<PlayerMovement>().enabled = true;
+        }
+    }
+
     private Vector3 GetDirection()
     {
-        Vector3 direction = Parent.forward;
+        Vector3 direction = Parent.GetComponent<Transform>().forward;
 
         if (AddBulletSpread)
         {

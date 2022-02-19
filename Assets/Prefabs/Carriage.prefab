@@ -864,8 +864,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.62, y: 0.41, z: 0.5}
-  m_Center: {x: -2.64, y: 0.12, z: 0.13}
+  m_Size: {x: 0.62000024, y: 0.32941374, z: 0.55874586}
+  m_Center: {x: -2.6400015, y: 0.05379712, z: 0.15937215}
 --- !u!114 &2799146608379940540
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -880,7 +880,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 8631079079175255686}
   panel: {fileID: 8631079079093946494}
-  camera: {fileID: 0}
+  Camera: {fileID: 0}
   shop: {fileID: 8631079078966568379}
   travel: {fileID: 8631079079221696846}
   player: {fileID: 0}
@@ -5166,7 +5166,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8092258023976814669}
   - component: {fileID: 8628412003946747499}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Carriage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5201,5 +5201,5 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.25, y: 0.35, z: 0.57}
-  m_Center: {x: -2.6, y: 0.08, z: 0.17}
+  m_Size: {x: 0.25, y: 0.31760147, z: 0.57000023}
+  m_Center: {x: -2.6000006, y: 0.05427715, z: 0.16999999}

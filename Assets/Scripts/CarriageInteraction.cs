@@ -2,17 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/**
+ * Author: Li Zeyu
+ * Created: 15/2/2022
+ */
+
 public class CarriageInteraction : MonoBehaviour
 {
-
     private bool triggerActive = false;
-    public GameObject text;
-    public GameObject panel;
-    public GameObject camera;
-    public GameObject shop;
-    public GameObject travel;
+    [SerializeField]
+    private GameObject text;
+    [SerializeField]
+    private GameObject panel;
+    [SerializeField]
+    private GameObject Camera;
+    [SerializeField]
+    private GameObject shop;
+    [SerializeField]
+    private GameObject travel;
     //public GameObject travelDestination;
-    public GameObject player;
+    [SerializeField]
+    private GameObject player;
     public void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -59,7 +69,7 @@ public class CarriageInteraction : MonoBehaviour
     public void ShowPanel()
     {
         panel.SetActive(true);
-        camera.SetActive(false);
+        Camera.SetActive(false);
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
         GameObject.Find("Player").GetComponent<PlayerMovement>().enabled = false;
@@ -70,7 +80,7 @@ public class CarriageInteraction : MonoBehaviour
         panel.SetActive(false);
         shop.SetActive(false);
         travel.SetActive(false);
-        camera.SetActive(true);
+        Camera.SetActive(true);
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         GameObject.Find("Player").GetComponent<PlayerMovement>().enabled = true;
