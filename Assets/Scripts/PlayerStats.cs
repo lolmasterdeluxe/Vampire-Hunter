@@ -4,13 +4,13 @@ using UnityEngine;
 
 public static class PlayerStats
 {
-    static float Vitality;
-    static float Endurance;
-    static float Strength;
-    static float Dexterity;
-    static float Health;
-    static float Stamina;
-    static float Defense;
-    static float Weapon1Dmg;
-    static float Weapon2Dmg;
+    public static float Vitality;
+    public static float Endurance;
+    public static float Strength;
+    public static float Dexterity;
+    public static float Health;
+    public static float Stamina;
+    public static float Defense;
+    public static float Weapon1Dmg;
+    public static float Weapon2Dmg;
 }
