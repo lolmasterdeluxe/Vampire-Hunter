@@ -49,15 +49,15 @@ public class BasicMeleeWeapon : MeleeWeapon
             Parent.GetComponent<Rigidbody>().AddForce((lungeDir.normalized * 200));
             lunge = false;
         }
-        if (changeDir)
+        if (direction.magnitude >= 0.1f)
         {
-            if (direction.magnitude >= 0.1f)
+            targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + Camera.eulerAngles.y;
+            Debug.Log("Dir magnitude: " + direction.magnitude);
+            if (changeDir)
             {
-                targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + Camera.eulerAngles.y;
-                Debug.Log("Dir magnitude: " + direction.magnitude);
+                angle = Mathf.SmoothDampAngle(Parent.GetComponent<Transform>().eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
+                Parent.GetComponent<Transform>().rotation = Quaternion.Euler(0f, angle, 0f);
             }
-            angle = Mathf.SmoothDampAngle(Parent.GetComponent<Transform>().eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
-            Parent.GetComponent<Transform>().rotation = Quaternion.Euler(0f, angle, 0f);
         }
     }
     public override void Attack(GameObject target)

@@ -56,16 +56,15 @@ public class PlayerMovement : MonoBehaviour
         if (ToRoll && Input.GetButtonDown("Jump"))
             IsDodging[1] = true;
 
+        horizontal = Input.GetAxisRaw("Horizontal");
+        vertical = Input.GetAxisRaw("Vertical");
+        direction = new Vector3(horizontal, 0f, vertical).normalized;
 
         dodgeTime -= Time.deltaTime;
     }
 
     private void FixedUpdate()
     {
-        horizontal = Input.GetAxisRaw("Horizontal");
-        vertical = Input.GetAxisRaw("Vertical");
-        direction = new Vector3(horizontal, 0f, vertical).normalized;
-
         if (direction.magnitude >= 0.1f)
         {
             if (IsDodging[0])
