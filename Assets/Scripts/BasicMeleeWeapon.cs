@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /**
- * Author: Ho Junliang 
+ * Author: Muhammad Rifdi bin Sabbri
  * Created: 15/2/2022
- * Editor: Muhammad Rifdi bin Sabbri
+ * Editor: Ho Junliang 
  * Edited: 16/2/2022
  */
 public class BasicMeleeWeapon : MonoBehaviour
 {
     public MeleeWeapon info;
-
+ 
     [SerializeField]
     private Animator playerAnimation;
     [SerializeField]

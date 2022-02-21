@@ -15,5 +15,5 @@ MonoBehaviour:
   itemName: Axe
   itemDescription: Used for chopping wood
   itemImage: {fileID: 21300000, guid: 719c2201c2f5f6c4aafffaeb5abdf5f9, type: 3}
-  model3D: {fileID: 919132149155446097, guid: d76cd75256e0813499718a4f76d4dd34, type: 3}
+  model3D: {fileID: 5329113614211518770, guid: 7582158c749e47649939ff6da38a3910, type: 3}
   damage: 10
