@@ -4,8 +4,9 @@
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_Name: Bgr_Clouds
   m_Shader: {fileID: 4800000, guid: c217f99a84b3ef341b8ab84f8a5fe4db, type: 3}
   m_ShaderKeywords: 
@@ -96,6 +97,7 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 0.3809882, g: 0.44099066, b: 0.5019608, a: 1}
+    - _Color: {r: 0.6320754, g: 0.1196361, b: 0, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 0}
     - _TintColor: {r: 0.39861593, g: 0.45064476, b: 0.5019608, a: 0.5}
+  m_BuildTextureStacks: []
