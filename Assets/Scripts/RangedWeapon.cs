@@ -7,7 +7,10 @@ using UnityEngine;
  * Author: Ho Junliang 
  * Created: 15/2/2022
  */
-public abstract class RangedWeapon : Weapon
+
+[CreateAssetMenu(menuName = "Items/New Ranged Weapon")]
+public class RangedWeapon : Weapon
 {
-    public abstract override void Attack(GameObject target);
+    public float range;
+    //public abstract override void Attack(GameObject target);
 }
