@@ -31,4 +31,17 @@ public class PlayerInventory : MonoBehaviour
     public Chestplate chestplate;
     public Leggings leggings;
     public Boots boots;
+
+    public bool AddItem(Item item)
+    {
+        for (int i = 0; i < slots.Length; i++)
+        {
+            if (slots[i] == null)
+            {
+                slots[i] = item;
+                return true;
+            }
+        }
+        return false;
+    }
 }

@@ -15,5 +15,9 @@ public abstract class Weapon : Item
     public void DealDamage(GameObject target, int damage)
     {
         Debug.Log("Deal damage: " + damage + ", to: " + target.name);
+        if (target.GetComponent<Health>())
+        {
+            target.GetComponent<Health>().hp -= damage;
+        }
     }
 }
