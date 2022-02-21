@@ -9,7 +9,26 @@ using UnityEngine;
 
 public class PlayerInventory : MonoBehaviour
 {
-    public int[] slots = new int[6];
-    public int[] hotbar = new int[4];
-    public int[] armour = new int[4];
+    #region Singleton
+
+    public static PlayerInventory instance;
+
+    private void Awake()
+    {
+        if (instance != null)
+        {
+            Debug.LogWarning("More than one instance of PlayerInventory found!");
+            return;
+        }
+        instance = this;
+    }
+
+    #endregion
+
+    public Item[] slots = new Item[6];
+    public Item[] hotbar = new Item[4];
+    public Helmet helmet;
+    public Chestplate chestplate;
+    public Leggings leggings;
+    public Boots boots;
 }

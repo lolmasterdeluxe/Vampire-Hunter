@@ -8,8 +8,10 @@ using UnityEngine;
  * Editor: Muhammad Rifdi bin Sabbri
  * Edited: 16/2/2022
  */
-public class BasicMeleeWeapon : MeleeWeapon
+public class BasicMeleeWeapon : MonoBehaviour
 {
+    public MeleeWeapon info;
+
     [SerializeField]
     private Animator playerAnimation;
     [SerializeField]
@@ -60,7 +62,7 @@ public class BasicMeleeWeapon : MeleeWeapon
             }
         }
     }
-    public override void Attack(GameObject target)
+    public void Attack(GameObject target)
     {
         if (comboStep == 0)
         {
@@ -68,8 +70,9 @@ public class BasicMeleeWeapon : MeleeWeapon
             playerAnimation.Play("Attack1");
             comboStep = 1;
             Debug.Log("Melee Weapon Attack.");
-            WeaponInfo weaponInfo = (WeaponInfo)itemInfo;
-            DealDamage(target, weaponInfo.damage);
+            //WeaponInfo weaponInfo = (WeaponInfo)itemInfo;
+            //DealDamage(target, weaponInfo.damage);
+            info.DealDamage(target, info.damage);
             return;
         }
         if (comboStep != 0)
@@ -93,29 +96,25 @@ public class BasicMeleeWeapon : MeleeWeapon
         {
             Parent.GetComponent<Rigidbody>().velocity *= 0;
             playerAnimation.Play("Attack2");
-            WeaponInfo weaponInfo = (WeaponInfo)itemInfo;
-            DealDamage(target, weaponInfo.damage);
+            info.DealDamage(target, info.damage);
         }
         if (comboStep == 3)
         {
             Parent.GetComponent<Rigidbody>().velocity *= 0;
             playerAnimation.Play("Attack3");
-            WeaponInfo weaponInfo = (WeaponInfo)itemInfo;
-            DealDamage(target, weaponInfo.damage);
+            info.DealDamage(target, info.damage);
         }
         if (comboStep == 4)
         {
             Parent.GetComponent<Rigidbody>().velocity *= 0;
             playerAnimation.Play("Attack4");
-            WeaponInfo weaponInfo = (WeaponInfo)itemInfo;
-            DealDamage(target, weaponInfo.damage);
+            info.DealDamage(target, info.damage);
         }
         if (comboStep == 5)
         {
             Parent.GetComponent<Rigidbody>().velocity *= 0;
             playerAnimation.Play("Attack5");
-            WeaponInfo weaponInfo = (WeaponInfo)itemInfo;
-            DealDamage(target, weaponInfo.damage);
+            info.DealDamage(target, info.damage);
         }
     }
 
