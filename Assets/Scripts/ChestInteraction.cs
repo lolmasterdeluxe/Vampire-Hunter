@@ -2,10 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/**
+ * Author: Li Zeyu
+ * Created: 17/2/2022
+ */
+
 public class ChestInteraction : MonoBehaviour
 {
     private bool triggerActive = false;
-    public GameObject target;
+    [SerializeField]
+    private GameObject target;
     // Start is called before the first frame update
     public void OnTriggerEnter(Collider other)
     {

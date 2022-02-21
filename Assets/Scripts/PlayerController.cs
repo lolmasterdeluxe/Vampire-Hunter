@@ -12,8 +12,8 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        Inventory_UI = FindObjectOfType<InventoryUI>().gameObject;
-        Inventory_UI.SetActive(false);
+        /*Inventory_UI = FindObjectOfType<InventoryUI>().gameObject;
+        Inventory_UI.SetActive(false);*/
     }
     private void Update()
     {
@@ -32,10 +32,10 @@ public class PlayerController : MonoBehaviour
                 Cursor.visible = false;
             }
         }
-        if (Input.GetMouseButtonDown(0))
+        /*if (Input.GetMouseButtonDown(0))
         {
             FindAndUseWeapon(0);
-        }
+        }*/
 
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
