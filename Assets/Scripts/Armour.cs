@@ -8,4 +8,5 @@ using UnityEngine;
  */
 public abstract class Armour : Item
 {
+    public int armourPoints;
 }

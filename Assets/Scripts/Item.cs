@@ -8,7 +8,11 @@ using UnityEngine;
  */
 
 // This is the base class for all items
-public abstract class Item : MonoBehaviour
+public abstract class Item : ScriptableObject
 {
-    public ItemInfo itemInfo;
+    public string itemName;
+    public string itemDescription;
+    public Sprite itemImage;
+
+    public GameObject model3D;
 }
