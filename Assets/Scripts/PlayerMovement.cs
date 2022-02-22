@@ -12,22 +12,16 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private CharacterController controller;
     [SerializeField]
-    private GameObject Head;
-    [SerializeField]
-    private GameObject Body;
-    [SerializeField]
-    private GameObject MeleeWeapon;
-    [SerializeField]
-    private GameObject RangedWeapon;
+    private GameObject Head, Body, MeleeWeapon, RangedWeapon, Zombie, MainCamera, FollowCamera, LockOnCamera;
+    private Cinemachine.CinemachineBrain brain;
 
     private Rigidbody m_Rigidbody;
     private float horizontal, vertical, targetAngle, angle, distToGround, turnSmoothVelocity;
-    [SerializeField]
-    private Transform Camera;
     private Vector3 direction, moveDir;
+
     [SerializeField]
-    private float turnSmoothTime = 0.1f, maxVelocity = 5f, acceleration = 6f;
-    private bool IsGrounded, ToRoll = false;
+    private float turnSmoothTime = 0.1f, maxVelocity = 5f, acceleration = 6f, rotationSpeed = 1;
+    private bool IsGrounded, ToRoll = false, LockOn = false;
     private bool[] IsDodging = { false, false };
     private double dodgeTime = 0;
     private Animator playerAnimation;
@@ -40,6 +34,7 @@ public class PlayerMovement : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         distToGround = Body.GetComponent<Collider>().bounds.extents.y;
+        brain = MainCamera.GetComponent<Cinemachine.CinemachineBrain>();
     }   
 
     private void Update()
@@ -61,6 +56,17 @@ public class PlayerMovement : MonoBehaviour
         direction = new Vector3(horizontal, 0f, vertical).normalized;
 
         dodgeTime -= Time.deltaTime;
+
+        if (Input.GetKeyDown("o"))
+        {
+            LockOn = !LockOn;
+            FollowCamera.SetActive(!FollowCamera.activeSelf);
+            LockOnCamera.SetActive(!LockOnCamera.activeSelf);
+        }
+        if (LockOn)
+            transform.LookAt(Zombie.transform.position);
+        else
+            brain.ManualUpdate();
     }
 
     private void FixedUpdate()
@@ -89,14 +95,15 @@ public class PlayerMovement : MonoBehaviour
             }
             else if (IsGrounded)
             {
-                targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + Camera.eulerAngles.y;
-                angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
-                transform.rotation = Quaternion.Euler(0f, angle, 0f);
-                moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-
+                if (!LockOn)
+                {
+                    targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + MainCamera.transform.eulerAngles.y;
+                    angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
+                    transform.rotation = Quaternion.Euler(0f, angle, 0f);
+                    moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
+                }
                 m_Rigidbody.AddForce((moveDir.normalized * acceleration));
-                //m_Rigidbody.MovePosition(m_Rigidbody.position + moveDir.normalized * speed * Time.fixedDeltaTime);
-                //controller.Move(moveDir.normalized * speed * Time.deltaTime);
+                //controller.Move(moveDir.normalized * acceleration * Time.deltaTime);
             }
         }
         else if (IsDodging[0])
@@ -106,6 +113,12 @@ public class PlayerMovement : MonoBehaviour
             m_Rigidbody.AddForce((moveDir.normalized * 300) + (Vector3.up.normalized * 150));
             IsDodging[0] = false;
             dodgeTime = 0.5d;
+        }
+        if (LockOn)
+        {
+            targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + MainCamera.transform.eulerAngles.y;
+            moveDir = (Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward);
+            brain.ManualUpdate();
         }
         if (dodgeTime <= 0)
         {

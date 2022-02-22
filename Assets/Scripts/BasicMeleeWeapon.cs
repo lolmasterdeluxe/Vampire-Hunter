@@ -54,7 +54,6 @@ public class BasicMeleeWeapon : MonoBehaviour
         if (direction.magnitude >= 0.1f)
         {
             targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + Camera.eulerAngles.y;
-            Debug.Log("Dir magnitude: " + direction.magnitude);
             if (changeDir)
             {
                 angle = Mathf.SmoothDampAngle(Parent.GetComponent<Transform>().eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
