@@ -8769,7 +8769,7 @@ ParticleSystem:
       emitter: {fileID: 9065519345680893762}
       type: 0
       properties: 0
-      emitProbability: 1
+      emitProbability: 0
     - serializedVersion: 3
       emitter: {fileID: 9065558525318114588}
       type: 0

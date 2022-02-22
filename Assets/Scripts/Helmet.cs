@@ -6,6 +6,7 @@ using UnityEngine;
  * Author: Ho Junliang 
  * Created: 17/2/2022
  */
+[CreateAssetMenu(menuName = "Items/New Helmet")]
 public class Helmet : Armour
 {
 }

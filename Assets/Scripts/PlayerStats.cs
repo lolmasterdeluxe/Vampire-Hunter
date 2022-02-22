@@ -2,6 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/**
+ * Author: Muhammad Rifdi bin Sabbri 
+ * Created: 20/2/2022
+ */
+
 public static class PlayerStats
 {
     public static float Vitality = 12;

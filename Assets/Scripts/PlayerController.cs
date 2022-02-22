@@ -8,12 +8,12 @@ using UnityEngine;
  */
 public class PlayerController : MonoBehaviour
 {
-    GameObject Inventory_UI;
+    public GameObject Inventory_UI;
 
-    private void Start()
+    private void Awake()
     {
-        /*Inventory_UI = FindObjectOfType<InventoryUI>().gameObject;
-        Inventory_UI.SetActive(false);*/
+        //Inventory_UI = FindObjectOfType<InventoryUI>().gameObject;
+        Inventory_UI.SetActive(false);
     }
     private void Update()
     {
@@ -37,31 +37,31 @@ public class PlayerController : MonoBehaviour
             FindAndUseWeapon(0);
         }*/
 
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            FindAndUseWeapon(0);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            FindAndUseWeapon(1);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            FindAndUseWeapon(2);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            FindAndUseWeapon(3);
-        }
+        //if (Input.GetKeyDown(KeyCode.Alpha1))
+        //{
+        //    FindAndUseWeapon(0);
+        //}
+        //if (Input.GetKeyDown(KeyCode.Alpha2))
+        //{
+        //    FindAndUseWeapon(1);
+        //}
+        //if (Input.GetKeyDown(KeyCode.Alpha3))
+        //{
+        //    FindAndUseWeapon(2);
+        //}
+        //if (Input.GetKeyDown(KeyCode.Alpha4))
+        //{
+        //    FindAndUseWeapon(3);
+        //}
     }
 
-    private void FindAndUseWeapon(int key)
-    {
-        int itemID = GetComponent<PlayerInventory>().hotbar[key];
-        if (itemID != 0)
-        {
-            //Weapon weapon = (Weapon)FindObjectOfType<InventorySystem>().items[itemID];
-            ((Weapon)FindObjectOfType<InventorySystem>().items[itemID]).Attack(gameObject);
-        }
-    }
+    //private void FindAndUseWeapon(int key)
+    //{ 
+    //    int itemID = GetComponent<PlayerInventory>().hotbar[key];
+    //    if (itemID != 0)
+    //    {
+    //        //Weapon weapon = (Weapon)FindObjectOfType<InventorySystem>().items[itemID];
+    //        ((Weapon)FindObjectOfType<InventorySystem>().items[itemID]).Attack(gameObject);
+    //    }
+    //}
 }

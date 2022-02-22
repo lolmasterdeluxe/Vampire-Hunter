@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /**
- * Author: Ho Junliang 
+ * Author: Muhammad Rifdi bin Sabbri
  * Created: 15/2/2022
- * Editor: Muhammad Rifdi bin Sabbri
+ * Editor: Junliang
  * Edited: 16/2/2022
  */
-public class BasicRangedWeapon : RangedWeapon
+public class BasicRangedWeapon : MonoBehaviour
 {
+    public RangedWeapon info;
+
     [SerializeField]
     private GameObject Parent;
     [SerializeField]
@@ -53,10 +55,10 @@ public class BasicRangedWeapon : RangedWeapon
         }
     }
 
-    public override void Attack(GameObject target)
+    public void Attack(GameObject target)
     {
         Debug.Log("Ranged Weapon Attack.");
-        WeaponInfo weaponInfo = (WeaponInfo)itemInfo;
+        //WeaponInfo weaponInfo = (WeaponInfo)itemInfo;
 
         for (int i = 0; i < NumberOfBullets; ++i)
         {
@@ -72,7 +74,7 @@ public class BasicRangedWeapon : RangedWeapon
                     StartCoroutine(SpawnTrail(trail, hit));
 
                     LastShootTime = Time.time;
-                    DealDamage(target, weaponInfo.damage);
+                    info.DealDamage(target, info.damage);
                 }
             }
         }

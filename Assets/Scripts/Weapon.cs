@@ -9,9 +9,15 @@ using UnityEngine;
 
 public abstract class Weapon : Item
 {
-    public abstract void Attack(GameObject target);
-    protected void DealDamage(GameObject target, int damage)
+
+    public int damage;
+    //public abstract void Attack(GameObject target);
+    public void DealDamage(GameObject target, int damage)
     {
         Debug.Log("Deal damage: " + damage + ", to: " + target.name);
+        if (target.GetComponent<Health>())
+        {
+            target.GetComponent<Health>().hp -= damage;
+        }
     }
 }
