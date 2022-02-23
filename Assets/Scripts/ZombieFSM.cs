@@ -17,9 +17,9 @@ public class ZombieFSM : CFSM
     [SerializeField]
     private Transform xPointMin, xPointMax, zPointMin, zPointMax;
     [SerializeField]
-    private int DetectionRange, AttackRange;
+    private int DetectionRange, AttackRange, AttackCooldown;
     private int Attack;
-    private float DistanceBtwPlayer;
+    private float DistanceBtwPlayer, DistanceToGoal;
     private Vector3 goal;
     private bool SetPatrolPoint = false;
 
@@ -34,6 +34,7 @@ public class ZombieFSM : CFSM
     private void Update()
     {
         DistanceBtwPlayer = Vector3.Distance(transform.position, Player.GetComponent<Transform>().position);
+        DistanceToGoal = Vector3.Distance(transform.position, goal);
         switch (CurrentFSM)
         {
             case FSM.IDLE:
@@ -47,7 +48,7 @@ public class ZombieFSM : CFSM
                 FSMCounter += Time.deltaTime;
                 break;
             case FSM.PATROL:
-                if (transform.position == goal)
+                if (DistanceToGoal <= 1)
                     zombieAnimation.Play("Idle");
                 else
                     zombieAnimation.Play("Walk");
@@ -66,26 +67,29 @@ public class ZombieFSM : CFSM
                 if (DistanceBtwPlayer <= DetectionRange)
                 {
                     CurrentFSM = FSM.ATTACK;
-                    FSMCounter = 3;
+                    FSMCounter = AttackCooldown;
                 }
                 FSMCounter += Time.deltaTime;
                 break;
             case FSM.ATTACK:    
                 if (!zombieAnimation.GetCurrentAnimatorStateInfo(0).IsName("Attack" + Attack))
                 {
-                    if (DistanceBtwPlayer <= AttackRange && FSMCounter > 3)
+                    if (FSMCounter > AttackCooldown)
                     {
-                        agent.destination = Player.transform.position;
-                        Attack = Random.Range(1, 3);
-                        zombieAnimation.Play("Attack" + Attack);
-                        agent.velocity += (Quaternion.Euler(0f, transform.eulerAngles.y, 0f) * Vector3.forward).normalized * 10;
-                        FSMCounter = 0;
-                    }
-                    else if (FSMCounter > 3)
-                    {
-                        agent.destination = Player.transform.position;
-                        zombieAnimation.Play("Walk");
-                        agent.speed = 10;
+                        if (DistanceBtwPlayer <= AttackRange)
+                        {
+                            agent.destination = Player.transform.position;
+                            Attack = Random.Range(1, 3);
+                            zombieAnimation.Play("Attack" + Attack);
+                            agent.velocity += (Quaternion.Euler(0f, transform.eulerAngles.y, 0f) * Vector3.forward).normalized * 10;
+                            FSMCounter = 0;
+                        }
+                        else
+                        {
+                            agent.destination = Player.transform.position;
+                            zombieAnimation.Play("Walk");
+                            agent.speed = 10;
+                        }
                     }
                     else
                     {

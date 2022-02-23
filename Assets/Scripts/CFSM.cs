@@ -25,7 +25,7 @@ public abstract class CFSM : MonoBehaviour
 	protected const int MaxFSMCounter = 1;
 
 	// Update is called once per frame
-	void Update()
+	protected void FSM_Update()
     {
 		switch (CurrentFSM)
 		{

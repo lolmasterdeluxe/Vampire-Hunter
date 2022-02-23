@@ -7,7 +7,7 @@ public class CameraLockOn : MonoBehaviour
     [SerializeField]
     private GameObject FollowCamera, LockOnCamera, Zombie;
     [SerializeField]
-    private float Speed = 1f;
+    private float LockOnSpeed = 1f;
     [HideInInspector]
     public bool LockOn = false, TargetLockOn = false;
     private Coroutine LookCoroutine;
@@ -26,9 +26,14 @@ public class CameraLockOn : MonoBehaviour
         if (TargetLockOn)
         {
             StartCoroutine(LookAt());
-            if (lookRotation == transform.rotation)
-                transform.LookAt(Zombie.transform);
+            /*if (lookRotation == transform.rotation)
+                transform.LookAt(Zombie.transform);*/
         }
+    }
+
+    private void FixedUpdate()
+    {
+        
     }
 
     private void StartRotating()
@@ -50,7 +55,7 @@ public class CameraLockOn : MonoBehaviour
         {
             transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, time);
 
-            time += Time.deltaTime * Speed;
+            time += Time.deltaTime * LockOnSpeed;
             Debug.Log("Locking On");
             yield return null;
         }
