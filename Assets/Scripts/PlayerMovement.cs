@@ -53,12 +53,17 @@ public class PlayerMovement : MonoBehaviour
 
         if (IsGrounded && !ToRoll)
         {
-            if (Input.GetButtonDown("Jump") && (vertical >= 1 || vertical <= 0))
+            if (playerCamera.LockOn)
+            {
+                if (Input.GetButtonDown("Jump") && horizontal >= 1)
+                    IsDodging[2] = true;
+                else if (Input.GetButtonDown("Jump") && horizontal <= -1)
+                    IsDodging[3] = true;
+                else if (Input.GetButtonDown("Jump") && (vertical >= 1 || vertical <= 0))
+                    IsDodging[0] = true;
+            }
+            else if (Input.GetButtonDown("Jump") && (vertical >= 1 || vertical <= 0))
                 IsDodging[0] = true;
-            else if (Input.GetButton("Jump") && horizontal >= 1)
-                IsDodging[2] = true;
-            else if (Input.GetButton("Jump") && horizontal <= -1)
-                IsDodging[3] = true;
         }
         Debug.Log("DodgeTime: " + dodgeTime);
         if (ToRoll && Input.GetButtonDown("Jump"))
@@ -76,11 +81,14 @@ public class PlayerMovement : MonoBehaviour
             //smoothness of the slowdown is controlled by the 0.99f, 
             //0.5f is less smooth, 0.9999f is more smooth
             ToRoll = false;
+
             if (m_Rigidbody.velocity.sqrMagnitude > maxVelocity)
             {
                 m_Rigidbody.velocity *= 0.8f;
             }
             Debug.Log("ToRoll bool: " + ToRoll);
+            if (playerCamera.LockOn)
+                playerCamera.TargetLockOn = true;
         }
         // Check if player is rolling, disable some colliders
         if (playerAnimation.GetCurrentAnimatorStateInfo(0).IsName("Roll") || playerAnimation.GetCurrentAnimatorStateInfo(0).IsName("RollSideRight") || playerAnimation.GetCurrentAnimatorStateInfo(0).IsName("RollSideLeft"))
@@ -139,21 +147,23 @@ public class PlayerMovement : MonoBehaviour
                 {
                     m_Rigidbody.velocity *= 0;
                     playerAnimation.Play("RollSideRight");
+                    playerCamera.TargetLockOn = false;
                     moveDir = Quaternion.Euler(0f, transform.eulerAngles.y, 0f) * (Vector3.right);
                     m_Rigidbody.AddForce(moveDir.normalized * 250);
-                    IsDodging[2] = false;
                     ToRoll = true;
                     dodgeTime = 0.5d;
+                    IsDodging[2] = false;
                 }
                 else if (IsDodging[3])
                 {
                     m_Rigidbody.velocity *= 0;
                     playerAnimation.Play("RollSideLeft");
+                    playerCamera.TargetLockOn = false;
                     moveDir = Quaternion.Euler(0f, transform.eulerAngles.y, 0f) * (Vector3.left);
                     m_Rigidbody.AddForce(moveDir.normalized * 250);
-                    IsDodging[3] = false;
                     ToRoll = true;
                     dodgeTime = 0.5d;
+                    IsDodging[3] = false;
                 }
             }
         }
