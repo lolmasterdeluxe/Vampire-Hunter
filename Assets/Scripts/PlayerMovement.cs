@@ -12,7 +12,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private CharacterController controller;
     [SerializeField]
-    private GameObject Head, Body, MeleeWeapon, RangedWeapon, MainCamera;
+    private GameObject Head, Body, MeleeWeapon, RangedWeapon, MainCamera, stepRayUpper, stepRayLower;
 
     private BasicMeleeWeapon MeleeScript;
     private BasicRangedWeapon RangedScript;
@@ -23,11 +23,12 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 direction, moveDir;
 
     [SerializeField]
-    private float turnSmoothTime = 0.1f, maxVelocity = 5f, acceleration = 6f;
-    private bool IsGrounded, ToRoll = false;
+    private float turnSmoothTime = 0.1f, maxVelocity = 5f, acceleration = 6f, stepHeight = 0.3f, stepSmooth = 0.1f;
+    private bool IsGrounded, RollPhase, ToRoll = false;
     private bool[] IsDodging = { false, false, false, false };
     private double dodgeTime = 0;
     private Animator playerAnimation;
+
 
     // Update is called once per frame
     private void Awake()
@@ -40,11 +41,12 @@ public class PlayerMovement : MonoBehaviour
         playerCamera = GetComponent<CameraLockOn>();
         MeleeScript = MeleeWeapon.GetComponent<BasicMeleeWeapon>();
         RangedScript = RangedWeapon.GetComponent<BasicRangedWeapon>();
+        stepRayUpper.transform.position = new Vector3(stepRayUpper.transform.position.x, stepHeight, stepRayUpper.transform.position.z);
     }
 
     private void Update()
     {
-        IsGrounded = Physics.Raycast(Body.GetComponent<Transform>().position, Vector3.down, distToGround + 0.1f);
+        IsGrounded = Physics.Raycast(Body.GetComponent<Transform>().position, Vector3.down, distToGround + 0.3f);
         //gravity
 
         horizontal = Input.GetAxisRaw("Horizontal");
@@ -65,8 +67,8 @@ public class PlayerMovement : MonoBehaviour
             else if (Input.GetButtonDown("Jump") && (vertical >= 1 || vertical <= 0))
                 IsDodging[0] = true;
         }
-        Debug.Log("DodgeTime: " + dodgeTime);
-        if (ToRoll && Input.GetButtonDown("Jump"))
+        //Debug.Log("DodgeTime: " + dodgeTime);
+        if (RollPhase && Input.GetButtonDown("Jump"))
             IsDodging[1] = true;
 
         dodgeTime -= Time.deltaTime;
@@ -81,12 +83,14 @@ public class PlayerMovement : MonoBehaviour
             //smoothness of the slowdown is controlled by the 0.99f, 
             //0.5f is less smooth, 0.9999f is more smooth
             ToRoll = false;
+            RollPhase = false;
 
             if (m_Rigidbody.velocity.sqrMagnitude > maxVelocity)
             {
                 m_Rigidbody.velocity *= 0.8f;
             }
-            Debug.Log("ToRoll bool: " + ToRoll);
+            //Debug.Log("ToRoll bool: " + ToRoll);
+
             if (playerCamera.LockOn)
                 playerCamera.TargetLockOn = true;
         }
@@ -103,6 +107,8 @@ public class PlayerMovement : MonoBehaviour
             MeleeScript.enabled = true;
             RangedScript.enabled = true;
         }
+        
+        stepClimb();
     }
 
     private void Movement()
@@ -115,9 +121,10 @@ public class PlayerMovement : MonoBehaviour
                 transform.rotation = Quaternion.Euler(0f, transform.eulerAngles.y, 0f);
                 moveDir = Quaternion.Euler(0f, transform.eulerAngles.y, 0f) * (Vector3.forward);
                 m_Rigidbody.AddForce((moveDir.normalized * 300) + (Vector3.up.normalized * 100));
-                IsDodging[0] = false;
-                ToRoll = true;
+                playerCamera.TargetLockOn = false;
+                RollPhase = true;
                 dodgeTime = 0.75d;
+                IsDodging[0] = false;
             }
             else if (IsDodging[1])
             {
@@ -125,9 +132,11 @@ public class PlayerMovement : MonoBehaviour
                 playerAnimation.Play("Roll");
                 moveDir = Quaternion.Euler(0f, transform.eulerAngles.y, 0f) * (Vector3.forward);
                 m_Rigidbody.AddForce(moveDir.normalized * 500 - (Vector3.up.normalized * 100));
-                ToRoll = false;
-                IsDodging[1] = false;
+                RollPhase = false;
+                ToRoll = true;
+                playerCamera.TargetLockOn = false;
                 dodgeTime = 0.5d;
+                IsDodging[1] = false;
             }
             else if (IsGrounded)
             {
@@ -164,7 +173,7 @@ public class PlayerMovement : MonoBehaviour
                     ToRoll = true;
                     dodgeTime = 0.5d;
                     IsDodging[3] = false;
-                }
+                }   
             }
         }
         else if (IsDodging[0])
@@ -176,5 +185,68 @@ public class PlayerMovement : MonoBehaviour
             dodgeTime = 0.5d;
         }
         
+    }
+
+    private void stepClimb()
+    {
+        //RaycastHit hitLower;
+        //if (Physics.Raycast(stepRayLower.transform.position, transform.TransformDirection(Vector3.forward), out hitLower, 0.2f))
+        //{
+        //    RaycastHit hitUpper;
+        //    if (!Physics.Raycast(stepRayUpper.transform.position, transform.TransformDirection(Vector3.forward), out hitUpper, 0.3f))
+        //    {
+        //        m_Rigidbody.position -= new Vector3(0f, -stepSmooth, 0f);
+        //        Debug.Log("Raycast hit 1");
+        //    }
+        //}
+
+        //RaycastHit hitLower45;
+        //if (Physics.Raycast(stepRayLower.transform.position, transform.TransformDirection(1.5f, 0, 1), out hitLower45, 0.2f))
+        //{
+        //    RaycastHit hitUpper45;
+        //    if (!Physics.Raycast(stepRayUpper.transform.position, transform.TransformDirection(1.5f, 0, 1), out hitUpper45, 0.3f))
+        //    {
+        //        m_Rigidbody.position -= new Vector3(0f, -stepSmooth, 0f);
+        //        Debug.Log("Raycast hit 2");
+        //    }
+        //}
+
+        //RaycastHit hitLowerMinus45;
+        //if (Physics.Raycast(stepRayLower.transform.position, transform.TransformDirection(-1.5f, 0, 1), out hitLowerMinus45, 0.2f))
+        //{
+        //    RaycastHit hitUpperMinus45;
+        //    if (!Physics.Raycast(stepRayUpper.transform.position, transform.TransformDirection(-1.5f, 0, 1), out hitUpperMinus45, 0.3f))
+        //    {
+        //        m_Rigidbody.position -= new Vector3(0f, -stepSmooth, 0f);
+        //        Debug.Log("Raycast hit 3");
+        //    }
+        //}
+        Vector3[] dirs = new Vector3[] {
+            new Vector3(0f, 0f, 1f),
+            new Vector3(1f, 0f, 1f),
+            new Vector3(-1f, 0f, 1f)
+        };
+
+        // if the bottom raycast collides but the top doesn't then bounce us up over the step
+        foreach (Vector3 dir in dirs)
+        {
+            //Debug.DrawRay(stepRayLower.transform.position, transform.TransformDirection(direction), Color.green);
+            //Debug.DrawRay(stepRayUpper.transform.position, transform.TransformDirection(direction), Color.red);
+            
+            if (Physics.Raycast(stepRayLower.transform.position, transform.TransformDirection(dir), 0.4f) && !ToRoll)
+            {
+                Debug.Log("Lower Raycast Hit");
+                if (direction.magnitude >= 0.1f && !Physics.Raycast(stepRayUpper.transform.position, transform.TransformDirection(dir), 0.5f))
+                {
+                    //m_Rigidbody.position -= new Vector3(0f, -stepSmooth * Time.deltaTime, 0f);
+                    m_Rigidbody.AddForce((moveDir.normalized * 10) + (Vector3.up.normalized * 15));
+                    Debug.Log("Upper Raycast Hit");
+                }
+                else if (direction.magnitude >= 0.1f)
+                {
+                    m_Rigidbody.AddForce((moveDir.normalized * 15));
+                }
+            }
+        }
     }
 }

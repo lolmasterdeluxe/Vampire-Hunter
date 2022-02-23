@@ -101,7 +101,7 @@ public class CarriageInteraction : MonoBehaviour
         //Debug.Log("target" + target);
         GameObject travelDestination = GameObject.Find(target);
         Vector3 targetPosition = travelDestination.transform.position;
-        player.transform.position = targetPosition + new Vector3(-40,0,3);
+        player.transform.position = targetPosition;
         QuitCarriage();
     }
 
