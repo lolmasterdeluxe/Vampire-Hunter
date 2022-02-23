@@ -7,8 +7,6 @@ using UnityEngine.AI;
  * Author: Muhammad Rifdi bin Sabbri 
  * Created: 20/2/2022
  */
-
-
 public class ZombieFSM : CFSM
 {
     [SerializeField]
@@ -68,14 +66,14 @@ public class ZombieFSM : CFSM
                 if (DistanceBtwPlayer <= DetectionRange)
                 {
                     CurrentFSM = FSM.ATTACK;
-                    FSMCounter = 1;
+                    FSMCounter = 3;
                 }
                 FSMCounter += Time.deltaTime;
                 break;
             case FSM.ATTACK:    
                 if (!zombieAnimation.GetCurrentAnimatorStateInfo(0).IsName("Attack" + Attack))
                 {
-                    if (DistanceBtwPlayer <= AttackRange && FSMCounter > 1)
+                    if (DistanceBtwPlayer <= AttackRange && FSMCounter > 3)
                     {
                         agent.destination = Player.transform.position;
                         Attack = Random.Range(1, 3);
@@ -83,7 +81,7 @@ public class ZombieFSM : CFSM
                         agent.velocity += (Quaternion.Euler(0f, transform.eulerAngles.y, 0f) * Vector3.forward).normalized * 10;
                         FSMCounter = 0;
                     }
-                    else if (FSMCounter > 1)
+                    else if (FSMCounter > 3)
                     {
                         agent.destination = Player.transform.position;
                         zombieAnimation.Play("Walk");
