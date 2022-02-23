@@ -146,10 +146,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2da37c147cd618040bb102b4dd6ccb83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemInfo: {fileID: 11400000, guid: 4afa327158e19ec43aef5d8b50178b54, type: 2}
+  info: {fileID: 0}
   playerAnimation: {fileID: 4987095885613345893}
   target: {fileID: 0}
   Parent: {fileID: 0}
+  RangedWeaponArm: {fileID: 0}
+  Camera: {fileID: 0}
+  turnSmoothTime: 0.1
 --- !u!65 &1755573914635715403
 BoxCollider:
   m_ObjectHideFlags: 0
