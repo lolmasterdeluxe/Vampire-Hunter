@@ -38,7 +38,7 @@ public class BasicMeleeWeapon : MonoBehaviour
         direction = new Vector3(horizontal, 0f, vertical).normalized;
         if (Input.GetMouseButtonDown(0))
         {
-            Attack(target);
+            Attack(target); 
             RangedWeaponArm.GetComponent<BasicRangedWeapon>().enabled = false;
             Parent.GetComponent<PlayerMovement>().enabled = false;
         }

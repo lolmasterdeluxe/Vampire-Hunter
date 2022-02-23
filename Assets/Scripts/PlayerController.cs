@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.I))
         {
+            Debug.Log("pressed I");
             Inventory_UI.SetActive(!Inventory_UI.activeSelf);
             if (Inventory_UI.activeSelf)
             {
