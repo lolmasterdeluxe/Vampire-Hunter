@@ -33,6 +33,7 @@ public class PlayerController : MonoBehaviour
                 Cursor.visible = false;
             }
         }
+
         /*if (Input.GetMouseButtonDown(0))
         {
             FindAndUseWeapon(0);
