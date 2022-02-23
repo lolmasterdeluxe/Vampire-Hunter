@@ -12,17 +12,20 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private CharacterController controller;
     [SerializeField]
-    private GameObject Head, Body, MeleeWeapon, RangedWeapon, Zombie, MainCamera, FollowCamera, LockOnCamera;
-    private Cinemachine.CinemachineBrain brain;
+    private GameObject Head, Body, MeleeWeapon, RangedWeapon, MainCamera;
+
+    private BasicMeleeWeapon MeleeScript;
+    private BasicRangedWeapon RangedScript;
+    private CameraLockOn playerCamera;
 
     private Rigidbody m_Rigidbody;
     private float horizontal, vertical, targetAngle, angle, distToGround, turnSmoothVelocity;
     private Vector3 direction, moveDir;
 
     [SerializeField]
-    private float turnSmoothTime = 0.1f, maxVelocity = 5f, acceleration = 6f, rotationSpeed = 1;
-    private bool IsGrounded, ToRoll = false, LockOn = false;
-    private bool[] IsDodging = { false, false };
+    private float turnSmoothTime = 0.1f, maxVelocity = 5f, acceleration = 6f;
+    private bool IsGrounded, ToRoll = false;
+    private bool[] IsDodging = { false, false, false, false };
     private double dodgeTime = 0;
     private Animator playerAnimation;
 
@@ -34,42 +37,67 @@ public class PlayerMovement : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         distToGround = Body.GetComponent<Collider>().bounds.extents.y;
-        brain = MainCamera.GetComponent<Cinemachine.CinemachineBrain>();
-    }   
+        playerCamera = GetComponent<CameraLockOn>();
+        MeleeScript = MeleeWeapon.GetComponent<BasicMeleeWeapon>();
+        RangedScript = RangedWeapon.GetComponent<BasicRangedWeapon>();
+    }
 
     private void Update()
     {
         IsGrounded = Physics.Raycast(Body.GetComponent<Transform>().position, Vector3.down, distToGround + 0.1f);
         //gravity
 
-        if (IsGrounded)
-        {
-            if (Input.GetButtonDown("Jump") && !ToRoll)
-                IsDodging[0] = true;
-        }
-
-        if (ToRoll && Input.GetButtonDown("Jump"))
-            IsDodging[1] = true;
-
         horizontal = Input.GetAxisRaw("Horizontal");
         vertical = Input.GetAxisRaw("Vertical");
         direction = new Vector3(horizontal, 0f, vertical).normalized;
 
-        dodgeTime -= Time.deltaTime;
-
-        if (Input.GetKeyDown("o"))
+        if (IsGrounded && !ToRoll)
         {
-            LockOn = !LockOn;
-            FollowCamera.SetActive(!FollowCamera.activeSelf);
-            LockOnCamera.SetActive(!LockOnCamera.activeSelf);
+            if (Input.GetButtonDown("Jump") && (vertical >= 1 || vertical <= 0))
+                IsDodging[0] = true;
+            else if (Input.GetButton("Jump") && horizontal >= 1)
+                IsDodging[2] = true;
+            else if (Input.GetButton("Jump") && horizontal <= -1)
+                IsDodging[3] = true;
         }
-        if (LockOn)
-            transform.LookAt(Zombie.transform.position);
-        else
-            brain.ManualUpdate();
+        Debug.Log("DodgeTime: " + dodgeTime);
+        if (ToRoll && Input.GetButtonDown("Jump"))
+            IsDodging[1] = true;
+
+        dodgeTime -= Time.deltaTime;
     }
 
     private void FixedUpdate()
+    {
+        Movement();
+
+        if (dodgeTime <= 0)
+        {
+            //smoothness of the slowdown is controlled by the 0.99f, 
+            //0.5f is less smooth, 0.9999f is more smooth
+            ToRoll = false;
+            if (m_Rigidbody.velocity.sqrMagnitude > maxVelocity)
+            {
+                m_Rigidbody.velocity *= 0.8f;
+            }
+            Debug.Log("ToRoll bool: " + ToRoll);
+        }
+        // Check if player is rolling, disable some colliders
+        if (playerAnimation.GetCurrentAnimatorStateInfo(0).IsName("Roll") || playerAnimation.GetCurrentAnimatorStateInfo(0).IsName("RollSideRight") || playerAnimation.GetCurrentAnimatorStateInfo(0).IsName("RollSideLeft"))
+        {
+            Head.GetComponent<Collider>().enabled = false;
+            MeleeScript.enabled = false;
+            RangedScript.enabled = false;
+        }
+        else
+        {
+            Head.GetComponent<Collider>().enabled = true;
+            MeleeScript.enabled = true;
+            RangedScript.enabled = true;
+        }
+    }
+
+    private void Movement()
     {
         if (direction.magnitude >= 0.1f)
         {
@@ -95,15 +123,38 @@ public class PlayerMovement : MonoBehaviour
             }
             else if (IsGrounded)
             {
-                if (!LockOn)
+                targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + MainCamera.transform.eulerAngles.y;
+                moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
+                if (!playerCamera.LockOn)
                 {
-                    targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + MainCamera.transform.eulerAngles.y;
                     angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
                     transform.rotation = Quaternion.Euler(0f, angle, 0f);
-                    moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
                 }
                 m_Rigidbody.AddForce((moveDir.normalized * acceleration));
                 //controller.Move(moveDir.normalized * acceleration * Time.deltaTime);
+            }
+            if (playerCamera.LockOn)
+            {
+                if (IsDodging[2])
+                {
+                    m_Rigidbody.velocity *= 0;
+                    playerAnimation.Play("RollSideRight");
+                    moveDir = Quaternion.Euler(0f, transform.eulerAngles.y, 0f) * (Vector3.right);
+                    m_Rigidbody.AddForce(moveDir.normalized * 250);
+                    IsDodging[2] = false;
+                    ToRoll = true;
+                    dodgeTime = 0.5d;
+                }
+                else if (IsDodging[3])
+                {
+                    m_Rigidbody.velocity *= 0;
+                    playerAnimation.Play("RollSideLeft");
+                    moveDir = Quaternion.Euler(0f, transform.eulerAngles.y, 0f) * (Vector3.left);
+                    m_Rigidbody.AddForce(moveDir.normalized * 250);
+                    IsDodging[3] = false;
+                    ToRoll = true;
+                    dodgeTime = 0.5d;
+                }
             }
         }
         else if (IsDodging[0])
@@ -114,34 +165,6 @@ public class PlayerMovement : MonoBehaviour
             IsDodging[0] = false;
             dodgeTime = 0.5d;
         }
-        if (LockOn)
-        {
-            targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + MainCamera.transform.eulerAngles.y;
-            moveDir = (Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward);
-            brain.ManualUpdate();
-        }
-        if (dodgeTime <= 0)
-        {
-            ToRoll = false;
-            if (m_Rigidbody.velocity.sqrMagnitude > maxVelocity)
-            {
-                //smoothness of the slowdown is controlled by the 0.99f, 
-                //0.5f is less smooth, 0.9999f is more smooth
-                m_Rigidbody.velocity *= 0.8f;
-            }
-        }
-        // Check if player is rolling, disable some colliders
-        if (playerAnimation.GetCurrentAnimatorStateInfo(0).IsName("Roll"))
-        {
-            Head.GetComponent<Collider>().enabled = false;
-            MeleeWeapon.GetComponent<Collider>().enabled = false;
-            RangedWeapon.GetComponent<Collider>().enabled = false;
-        }
-        else
-        {
-            Head.GetComponent<Collider>().enabled = true;
-            MeleeWeapon.GetComponent<Collider>().enabled = true;
-            //RangedWeapon.GetComponent<Collider>().enabled = true;
-        }
+        
     }
 }
