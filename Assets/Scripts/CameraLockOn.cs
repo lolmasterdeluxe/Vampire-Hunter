@@ -7,9 +7,11 @@ public class CameraLockOn : MonoBehaviour
     [SerializeField]
     private GameObject FollowCamera, LockOnCamera, Zombie;
     [SerializeField]
-    private Cinemachine.CinemachineBrain brain;
+    private float Speed = 1f;
     [HideInInspector]
     public bool LockOn = false, TargetLockOn = false;
+    private Coroutine LookCoroutine;
+    private Quaternion lookRotation;
 
     // Update is called once per frame
     private void Update()
@@ -21,17 +23,37 @@ public class CameraLockOn : MonoBehaviour
             FollowCamera.SetActive(!FollowCamera.activeSelf);
             LockOnCamera.SetActive(!LockOnCamera.activeSelf);
         }
-
         if (TargetLockOn)
-            transform.LookAt(Zombie.transform.position);
-
-        if (!LockOn)
-            brain.ManualUpdate();
+        {
+            StartCoroutine(LookAt());
+            if (lookRotation == transform.rotation)
+                transform.LookAt(Zombie.transform);
+        }
     }
 
-    private void FixedUpdate()
+    private void StartRotating()
     {
-        if (LockOn)
-            brain.ManualUpdate();
+        if (LookCoroutine != null)
+        {
+            StopCoroutine(LookCoroutine);
+        }
+        LookCoroutine = StartCoroutine(LookAt());
     }
+    private IEnumerator LookAt()
+    {
+        lookRotation = Quaternion.LookRotation(Zombie.transform.position - transform.position);
+        lookRotation = Quaternion.Euler(transform.rotation.eulerAngles.x, lookRotation.eulerAngles.y, transform.rotation.eulerAngles.z);
+
+        float time = 0;
+
+        while (time < 1)
+        {
+            transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, time);
+
+            time += Time.deltaTime * Speed;
+            Debug.Log("Locking On");
+            yield return null;
+        }
+    }
+
 }
