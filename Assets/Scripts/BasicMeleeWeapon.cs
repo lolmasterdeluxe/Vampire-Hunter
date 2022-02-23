@@ -23,6 +23,8 @@ public class BasicMeleeWeapon : MonoBehaviour
     [SerializeField]
     private Transform Camera;
     [SerializeField]
+    private CameraLockOn playerCamera;
+    [SerializeField]
     private float turnSmoothTime = 0.1f;
 
     private Vector3 lungeDir, direction;
@@ -50,16 +52,23 @@ public class BasicMeleeWeapon : MonoBehaviour
             lungeDir = Quaternion.Euler(0f, Parent.GetComponent<Transform>().eulerAngles.y, 0f) * (Vector3.forward);
             Parent.GetComponent<Rigidbody>().AddForce((lungeDir.normalized * 200));
             lunge = false;
+            playerCamera.TargetLockOn = false;
         }
-        if (direction.magnitude >= 0.1f)
+        if (!playerCamera.LockOn)
         {
-            targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + Camera.eulerAngles.y;
-            Debug.Log("Dir magnitude: " + direction.magnitude);
-            if (changeDir)
+            if (direction.magnitude >= 0.1f)
             {
-                angle = Mathf.SmoothDampAngle(Parent.GetComponent<Transform>().eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
-                Parent.GetComponent<Transform>().rotation = Quaternion.Euler(0f, angle, 0f);
+                targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + Camera.eulerAngles.y;
+                if (changeDir)
+                {
+                    angle = Mathf.SmoothDampAngle(Parent.GetComponent<Transform>().eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
+                    Parent.GetComponent<Transform>().rotation = Quaternion.Euler(0f, angle, 0f);
+                }
             }
+        }
+        else if (!lunge)
+        {
+            playerCamera.TargetLockOn = true;
         }
     }
     public void Attack(GameObject target)
