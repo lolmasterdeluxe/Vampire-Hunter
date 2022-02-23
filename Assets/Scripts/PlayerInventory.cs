@@ -44,4 +44,50 @@ public class PlayerInventory : MonoBehaviour
         }
         return false;
     }
+
+    public bool EquipToHotbar(int slotIndex, int hotbarIndex)
+    {
+        if (slots[slotIndex] is Weapon)
+        {
+            Item temp = hotbar[hotbarIndex];
+            hotbar[hotbarIndex] = slots[slotIndex];
+            slots[slotIndex] = temp;
+            return true;
+        }
+        return false;
+    }
+    
+    public bool EquipArmour(int slotIndex)
+    {
+        if (slots[slotIndex] is Helmet)
+        {
+            Item temp = helmet;
+            helmet = (Helmet)slots[slotIndex];
+            slots[slotIndex] = temp;
+            return true;
+        }
+        else if (slots[slotIndex] is Chestplate)
+        {
+            Item temp = chestplate;
+            chestplate = (Chestplate)slots[slotIndex];
+            slots[slotIndex] = temp;
+            return true;
+        }
+        else if (slots[slotIndex] is Leggings)
+        {
+            Item temp = leggings;
+            leggings = (Leggings)slots[slotIndex];
+            slots[slotIndex] = temp;
+            return true;
+        }
+        else if (slots[slotIndex] is Boots)
+        {
+            Item temp = boots;
+            boots = (Boots)slots[slotIndex];
+            slots[slotIndex] = temp;
+            return true;
+        }
+
+        return false;
+    }
 }
