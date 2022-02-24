@@ -19,6 +19,7 @@ public class InventoryUI_Page : MonoBehaviour
         ,CHESTPALTE_TAB
         ,LEGGINGS_TAB
         ,BOOTS_TAB
+        ,POTION_TAB
     }
     public void ReturnToMain()
     {
@@ -35,7 +36,7 @@ public class InventoryUI_Page : MonoBehaviour
 
     public void SelectItem(int itemIndex)
     {
-        if (PlayerInventory.instance.slots[itemIndex] is Weapon)
+        if (PlayerInventory.instance.slots[itemIndex] is Usables)
             ChangePage(weaponStatsPage, itemIndex);
         else if (PlayerInventory.instance.slots[itemIndex] is Armour)
             ChangePage(armourStatsPage, itemIndex);
@@ -46,7 +47,6 @@ public class InventoryUI_Page : MonoBehaviour
     {
         gameObject.GetComponentInParent<InventoryUI>().ClosePage();
     }
-
     public void UpdateScrollView(int tab)
     {
         UpdateScrollView((TAB_TYPES)tab);
@@ -87,6 +87,9 @@ public class InventoryUI_Page : MonoBehaviour
                     break;
                 case TAB_TYPES.BOOTS_TAB:
                     toDisplay = (PlayerInventory.instance.slots[i] is Boots);
+                    break;
+                case TAB_TYPES.POTION_TAB:
+                    toDisplay = (PlayerInventory.instance.slots[i] is Potion);
                     break;
                 default:
                     break;
