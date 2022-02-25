@@ -40,7 +40,7 @@ public class BasicMeleeWeapon : MonoBehaviour
         direction = new Vector3(horizontal, 0f, vertical).normalized;
         if (Input.GetMouseButtonDown(0))
         {
-            Attack(target);
+            Attack(target); 
             RangedWeaponArm.GetComponent<BasicRangedWeapon>().enabled = false;
             Parent.GetComponent<PlayerMovement>().enabled = false;
         }
@@ -52,7 +52,6 @@ public class BasicMeleeWeapon : MonoBehaviour
             lungeDir = Quaternion.Euler(0f, Parent.GetComponent<Transform>().eulerAngles.y, 0f) * (Vector3.forward);
             Parent.GetComponent<Rigidbody>().AddForce((lungeDir.normalized * 200));
             lunge = false;
-            playerCamera.TargetLockOn = false;
         }
         if (!playerCamera.LockOn)
         {
@@ -65,10 +64,6 @@ public class BasicMeleeWeapon : MonoBehaviour
                     Parent.GetComponent<Transform>().rotation = Quaternion.Euler(0f, angle, 0f);
                 }
             }
-        }
-        else if (!lunge)
-        {
-            playerCamera.TargetLockOn = true;
         }
     }
     public void Attack(GameObject target)
