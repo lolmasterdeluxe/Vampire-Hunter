@@ -13,9 +13,16 @@ public class PlayerStatsPage : InventoryPage
     [SerializeField]
     Image[] armour = new Image[4];
 
+    [SerializeField]
+    GameObject unequipButton;
+
+    int SelectedSlot = -1;
     public override void UpdatePage(int itemIndex)
     {
         playerStats.text = "ill do this later \n 1 2 3 4 5 \n \n 6 7 8 9 0";
+
+        SelectedSlot = -1;
+        unequipButton.SetActive(false);
 
         for (int i = 0; i < PlayerInventory.instance.hotbar.Length; i++)
         {
@@ -67,5 +74,35 @@ public class PlayerStatsPage : InventoryPage
         {
             armour[3].gameObject.SetActive(false);
         }
+    }
+    public void SelectSlot(int slotIndex)
+    {
+        SelectedSlot = slotIndex;
+        if (slotIndex < 4)
+        {
+            if (PlayerInventory.instance.hotbar[slotIndex] == null) return;
+            unequipButton.transform.position = hotbar[slotIndex].transform.position;
+            unequipButton.SetActive(true);
+        }
+        else
+        {
+            slotIndex -= 4;
+            if (PlayerInventory.instance.GetArmourSlot(slotIndex) == null) return;
+            unequipButton.transform.position = armour[slotIndex].transform.position;
+            unequipButton.SetActive(true);
+        }
+    }
+    public void Unequip()
+    {
+        if (SelectedSlot < 4)
+        {
+            PlayerInventory.instance.UnequipFromHotbar(SelectedSlot);
+        }
+        else
+        {
+            SelectedSlot -= 4;
+            PlayerInventory.instance.UnequipArmour(SelectedSlot);
+        }
+        transform.parent.parent.GetComponent<InventoryUI_Page>().ReturnToMain();
     }
 }

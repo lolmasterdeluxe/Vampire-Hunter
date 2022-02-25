@@ -56,7 +56,6 @@ public class CameraLockOn : MonoBehaviour
             transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, time);
 
             time += Time.deltaTime * LockOnSpeed;
-            Debug.Log("Locking On");
             yield return null;
         }
     }
