@@ -27,7 +27,7 @@ public class CarriageInteraction : MonoBehaviour
 
     private GameObject textGameobject;
     private Text statsText;
-    bool[] firstTime = { false, false.};
+    bool[] firstTime = { false, false};
     float[] tempstatsArr = new float[10];
     float[] statsArr = { PlayerStats.Vitality, PlayerStats.Endurance, PlayerStats.Strength, PlayerStats.Dexterity
     ,PlayerStats.Defense,PlayerStats.Health,PlayerStats.Stamina,PlayerStats.Weapon1Dmg,PlayerStats.Weapon2Dmg,PlayerStats.BloodEssence};
