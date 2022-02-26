@@ -87,6 +87,7 @@ GameObject:
   - component: {fileID: 5754457282872545800}
   - component: {fileID: 4127575253753064992}
   - component: {fileID: 3527904245194927278}
+  - component: {fileID: 5032442988523659410}
   m_Layer: 5
   m_Name: Staminabar
   m_TagString: Untagged
@@ -166,6 +167,21 @@ MonoBehaviour:
   progressbar: {fileID: 3527904245194927266}
   curr: 30
   max: 100
+--- !u!114 &5032442988523659410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3527904245194927266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6733c1556035ff4d898e5dc14513516, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  progressbar: {fileID: 3527904245194927266}
+  curr: 100
+  max: 100
 --- !u!1 &3527904245561878841
 GameObject:
   m_ObjectHideFlags: 0
@@ -237,7 +253,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 0
-  m_FillAmount: 0.892
+  m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
