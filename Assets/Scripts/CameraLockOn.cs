@@ -25,9 +25,9 @@ public class CameraLockOn : MonoBehaviour
         }
         if (TargetLockOn)
         {
-            StartCoroutine(LookAt());
+            //StartCoroutine(LookAt());
             //if (lookRotation == transform.rotation)
-            //transform.LookAt(Enemy.transform);
+            transform.LookAt(Enemy.transform);
         }
     }
 
