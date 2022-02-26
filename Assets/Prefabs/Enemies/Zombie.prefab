@@ -111,7 +111,7 @@ GameObject:
   - component: {fileID: 196050821}
   m_Layer: 0
   m_Name: Left Arm
-  m_TagString: Enemy
+  m_TagString: Enemy Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 32
@@ -206,6 +206,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   impact: {fileID: 1536006580}
+  info: {fileID: 11400000, guid: 56eef167bbdf20248969be439d59fe5c, type: 2}
 --- !u!1 &2577281146293253685
 GameObject:
   m_ObjectHideFlags: 0
@@ -715,7 +716,7 @@ GameObject:
   - component: {fileID: 2022006968}
   m_Layer: 0
   m_Name: Right Arm
-  m_TagString: Enemy
+  m_TagString: Enemy Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 32
@@ -810,3 +811,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   impact: {fileID: 1536006580}
+  info: {fileID: 11400000, guid: 56eef167bbdf20248969be439d59fe5c, type: 2}

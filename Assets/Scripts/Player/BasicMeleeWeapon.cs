@@ -10,8 +10,6 @@ using UnityEngine;
  */
 public class BasicMeleeWeapon : MonoBehaviour
 {
-    public MeleeWeapon info;
- 
     [SerializeField]
     private Animator playerAnimation;
     [SerializeField]
@@ -40,7 +38,7 @@ public class BasicMeleeWeapon : MonoBehaviour
         direction = new Vector3(horizontal, 0f, vertical).normalized;
         if (Input.GetMouseButtonDown(0))
         {
-            Attack(target);
+            Attack();
             LockPlayer();
         }
     }
@@ -65,7 +63,7 @@ public class BasicMeleeWeapon : MonoBehaviour
             }
         }
     }
-    public void Attack(GameObject target)
+    public void Attack()
     {
         if (comboStep == 0)
         {
@@ -73,9 +71,6 @@ public class BasicMeleeWeapon : MonoBehaviour
             playerAnimation.Play("Attack1");
             comboStep = 1;
             Debug.Log("Melee Weapon Attack.");
-            //WeaponInfo weaponInfo = (WeaponInfo)itemInfo;
-            //DealDamage(target, weaponInfo.damage);
-            info.DealDamage(target, info.damage);
             return;
         }
         if (comboStep != 0)
@@ -93,31 +88,27 @@ public class BasicMeleeWeapon : MonoBehaviour
         comboPossible = true;
         changeDir = true;
     }
-    public void Combo(GameObject target)
+    public void Combo()
     {
         if (comboStep == 2)
         {
             Parent.GetComponent<Rigidbody>().velocity *= 0;
             playerAnimation.Play("Attack2");
-            info.DealDamage(target, info.damage);
         }
         if (comboStep == 3)
         {
             Parent.GetComponent<Rigidbody>().velocity *= 0;
             playerAnimation.Play("Attack3");
-            info.DealDamage(target, info.damage);
         }
         if (comboStep == 4)
         {
             Parent.GetComponent<Rigidbody>().velocity *= 0;
             playerAnimation.Play("Attack4");
-            info.DealDamage(target, info.damage);
         }
         if (comboStep == 5)
         {
             Parent.GetComponent<Rigidbody>().velocity *= 0;
             playerAnimation.Play("Attack5");
-            info.DealDamage(target, info.damage);
         }
     }
 
