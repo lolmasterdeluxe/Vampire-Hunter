@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 64688084313783927}
   m_Layer: 0
   m_Name: Old Lamp
-  m_TagString: Enemy
+  m_TagString: Enemy Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -59,6 +59,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   impact: {fileID: 2014496265117457925}
+  info: {fileID: 11400000, guid: 56eef167bbdf20248969be439d59fe5c, type: 2}
 --- !u!1 &418457328220940633
 GameObject:
   m_ObjectHideFlags: 0
@@ -996,7 +997,7 @@ GameObject:
   - component: {fileID: 3524308179995244319}
   m_Layer: 0
   m_Name: Hook
-  m_TagString: Enemy
+  m_TagString: Enemy Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1042,6 +1043,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   impact: {fileID: 2014496265117457925}
+  info: {fileID: 11400000, guid: 56eef167bbdf20248969be439d59fe5c, type: 2}
 --- !u!1 &8665879343431930240
 GameObject:
   m_ObjectHideFlags: 0
