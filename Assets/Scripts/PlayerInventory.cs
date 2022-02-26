@@ -65,6 +65,8 @@ public class PlayerInventory : MonoBehaviour
     {
         if (slots[slotIndex] is Usables)
         {
+            if (slots[slotIndex] is Weapon && !(slots[slotIndex] as Weapon).CheckRequiredStats()) 
+                return false;
             Item temp = hotbar[hotbarIndex];
             hotbar[hotbarIndex] = slots[slotIndex] as Usables;
             slots[slotIndex] = temp;
@@ -75,6 +77,8 @@ public class PlayerInventory : MonoBehaviour
     
     public bool EquipArmour(int slotIndex)
     {
+        if (slots[slotIndex] is Armour && !(slots[slotIndex] as Armour).CheckRequiredStats())
+            return false;
         if (slots[slotIndex] is Helmet)
         {
             Item temp = helmet;

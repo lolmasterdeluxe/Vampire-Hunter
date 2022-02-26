@@ -9,4 +9,10 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Items/New Leggings")]
 public class Leggings : Armour
 {
+    public float requiredDexterity;
+
+    public override bool CheckRequiredStats()
+    {
+        return (PlayerStats.Dexterity >= requiredDexterity);
+    }
 }

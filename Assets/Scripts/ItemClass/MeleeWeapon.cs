@@ -10,5 +10,10 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Items/New Melee Weapon")]
 public class MeleeWeapon : Weapon
 {
-    //public abstract override void Attack(GameObject target);
+    public float requiredStrength;
+
+    public override bool CheckRequiredStats()
+    {
+        return (PlayerStats.Strength >= requiredStrength);
+    }
 }

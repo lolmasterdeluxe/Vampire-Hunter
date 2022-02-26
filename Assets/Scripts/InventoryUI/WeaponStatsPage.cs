@@ -71,7 +71,9 @@ public class WeaponStatsPage : InventoryPage
     }
     public void Equip()
     {
-        PlayerInventory.instance.EquipToHotbar(selectedItem, selectedHotbarSlot);
-        transform.parent.parent.GetComponent<InventoryUI_Page>().ReturnToMain();
+        if (PlayerInventory.instance.EquipToHotbar(selectedItem, selectedHotbarSlot))
+            transform.parent.parent.GetComponent<InventoryUI_Page>().ReturnToMain();
+        else
+            NotificationSystem.instance.ShowRequirementPopup();
     }
 }

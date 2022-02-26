@@ -71,7 +71,9 @@ public class ArmourStatsPage : InventoryPage
 
     public void Equip()
     {
-        PlayerInventory.instance.EquipArmour(selectedItem);
-        transform.parent.parent.GetComponent<InventoryUI_Page>().ReturnToMain();
+        if (PlayerInventory.instance.EquipArmour(selectedItem))
+            transform.parent.parent.GetComponent<InventoryUI_Page>().ReturnToMain();
+        else
+            NotificationSystem.instance.ShowRequirementPopup();
     }
 }

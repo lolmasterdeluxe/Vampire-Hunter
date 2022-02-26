@@ -9,4 +9,10 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Items/New Chestplate")]
 public class Chestplate : Armour
 {
+    public float requiredStrength;
+
+    public override bool CheckRequiredStats()
+    {
+        return (PlayerStats.Strength >= requiredStrength);
+    }
 }
