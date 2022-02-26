@@ -26,19 +26,21 @@ public class ZombieFSM : CFSM
     // Update is called once per frame
     private void Awake()
     {
-        zombieAnimation = Body.GetComponent<Animator>();
-        agent = GetComponent<NavMeshAgent>();
+        zombieAnimation = GetComponent<Animator>();
+        agent = Body.GetComponent<NavMeshAgent>();
         Attack = Random.Range(1, 3);
     }
 
     private void Update()
     {
+        if (zombieAnimation.GetCurrentAnimatorStateInfo(0).IsName("Flinch"))
+            return;
         DistanceBtwPlayer = Vector3.Distance(transform.position, Player.GetComponent<Transform>().position);
         DistanceToGoal = Vector3.Distance(transform.position, goal);
         switch (CurrentFSM)
         {
             case FSM.IDLE:
-                zombieAnimation.Play("Idle");
+                zombieAnimation.SetBool("IsWalking", false);
                 agent.velocity *= 0;
                 if (FSMCounter > 2)
                 {
@@ -49,9 +51,9 @@ public class ZombieFSM : CFSM
                 break;
             case FSM.PATROL:
                 if (DistanceToGoal <= 1)
-                    zombieAnimation.Play("Idle");
+                    zombieAnimation.SetBool("IsWalking", false);
                 else
-                    zombieAnimation.Play("Walk");
+                    zombieAnimation.SetBool("IsWalking", true);
                 if (FSMCounter > 3)
                 {
                     SetPatrolPoint = false;
@@ -81,19 +83,20 @@ public class ZombieFSM : CFSM
                             agent.destination = Player.transform.position;
                             Attack = Random.Range(1, 4);
                             zombieAnimation.Play("Attack" + Attack);
+                            agent.transform.LookAt(Player.transform.position);
                             agent.velocity += (Quaternion.Euler(0f, transform.eulerAngles.y, 0f) * Vector3.forward).normalized * 10;
                             FSMCounter = 0;
                         }
                         else
                         {
                             agent.destination = Player.transform.position;
-                            zombieAnimation.Play("Walk");
+                            zombieAnimation.SetBool("IsWalking", true);
                             agent.speed = 10;
                         }
                     }
                     else
                     {
-                        zombieAnimation.Play("Idle");
+                        zombieAnimation.SetBool("IsWalking", false);
                     }
                     if (DistanceBtwPlayer > DetectionRange)
                     {

@@ -5,7 +5,7 @@ using UnityEngine;
 public class CameraLockOn : MonoBehaviour
 {
     [SerializeField]
-    private GameObject FollowCamera, LockOnCamera, Zombie;
+    private GameObject FollowCamera, LockOnCamera, Enemy;
     [SerializeField]
     private float LockOnSpeed = 1f;
     [HideInInspector]
@@ -26,8 +26,8 @@ public class CameraLockOn : MonoBehaviour
         if (TargetLockOn)
         {
             StartCoroutine(LookAt());
-            /*if (lookRotation == transform.rotation)
-                transform.LookAt(Zombie.transform);*/
+            //if (lookRotation == transform.rotation)
+            //transform.LookAt(Enemy.transform);
         }
     }
 
@@ -46,7 +46,7 @@ public class CameraLockOn : MonoBehaviour
     }
     private IEnumerator LookAt()
     {
-        lookRotation = Quaternion.LookRotation(Zombie.transform.position - transform.position);
+        lookRotation = Quaternion.LookRotation(Enemy.transform.position - transform.position);
         lookRotation = Quaternion.Euler(transform.rotation.eulerAngles.x, lookRotation.eulerAngles.y, transform.rotation.eulerAngles.z);
 
         float time = 0;

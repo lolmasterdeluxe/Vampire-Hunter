@@ -23,7 +23,7 @@ public class CultistFSM : CFSM
     private Vector3 goal;
     private bool SetPatrolPoint = false;
 
-    private bool comboPossible, lunge = false, changeDir = false;
+    private bool comboPossible, lunge = false;
     private int comboStep = 0, attack_type;
 
     private void Awake()
@@ -34,6 +34,8 @@ public class CultistFSM : CFSM
 
     private void Update()
     {
+        if (cultistAnimation.GetCurrentAnimatorStateInfo(0).IsName("Flinch"))
+            return;
         DistanceBtwPlayer = Vector3.Distance(Body.transform.position, Player.GetComponent<Transform>().position);
         DistanceToGoal = Vector3.Distance(Body.transform.position, goal);
         switch (CurrentFSM)
@@ -141,7 +143,6 @@ public class CultistFSM : CFSM
     public void ComboPossible()
     {
         comboPossible = true;
-        changeDir = true;
     }
     public void Combo()
     {
@@ -168,6 +169,5 @@ public class CultistFSM : CFSM
     public void Lunge()
     {
         lunge = true;
-        changeDir = false;
     }
 }

@@ -40,9 +40,8 @@ public class BasicMeleeWeapon : MonoBehaviour
         direction = new Vector3(horizontal, 0f, vertical).normalized;
         if (Input.GetMouseButtonDown(0))
         {
-            Attack(target); 
-            RangedWeaponArm.GetComponent<BasicRangedWeapon>().enabled = false;
-            Parent.GetComponent<PlayerMovement>().enabled = false;
+            Attack(target);
+            LockPlayer();
         }
     }
     private void FixedUpdate()
@@ -128,6 +127,12 @@ public class BasicMeleeWeapon : MonoBehaviour
         comboStep = 0;
         Parent.GetComponent<PlayerMovement>().enabled = true;
         RangedWeaponArm.GetComponent<BasicRangedWeapon>().enabled = true;
+    }
+
+    public void LockPlayer()
+    {
+        Parent.GetComponent<PlayerMovement>().enabled = false;
+        RangedWeaponArm.GetComponent<BasicRangedWeapon>().enabled = false;
     }
 
     public void Lunge()
