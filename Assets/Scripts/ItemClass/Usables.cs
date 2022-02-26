@@ -6,6 +6,8 @@ using UnityEngine;
  * Author: Ho Junliang 
  * Created: 17/2/2022
  */
-public class Souls : Item
+
+// Anything that can go onto the hotbar 
+public class Usables : Item
 {
 }

@@ -89,9 +89,6 @@ public class PlayerMovement : MonoBehaviour
                 m_Rigidbody.velocity *= 0.8f;
             }
             //Debug.Log("ToRoll bool: " + ToRoll);
-
-            if (playerCamera.LockOn)
-                playerCamera.TargetLockOn = true;
         }
         // Check if player is rolling, disable some colliders
         if (playerAnimation.GetCurrentAnimatorStateInfo(0).IsName("Roll") || playerAnimation.GetCurrentAnimatorStateInfo(0).IsName("RollSideRight") || playerAnimation.GetCurrentAnimatorStateInfo(0).IsName("RollSideLeft"))
