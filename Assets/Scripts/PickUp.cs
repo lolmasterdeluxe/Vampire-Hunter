@@ -28,7 +28,10 @@ public class PickUp : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             if (PlayerInventory.instance.AddItem(holding))
+            {
+                NotificationSystem.instance.Notify(holding.itemName, holding.itemImage);
                 Destroy(gameObject);
+            }
         }
     }
 }

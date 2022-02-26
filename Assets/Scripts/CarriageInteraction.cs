@@ -120,7 +120,7 @@ public class CarriageInteraction : MonoBehaviour
             statsText.text = "Thanks.";
 
         }
-        else if ((tempstatsArr[9] -= MoneyCost(tempstatsArr[tInt]+1 + statsArr[tInt])) < 0)
+        else if ((tempstatsArr[9] - MoneyCost(tempstatsArr[tInt]+1 + statsArr[tInt])) < 0)
         {
             textGameobject = GameObject.Find("CarriageText");
             statsText = textGameobject.GetComponent<Text>();
@@ -149,9 +149,30 @@ public class CarriageInteraction : MonoBehaviour
        
       
     }
+    public  void ClearAll()
+    {
+        textGameobject = GameObject.Find("CarriageText");
+        statsText = textGameobject.GetComponent<Text>();
+        statsText.text = "Take your time.";
+        for (int i = 0; i < 9; i++)
+        {
+            tempstatsArr[i] = 0;
+            textGameobject = GameObject.Find(textArr[i] + "T");
+            statsText = textGameobject.GetComponent<Text>();
+            statsText.text = tempstatsArr[i] + "";
+
+            textGameobject = GameObject.Find(textArr[i] + "P");
+            statsText = textGameobject.GetComponent<Text>();
+            statsText.text = (int)MoneyCost(tempstatsArr[i] + 1 + statsArr[i]) + "";
+        }
+        tempstatsArr[9] = statsArr[9];
+        textGameobject = GameObject.Find("BET");
+        statsText = textGameobject.GetComponent<Text>();
+        statsText.text = (int)tempstatsArr[9] + "";
+    }
     public void ConfirmPurchase()
     {
-        for (int i = 0; i<8; i++)
+        for (int i = 0; i<9; i++)
         {
             statsArr[i] += tempstatsArr[i];
             tempstatsArr[i] = 0;
