@@ -27,6 +27,7 @@ public class CarriageInteraction : MonoBehaviour
 
     private GameObject textGameobject;
     private Text statsText;
+    bool[] firstTime = { false, false};
     float[] tempstatsArr = new float[10];
     float[] statsArr = { PlayerStats.Vitality, PlayerStats.Endurance, PlayerStats.Strength, PlayerStats.Dexterity
     ,PlayerStats.Defense,PlayerStats.Health,PlayerStats.Stamina,PlayerStats.Weapon1Dmg,PlayerStats.Weapon2Dmg,PlayerStats.BloodEssence};
@@ -97,10 +98,10 @@ public class CarriageInteraction : MonoBehaviour
 
     public void Teleport(int index)
     {
-        string target = "Carriage (" + index + ")";
+        string target = "Carriage(" + index + ")";
         //Debug.Log("target" + target);
         GameObject travelDestination = GameObject.Find(target);
-        Vector3 targetPosition = travelDestination.transform.position;
+        Vector3 targetPosition = travelDestination.transform.position + new Vector3(5,0,0);
         player.transform.position = targetPosition;
         QuitCarriage();
     }
