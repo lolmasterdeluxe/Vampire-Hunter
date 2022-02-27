@@ -30,12 +30,17 @@ public class CageInteraction : MonoBehaviour
     {
         if (triggerActive && Input.GetKeyDown(KeyCode.E))
         {
-            if (PlayerInventory.instance.RemoveItem(requiredKey))
+            if (!doorOpen)
             {
-                if (!doorOpen)
+                if (PlayerInventory.instance.RemoveItem(requiredKey))
                 {
+                    NotificationSystem.instance.Notify(requiredKey.itemName, requiredKey.itemImage, "Item Used");
                     target.GetComponent<Animator>().SetTrigger("OpenDoor");
                     doorOpen = true;
+                }
+                else
+                {
+                    NotificationSystem.instance.ShowRequirementPopup();
                 }
             }
         }

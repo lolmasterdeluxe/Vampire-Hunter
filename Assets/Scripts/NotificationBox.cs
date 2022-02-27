@@ -8,6 +8,7 @@ public class NotificationBox : MonoBehaviour
 {
     public Image image;
     public TextMeshProUGUI text;
+    public TextMeshProUGUI title;
 
     float timer = 3;
 
