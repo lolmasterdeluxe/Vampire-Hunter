@@ -29,7 +29,6 @@ public class PlayerMovement : MonoBehaviour
     private double dodgeTime = 0;
     private Animator playerAnimation;
 
-
     // Update is called once per frame
     private void Awake()
     {
@@ -46,29 +45,30 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         IsGrounded = Physics.Raycast(Body.GetComponent<Transform>().position, Vector3.down, distToGround + 0.3f);
-        //gravity
 
         horizontal = Input.GetAxisRaw("Horizontal");
         vertical = Input.GetAxisRaw("Vertical");
         direction = new Vector3(horizontal, 0f, vertical).normalized;
 
-        if (IsGrounded && !ToRoll)
+        if (PlayerStats.Stamina > 30)
         {
-            if (playerCamera.LockOn)
+            if (IsGrounded && !ToRoll)
             {
-                if (Input.GetButtonDown("Jump") && horizontal >= 1)
-                    IsDodging[2] = true;
-                else if (Input.GetButtonDown("Jump") && horizontal <= -1)
-                    IsDodging[3] = true;
+                if (playerCamera.LockOn)
+                {
+                    if (Input.GetButtonDown("Jump") && horizontal >= 1)
+                        IsDodging[2] = true;
+                    else if (Input.GetButtonDown("Jump") && horizontal <= -1)
+                        IsDodging[3] = true;
+                    else if (Input.GetButtonDown("Jump") && (vertical >= 1 || vertical <= 0))
+                        IsDodging[0] = true;
+                }
                 else if (Input.GetButtonDown("Jump") && (vertical >= 1 || vertical <= 0))
                     IsDodging[0] = true;
             }
-            else if (Input.GetButtonDown("Jump") && (vertical >= 1 || vertical <= 0))
-                IsDodging[0] = true;
+            if (RollPhase && Input.GetButtonDown("Jump"))
+                IsDodging[1] = true;
         }
-        //Debug.Log("DodgeTime: " + dodgeTime);
-        if (RollPhase && Input.GetButtonDown("Jump"))
-            IsDodging[1] = true;
 
         dodgeTime -= Time.deltaTime;
     }
@@ -88,8 +88,8 @@ public class PlayerMovement : MonoBehaviour
             {
                 m_Rigidbody.velocity *= 0.8f;
             }
-            //Debug.Log("ToRoll bool: " + ToRoll);
         }
+
         // Check if player is rolling, disable some colliders
         if (playerAnimation.GetCurrentAnimatorStateInfo(0).IsName("Roll") || playerAnimation.GetCurrentAnimatorStateInfo(0).IsName("RollSideRight") || playerAnimation.GetCurrentAnimatorStateInfo(0).IsName("RollSideLeft"))
         {
@@ -169,7 +169,8 @@ public class PlayerMovement : MonoBehaviour
                     ToRoll = true;
                     dodgeTime = 0.5d;
                     IsDodging[3] = false;
-                }   
+                }
+                
             }
         }
         else if (IsDodging[0])
@@ -181,7 +182,6 @@ public class PlayerMovement : MonoBehaviour
             dodgeTime = 0.5d;
             IsDodging[0] = false;
         }
-
     }
 
     private void stepClimb()
@@ -200,12 +200,10 @@ public class PlayerMovement : MonoBehaviour
             
             if (Physics.Raycast(stepRayLower.transform.position, transform.TransformDirection(dir), 0.5f) && !ToRoll)
             {
-                //Debug.Log("Lower Raycast Hit");
                 if (direction.magnitude >= 0.1f && !Physics.Raycast(stepRayUpper.transform.position, transform.TransformDirection(dir), 0.6f))
                 {
                     m_Rigidbody.position -= new Vector3(0f, -stepSmooth * Time.deltaTime, 0f);
                     m_Rigidbody.AddForce(/*(moveDir.normalized * 10)*/(Vector3.up.normalized * 20));
-                    Debug.Log("Upper Raycast Hit");
                 }
             }
         }

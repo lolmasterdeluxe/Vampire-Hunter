@@ -36,7 +36,7 @@ public class BasicMeleeWeapon : MonoBehaviour
         horizontal = Input.GetAxisRaw("Horizontal");
         vertical = Input.GetAxisRaw("Vertical");
         direction = new Vector3(horizontal, 0f, vertical).normalized;
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && PlayerStats.Stamina > 20)
         {
             Attack();
             LockPlayer();
@@ -48,6 +48,7 @@ public class BasicMeleeWeapon : MonoBehaviour
         {
             lungeDir = Quaternion.Euler(0f, Parent.GetComponent<Transform>().eulerAngles.y, 0f) * (Vector3.forward);
             Parent.GetComponent<Rigidbody>().AddForce((lungeDir.normalized * 200));
+            PlayerStats.Stamina -= 20;
             lunge = false;
         }
         if (!playerCamera.LockOn)

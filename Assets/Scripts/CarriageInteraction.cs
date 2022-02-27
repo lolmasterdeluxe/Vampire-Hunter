@@ -63,7 +63,7 @@ public class CarriageInteraction : MonoBehaviour
             player.GetComponentInChildren<BasicMeleeWeapon>().enabled = false;
             player.GetComponentInChildren<BasicRangedWeapon>().enabled = false;
         }
-            
+
 
         if (triggerActive && Input.GetKeyDown(KeyCode.E))
         {
@@ -71,26 +71,28 @@ public class CarriageInteraction : MonoBehaviour
             ShowPanel();
             stopped = true;
         }
-        else if(triggerActive && Input.GetKeyDown(KeyCode.Escape))
+        else if (triggerActive && Input.GetKeyDown(KeyCode.Escape))
         {
             QuitCarriage();
         }
-        else if (triggerActive && panel.activeSelf == false && shop.activeSelf == false && travel.activeSelf == false)
-        {
-            ShowHint();
-        }
         else
-            HideHint();
+            return;
+        //else if (triggerActive && panel.activeSelf == false && shop.activeSelf == false && travel.activeSelf == false)
+        //{
+        //    ShowHint();
+        //}
+        //else
+        //    HideHint();
     }
 
-    public void ShowHint()
-    {
-        text.SetActive(true);
-    }
-    public void HideHint()
-    {
-        text.SetActive(false);
-    }
+    //public void ShowHint()
+    //{
+    //    text.SetActive(true);
+    //}
+    //public void HideHint()
+    //{
+    //    text.SetActive(false);
+    //}
     public void ShowPanel()
     {
         panel.SetActive(true);

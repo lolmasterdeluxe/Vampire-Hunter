@@ -101,7 +101,7 @@ public class CameraLockOn : MonoBehaviour
                             TargetGroup.m_Targets.SetValue(CinemachineTarget, i);
                         }
                     }
-                    if (Input.GetKeyUp("o"))
+                    if (Input.GetKeyUp("f"))
                     {
                         LockOn = true;
                         TargetLockOn = true;
