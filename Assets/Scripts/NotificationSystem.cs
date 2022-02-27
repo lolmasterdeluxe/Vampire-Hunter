@@ -32,18 +32,19 @@ public class NotificationSystem : MonoBehaviour
         notificationPanel.SetActive(false);
         requirementPopup.SetActive(false);
     }
-    public void Notify(string text, Sprite image)
+    public void Notify(string text, Sprite image, string title)
     {
         notificationPanel.SetActive(true);
         GameObject boxGO = Instantiate(notificationBox, notificationPanel.transform);
         boxGO.GetComponent<NotificationBox>().image.sprite = image;
         boxGO.GetComponent<NotificationBox>().text.text = text;
+        boxGO.GetComponent<NotificationBox>().title.text = title;
     }
 
     public void DestroyNotificationBox(GameObject gameObject)
     {
         Destroy(gameObject);
-        if (notificationPanel.transform.childCount <= 2)
+        if (notificationPanel.transform.childCount <= 1)
         {
             notificationPanel.SetActive(false);
         }

@@ -25,11 +25,11 @@ public class PickUp : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.transform.parent && other.transform.parent.CompareTag("Player"))
         {
             if (PlayerInventory.instance.AddItem(holding))
             {
-                NotificationSystem.instance.Notify(holding.itemName, holding.itemImage);
+                NotificationSystem.instance.Notify(holding.itemName, holding.itemImage, "Picked Up");
                 Destroy(gameObject);
             }
         }
