@@ -238,7 +238,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   notificationPanel: {fileID: 1337383191254734903}
   notificationBox: {fileID: 4142103836443036472, guid: c9c60e5f082fdff4797af1df9bf5b56f, type: 3}
-  requirementPopup: {fileID: 6930813882924868919}
+  popup: {fileID: 6930813882924868919}
 --- !u!1 &5485429754869151991
 GameObject:
   m_ObjectHideFlags: 0
@@ -386,7 +386,7 @@ GameObject:
   - component: {fileID: 4692650999482791946}
   - component: {fileID: 8928014643210386685}
   m_Layer: 5
-  m_Name: Requirement_Popup
+  m_Name: Notification_Popup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -462,4 +462,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cff962a329884d4190f2779a63570c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  message: {fileID: 6812469301700824293}
   timer: 0
