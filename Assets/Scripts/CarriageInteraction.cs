@@ -11,8 +11,7 @@ using UnityEngine.UI;
 public class CarriageInteraction : MonoBehaviour
 {
     private bool triggerActive = false;
-    [SerializeField]
-    private GameObject text;
+
     [SerializeField]
     private GameObject panel;
     [SerializeField]
@@ -25,18 +24,18 @@ public class CarriageInteraction : MonoBehaviour
     [SerializeField]
     private GameObject player;
     [SerializeField]
-    private GameObject firsttime;
-    [SerializeField]
     private int number;
+    [SerializeField]
+    private GameObject hpbar;
 
     private bool stopped = false;
     private GameObject textGameobject;
     private Text statsText;
     bool[] carriageUnlocked = { CarriageStats.carriage1, CarriageStats.carriage2};
-    float[] tempstatsArr = new float[10];
+    float[] tempstatsArr = new float[7];
     float[] statsArr = { PlayerStats.Vitality, PlayerStats.Endurance, PlayerStats.Strength, PlayerStats.Dexterity
-    ,PlayerStats.Defense,PlayerStats.Weapon1Dmg,PlayerStats.Weapon2Dmg,PlayerStats.BloodEssence};
-    string[] textArr = { "Vit", "End", "Str", "Dex", "Def",  "W1", "W2" ,"BE"};
+    ,PlayerStats.BloodEssence,PlayerStats.MaxHealth,PlayerStats.MaxStamina};
+    string[] textArr = { "Vit", "End", "Str", "Dex" ,"BE","MH","MS"};
     
     public void OnTriggerEnter(Collider other)
     {
@@ -67,8 +66,8 @@ public class CarriageInteraction : MonoBehaviour
 
         if (triggerActive && Input.GetKeyDown(KeyCode.E))
         {
-            carriageUnlocked[number] = true;
             ShowPanel();
+            Debug.Log("open");       
             stopped = true;
         }
         else if (triggerActive && Input.GetKeyDown(KeyCode.Escape))
@@ -95,10 +94,21 @@ public class CarriageInteraction : MonoBehaviour
     //}
     public void ShowPanel()
     {
+        
         panel.SetActive(true);
         Camera.SetActive(false);
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
+        if (carriageUnlocked[number - 1] == false)
+        {
+            carriageUnlocked[number - 1] = true;
+        }
+        else {
+            
+            textGameobject = GameObject.Find("CarriageText");
+            statsText = textGameobject.GetComponent<Text>();
+            statsText.text = "Hey hunter, what do you want.";
+        }
 
     }
     public void QuitCarriage()
@@ -114,7 +124,7 @@ public class CarriageInteraction : MonoBehaviour
 
     public void Teleport(int index)
     {
-        string target = "Carriage(" + index + ")";
+        string target = "Carriage (" + index + ")";
         //Debug.Log("target" + target);
         GameObject travelDestination = GameObject.Find(target);
 
@@ -138,7 +148,7 @@ public class CarriageInteraction : MonoBehaviour
     {
         if(tInt == 10)
         {
-            for (int i = 0; i < 7; i++)
+            for (int i = 0; i < 4; i++)
             {
                 textGameobject = GameObject.Find(textArr[i] + "T");
                 statsText = textGameobject.GetComponent<Text>();
@@ -149,7 +159,7 @@ public class CarriageInteraction : MonoBehaviour
             statsText.text = "Thanks.";
 
         }
-        else if ((tempstatsArr[7] - MoneyCost(tempstatsArr[tInt]+1 + statsArr[tInt])) < 0)
+        else if ((tempstatsArr[4] - MoneyCost(tempstatsArr[tInt]+1 + statsArr[tInt])) < 0)
         {
             textGameobject = GameObject.Find("CarriageText");
             statsText = textGameobject.GetComponent<Text>();
@@ -162,10 +172,10 @@ public class CarriageInteraction : MonoBehaviour
             statsText = textGameobject.GetComponent<Text>();
             statsText.text = tempstatsArr[tInt] + "";
 
-            tempstatsArr[7] -= MoneyCost(tempstatsArr[tInt] + statsArr[tInt]);
+            tempstatsArr[4] -= MoneyCost(tempstatsArr[tInt] + statsArr[tInt]);
             textGameobject = GameObject.Find("BET");
             statsText = textGameobject.GetComponent<Text>();
-            statsText.text = (int)tempstatsArr[7] + "";
+            statsText.text = (int)tempstatsArr[4] + "";
 
             textGameobject = GameObject.Find("CarriageText");
             statsText = textGameobject.GetComponent<Text>();
@@ -174,6 +184,7 @@ public class CarriageInteraction : MonoBehaviour
             textGameobject = GameObject.Find(textArr[tInt] + "P");
             statsText = textGameobject.GetComponent<Text>();
             statsText.text = (int)MoneyCost(tempstatsArr[tInt] + 1 + statsArr[tInt]) + "";
+            PrintHpSta();
         }
        
       
@@ -183,7 +194,7 @@ public class CarriageInteraction : MonoBehaviour
         textGameobject = GameObject.Find("CarriageText");
         statsText = textGameobject.GetComponent<Text>();
         statsText.text = "Take your time.";
-        for (int i = 0; i < 7; i++)
+        for (int i = 0; i < 4; i++)
         {
             tempstatsArr[i] = 0;
             textGameobject = GameObject.Find(textArr[i] + "T");
@@ -194,47 +205,59 @@ public class CarriageInteraction : MonoBehaviour
             statsText = textGameobject.GetComponent<Text>();
             statsText.text = (int)MoneyCost(tempstatsArr[i] + 1 + statsArr[i]) + "";
         }
-        tempstatsArr[7] = statsArr[7];
+        tempstatsArr[4] = statsArr[4];
         textGameobject = GameObject.Find("BET");
         statsText = textGameobject.GetComponent<Text>();
-        statsText.text = (int)tempstatsArr[7] + "";
+        statsText.text = (int)tempstatsArr[4] + "";
+        PrintHpSta();
     }
     public void ConfirmPurchase()
     {
-        for (int i = 0; i<7; i++)
+        for (int i = 0; i<4; i++)
         {
             statsArr[i] += tempstatsArr[i];
             tempstatsArr[i] = 0;
         }
-        statsArr[7] = tempstatsArr[7];
-        tempstatsArr[7] = 0;
+        statsArr[4] = tempstatsArr[4];
+        tempstatsArr[4] = 0;
         TAdding(10);
         ShowStats();
     }
     public void ShowStats()
     {
-        for (int i = 0; i < 7; i++)
+        for (int i = 0; i < 4; i++)
         {
             textGameobject = GameObject.Find(textArr[i] + "C");
             statsText = textGameobject.GetComponent<Text>();
             statsText.text = statsArr[i] + "";
-        }
-        for (int i = 0; i < 7; i++)
-        {
             textGameobject = GameObject.Find(textArr[i] + "P");
             statsText = textGameobject.GetComponent<Text>();
-            statsText.text = (int)MoneyCost(tempstatsArr[i] + 1 + statsArr[i])+"";
+            statsText.text = (int)MoneyCost(tempstatsArr[i] + 1 + statsArr[i]) + "";
         }
-       
-        tempstatsArr[7] = statsArr[7];
+
+        PrintHpSta();
+        tempstatsArr[4] = statsArr[4];
         textGameobject = GameObject.Find("BET");
         statsText = textGameobject.GetComponent<Text>();
-        statsText.text = (int)tempstatsArr[7] + "";
+        statsText.text = (int)tempstatsArr[4] + "";
     }
     private float MoneyCost(float input)
     {
         float i = Mathf.Pow(0.02f * input, 3) + Mathf.Pow(3.06f * input, 2) + 105.6f * input - 895;
         return i;
+    }
+
+    private void PrintHpSta()
+    {
+
+        textGameobject = GameObject.Find("MHT");
+        statsText = textGameobject.GetComponent<Text>();
+        statsText.text = "Max Health: " + (tempstatsArr[0] + statsArr[0]) * 10;
+
+        textGameobject = GameObject.Find("MST");
+        statsText = textGameobject.GetComponent<Text>();
+        statsText.text = "Max Stamina: "+(tempstatsArr[1] + statsArr[1]) * 10 ;
+        
     }
     
 }
