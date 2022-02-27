@@ -11,6 +11,11 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Items/New Ranged Weapon")]
 public class RangedWeapon : Weapon
 {
+    public float requiredDexterity;
     public float range;
-    //public abstract override void Attack(GameObject target);
+
+    public override bool CheckRequiredStats()
+    {
+        return (PlayerStats.Dexterity >= requiredDexterity);
+    }
 }

@@ -23,14 +23,18 @@ public class NotificationSystem : MonoBehaviour
     GameObject notificationPanel;
     [SerializeField]
     GameObject notificationBox;
+    [SerializeField]
+    GameObject requirementPopup;
 
     public void Start()
     {
-        gameObject.SetActive(false);
+        gameObject.SetActive(true);
+        notificationPanel.SetActive(false);
+        requirementPopup.SetActive(false);
     }
     public void Notify(string text, Sprite image)
     {
-        gameObject.SetActive(true);
+        notificationPanel.SetActive(true);
         GameObject boxGO = Instantiate(notificationBox, notificationPanel.transform);
         boxGO.GetComponent<NotificationBox>().image.sprite = image;
         boxGO.GetComponent<NotificationBox>().text.text = text;
@@ -41,7 +45,13 @@ public class NotificationSystem : MonoBehaviour
         Destroy(gameObject);
         if (notificationPanel.transform.childCount <= 2)
         {
-            this.gameObject.SetActive(false);
+            notificationPanel.SetActive(false);
         }
+    }
+
+    public void ShowRequirementPopup()
+    {
+        requirementPopup.SetActive(true);
+        requirementPopup.GetComponent<NotificationPopup>().timer = 1;
     }
 }
