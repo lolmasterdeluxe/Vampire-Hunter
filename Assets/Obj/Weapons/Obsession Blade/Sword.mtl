@@ -1,0 +1,15 @@
+# Blender MTL File: 'None'
+# Material Count: 1
+
+newmtl MAT_Weapons_Rack_01
+Ns 9.803922
+Ka 0.588000 0.588000 0.588000
+Kd 0.588000 0.588000 0.588000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd TXT_Weapons+Rack_Albedo.png
+map_Bump  C__Users_X_Desktop_Pending_for_Upload_Sword_Rack__TXT_Weapons_Rack_Normal_png_Normal_Bump.png
+map_Ka  TXT_Weapons+Rack_Albedo.png
