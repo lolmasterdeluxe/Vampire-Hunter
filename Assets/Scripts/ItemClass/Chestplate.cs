@@ -21,4 +21,9 @@ public class Chestplate : Armour
             + "\nCurrent Strength: " + PlayerStats.Strength
             + "\nDefence: +" + armourPoints;
     }
+
+    public override string PrintShortStats()
+    {
+        return base.PrintShortStats() + " / Req Str: " + requiredStrength;
+    }
 }

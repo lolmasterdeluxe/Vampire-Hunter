@@ -15,4 +15,8 @@ public class HealthPotion : Potion
     {
         return "hp: +" + hp;
     }
+    public override string PrintShortStats()
+    {
+        return "+" + hp + " hp";
+    }
 }

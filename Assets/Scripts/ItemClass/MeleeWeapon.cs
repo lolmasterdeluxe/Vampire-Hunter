@@ -22,4 +22,8 @@ public class MeleeWeapon : Weapon
             + "\nCurrent Strength: " + PlayerStats.Strength
             + "\nDamage: " + damage;
     }
+    public override string PrintShortStats()
+    {
+        return base.PrintShortStats() + " / Req Str: " + requiredStrength;
+    }
 }
