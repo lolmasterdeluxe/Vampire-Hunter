@@ -82,7 +82,10 @@ public class PlayerInventory : MonoBehaviour
                 return true;
             }
         }
-        return false;
+        Item[] temp = new Item[slots.Length + 100];
+        slots.CopyTo(temp, 0);
+        slots = temp;
+        return AddItem(item);
     }
     public bool EquipWeapon(int slotIndex)
     {

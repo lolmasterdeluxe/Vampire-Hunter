@@ -38,6 +38,7 @@ public class UsablesStatsPage : InventoryPage
         itemImage.sprite = PlayerInventory.instance.slots[itemIndex].itemImage;
         itemName.text = PlayerInventory.instance.slots[itemIndex].itemName;
         itemDescription.text = PlayerInventory.instance.slots[itemIndex].itemDescription;
+        itemStats.text = PlayerInventory.instance.slots[itemIndex].PrintStats();
 
         for (int i = 0; i < PlayerInventory.instance.hotbar.Length; i++)
         {
@@ -49,8 +50,6 @@ public class UsablesStatsPage : InventoryPage
                 hotbar[i].sprite = PlayerInventory.instance.hotbar[i].itemImage;
             }
         }
-
-        itemStats.text = "ill do this later \n 1 2 3 4 5 \n \n 6 7 8 9 0";
     }
     public void SelectHotbarSlot(int slot)
     {

@@ -16,4 +16,10 @@ public class MeleeWeapon : Weapon
     {
         return (PlayerStats.Strength >= requiredStrength);
     }
+    public override string PrintStats()
+    {
+        return "Required Strength: " + requiredStrength
+            + "\nCurrent Strength: " + PlayerStats.Strength
+            + "\nDamage: " + damage;
+    }
 }
