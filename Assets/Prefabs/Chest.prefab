@@ -181,8 +181,8 @@ SkinnedMeshRenderer:
   m_BlendShapeWeights: []
   m_RootBone: {fileID: 7096690708251107114}
   m_AABB:
-    m_Center: {x: 0.0054076016, y: 0.30075452, z: 0}
-    m_Extent: {x: 0.5206878, y: 0.5759908, z: 0.6679905}
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0.385, y: 0.275, z: 0.66}
   m_DirtyAABB: 0
 --- !u!33 &7096690707174715502
 MeshFilter:
@@ -275,7 +275,7 @@ GameObject:
   - component: {fileID: 7096690708251107124}
   - component: {fileID: 7096690708251107115}
   m_Layer: 2
-  m_Name: Chest
+  m_Name: Interact Chest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -308,8 +308,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.3618546, y: 0.7079098, z: 1.54}
-  m_Center: {x: -0.17092767, y: 0.08604622, z: -0.000000035997445}
+  m_Size: {x: 1.4, y: 0.7, z: 1.5}
+  m_Center: {x: 0, y: 0.05, z: 0}
 --- !u!114 &7096690708251107115
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -323,6 +323,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 7096690708455202814}
+  item1: {fileID: 0}
+  bloodessence: 0
 --- !u!1 &7096690708302924838
 GameObject:
   m_ObjectHideFlags: 0
@@ -379,7 +381,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7096690708455202814}
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -1.1401244, y: 1.938, z: -27.68}
+  m_LocalPosition: {x: 0, y: 0.55, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 7096690707174715500}
