@@ -13,16 +13,18 @@ public class StatGUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        maxHP = PlayerStats.Vitality;
-        currHP = PlayerStats.MaxHealth;
+
     }
         
     // Update is called once per frame
     void Update()
     {
         //GameObject.Find("Stamina").GetComponent<PlayerStats>().Stamina -= 10.0f;;
-        
-        if(Input.GetKeyDown(KeyCode.K))
+        PlayerStats.MaxHealth = PlayerStats.Vitality * 10;
+        maxHP = PlayerStats.MaxHealth;
+        currHP = PlayerStats.Health;
+
+        if (Input.GetKeyDown(KeyCode.K))
         {
             currHP+=1;
         }
