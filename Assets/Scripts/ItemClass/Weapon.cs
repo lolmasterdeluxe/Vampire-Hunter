@@ -7,7 +7,7 @@ using UnityEngine;
  * Created: 15/2/2022
  */
 
-public abstract class Weapon : Usables
+public abstract class Weapon : Item
 {
     public int damage;
 

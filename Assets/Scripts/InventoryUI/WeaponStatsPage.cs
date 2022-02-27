@@ -16,62 +16,48 @@ public class WeaponStatsPage : InventoryPage
     TextMeshProUGUI itemStats;
 
     [SerializeField]
-    GameObject emptyButton;
-    [SerializeField]
     GameObject equipButton;
     [SerializeField]
-    Image[] hotbar = new Image[4];
+    Image weapon;
 
-    public GameObject selectFrame;
-
-    int selectedHotbarSlot = -1;
-    int selectedItem = -1;
+    int selectedItem;
     public override void UpdatePage(int itemIndex)
     {
-        selectedHotbarSlot = -1;
-        selectFrame.SetActive(false);
-
-        emptyButton.SetActive(true);
-        equipButton.SetActive(false);
-
         selectedItem = itemIndex;
         itemImage.sprite = PlayerInventory.instance.slots[itemIndex].itemImage;
         itemName.text = PlayerInventory.instance.slots[itemIndex].itemName;
         itemDescription.text = PlayerInventory.instance.slots[itemIndex].itemDescription;
+        itemStats.text = "";
 
-        for (int i = 0; i < PlayerInventory.instance.hotbar.Length; i++)
+        weapon.gameObject.SetActive(false);
+        equipButton.GetComponentInChildren<TextMeshProUGUI>().text = "Equip";
+        if (PlayerInventory.instance.slots[itemIndex] is MeleeWeapon)
         {
-            if (PlayerInventory.instance.hotbar[i] == null)
-                hotbar[i].gameObject.SetActive(false);
-            else
+            if (PlayerInventory.instance.meleeWeapon != null)
             {
-                hotbar[i].gameObject.SetActive(true);
-                hotbar[i].sprite = PlayerInventory.instance.hotbar[i].itemImage;
+                weapon.gameObject.SetActive(true);
+                weapon.sprite = PlayerInventory.instance.meleeWeapon.itemImage;
+                equipButton.GetComponentInChildren<TextMeshProUGUI>().text = "Replace";
+                itemStats.text = "--Current Weapon--" + "\nDamage: " + PlayerInventory.instance.meleeWeapon.damage;
+                itemStats.text += "\n--Selected--\n" + PlayerInventory.instance.meleeWeapon.PrintStats();
             }
         }
-
-        itemStats.text = "ill do this later \n 1 2 3 4 5 \n \n 6 7 8 9 0";
-    }
-    public void SelectHotbarSlot(int slot)
-    {
-        selectedHotbarSlot = slot;
-        selectFrame.SetActive(true);
-        selectFrame.transform.position = hotbar[slot].transform.position;
-
-        emptyButton.SetActive(false);
-        equipButton.SetActive(true);
-        if (PlayerInventory.instance.hotbar[slot] == null)
+        else if (PlayerInventory.instance.slots[itemIndex] is RangedWeapon)
         {
-            equipButton.GetComponentInChildren<TextMeshProUGUI>().text = "Equip";
-        }
-        else
-        {
-            equipButton.GetComponentInChildren<TextMeshProUGUI>().text = "Replace";
+            if (PlayerInventory.instance.rangedWeapon != null)
+            {
+                weapon.gameObject.SetActive(true);
+                weapon.sprite = PlayerInventory.instance.rangedWeapon.itemImage;
+                equipButton.GetComponentInChildren<TextMeshProUGUI>().text = "Replace";
+                itemStats.text = "--Current Weapon--" + "\nDamage: " + PlayerInventory.instance.rangedWeapon.damage;
+                itemStats.text += "\n--Selected--\n" + PlayerInventory.instance.rangedWeapon.PrintStats();
+            }
         }
     }
+
     public void Equip()
     {
-        if (PlayerInventory.instance.EquipToHotbar(selectedItem, selectedHotbarSlot))
+        if (PlayerInventory.instance.EquipWeapon(selectedItem))
             transform.parent.parent.GetComponent<InventoryUI_Page>().ReturnToMain();
         else
             NotificationSystem.instance.ShowRequirementPopup();

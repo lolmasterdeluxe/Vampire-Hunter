@@ -15,4 +15,11 @@ public class Boots : Armour
     {
         return (PlayerStats.Dexterity >= requiredDexterity);
     }
+
+    public override string PrintStats()
+    {
+        return "Required Dexterity: " + requiredDexterity
+            + "\nCurrent Dexterity: " + PlayerStats.Dexterity
+            + "\nDefence: +" + armourPoints;
+    }
 }

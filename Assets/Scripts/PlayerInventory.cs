@@ -26,7 +26,9 @@ public class PlayerInventory : MonoBehaviour
     #endregion
 
     public Item[] slots = new Item[6];
-    public Usables[] hotbar = new Usables[4];
+    public MeleeWeapon meleeWeapon;
+    public RangedWeapon rangedWeapon;
+    public Potion[] hotbar = new Potion[4];
     public Helmet helmet;
     public Chestplate chestplate;
     public Leggings leggings;
@@ -34,24 +36,9 @@ public class PlayerInventory : MonoBehaviour
 
     public void UseHotbar(int index)
     {
-        if (hotbar[index] is MeleeWeapon)
-        {
-            foreach (Hit hit in FindObjectsOfType<Hit>())
-            {
-                if (hit.gameObject.CompareTag("Player Weapon"))
-                {
-                    hit.info = hotbar[index] as MeleeWeapon;
-                }
-            }
-            NotificationSystem.instance.Notify(hotbar[index].itemName, hotbar[index].itemImage, "Switched Melee");
-        }
-        if (hotbar[index] is RangedWeapon)
-        {
-            NotificationSystem.instance.Notify(hotbar[index].itemName, hotbar[index].itemImage, "Switched Ranged");
-        }
         if (hotbar[index] is Potion)
         {
-            (hotbar[index] as Potion).Use();
+            hotbar[index].Use();
             NotificationSystem.instance.Notify(hotbar[index].itemName, hotbar[index].itemImage, "Used Item");
             hotbar[index] = null;
         }
@@ -95,17 +82,35 @@ public class PlayerInventory : MonoBehaviour
                 return true;
             }
         }
-        return false;
+        Item[] temp = new Item[slots.Length + 100];
+        slots.CopyTo(temp, 0);
+        slots = temp;
+        return AddItem(item);
     }
-
+    public bool EquipWeapon(int slotIndex)
+    {
+        if (!(slots[slotIndex] is Weapon) || !(slots[slotIndex] as Weapon).CheckRequiredStats()) return false;
+        if (slots[slotIndex] is MeleeWeapon)
+        {
+            Item temp = meleeWeapon;
+            meleeWeapon = slots[slotIndex] as MeleeWeapon;
+            slots[slotIndex] = temp;
+            return true;
+        }
+        else
+        {
+            Item temp = rangedWeapon;
+            rangedWeapon = slots[slotIndex] as RangedWeapon;
+            slots[slotIndex] = temp;
+            return true;
+        }
+    }
     public bool EquipToHotbar(int slotIndex, int hotbarIndex)
     {
-        if (slots[slotIndex] is Usables)
+        if (slots[slotIndex] is Potion)
         {
-            if (slots[slotIndex] is Weapon && !(slots[slotIndex] as Weapon).CheckRequiredStats()) 
-                return false;
             Item temp = hotbar[hotbarIndex];
-            hotbar[hotbarIndex] = slots[slotIndex] as Usables;
+            hotbar[hotbarIndex] = slots[slotIndex] as Potion;
             slots[slotIndex] = temp;
             return true;
         }
@@ -203,6 +208,10 @@ public class PlayerInventory : MonoBehaviour
 
     public void UpdatePlayerDefenseStat()
     {
-        PlayerStats.Defense = helmet.armourPoints + chestplate.armourPoints + leggings.armourPoints + boots.armourPoints;
+        PlayerStats.Defense = 0
+            + (helmet ? helmet.armourPoints : 0)
+            + (chestplate ? chestplate.armourPoints : 0)
+            + (leggings ? leggings.armourPoints : 0)
+            + (boots ? boots.armourPoints : 0);
     }
 }

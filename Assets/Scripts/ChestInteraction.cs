@@ -13,21 +13,21 @@ public class ChestInteraction : MonoBehaviour
     [SerializeField]
     private GameObject target;
     [SerializeField]
-    private Item item1;
+    private Item Item1;
     [SerializeField]
-    private int bloodessence;
+    private int BloodEssence;
     // Start is called before the first frame update
-    public void OnTriggerEnter(Collider other)
+    public void OnTriggerEnter(Collider Other)
     {
-        if (other.transform.parent && other.transform.parent.CompareTag("Player"))
+        if (Other.CompareTag("Player Animation"))
         {
             triggerActive = true;
         }
     }
 
-    public void OnTriggerExit(Collider other)
+    public void OnTriggerExit(Collider Other)
     {
-        if (other.transform.parent && other.transform.parent.CompareTag("Player"))
+        if (Other.CompareTag("Player Animation"))
         {
             triggerActive = false;
         }
@@ -38,7 +38,6 @@ public class ChestInteraction : MonoBehaviour
         if (triggerActive && Input.GetKeyDown(KeyCode.E))
         {
             ChestOpen();
-            
             //if(item1.itemName != string.Empty)
             //{
             //    Debug.Log("output1");
@@ -51,20 +50,18 @@ public class ChestInteraction : MonoBehaviour
             //    PlayerInventory.instance.AddItem(item2);
             //    NotificationSystem.instance.Notify(item2.itemName, item2.itemImage, "Item Added");
             //}
-
         }
     }
     void ChestOpen()
     {
-        if (item1.itemName != ("Empty")) {
-            PlayerInventory.instance.AddItem(item1);
-            NotificationSystem.instance.Notify(item1.itemName, item1.itemImage, "Item Added");
+        if (Item1.itemName != ("Empty")) {
+            PlayerInventory.instance.AddItem(Item1);
+            NotificationSystem.instance.Notify(Item1.itemName, Item1.itemImage, "Item Added");
         }
-        if(bloodessence != 0)
+        if (BloodEssence != 0)
         {
-            PlayerStats.BloodEssence += bloodessence;
+            PlayerStats.BloodEssence += BloodEssence;
         }
-        Debug.Log("output2");
         target.GetComponent<Animation>()["ChestAnim"].speed = 1.0f;
         target.GetComponent<Animation>().Play("ChestAnim");
     }
