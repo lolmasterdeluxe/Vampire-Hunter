@@ -29,6 +29,7 @@ public class CarriageInteraction : MonoBehaviour
     [SerializeField]
     private int number;
 
+    private bool stopped = false;
     private GameObject textGameobject;
     private Text statsText;
     bool[] carriageUnlocked = { CarriageStats.carriage1, CarriageStats.carriage2};
@@ -39,7 +40,7 @@ public class CarriageInteraction : MonoBehaviour
     
     public void OnTriggerEnter(Collider other)
     {
-        if ((other.transform.parent && other.transform.parent.CompareTag("Player"))
+        if ((other.transform.parent && other.transform.parent.CompareTag("Player")))
         {
             triggerActive = true;
         }
@@ -47,7 +48,7 @@ public class CarriageInteraction : MonoBehaviour
 
     public void OnTriggerExit(Collider other)
     {
-        if ((other.transform.parent && other.transform.parent.CompareTag("Player"))
+        if ((other.transform.parent && other.transform.parent.CompareTag("Player")))
         {
             triggerActive = false;
         }
@@ -55,11 +56,20 @@ public class CarriageInteraction : MonoBehaviour
 
     private void Update()
     {
-       
+        if (stopped)
+        {
+            player.GetComponent<PlayerMovement>().enabled = false;
+            player.GetComponent<CameraLockOn>().enabled = false;
+            player.GetComponentInChildren<BasicMeleeWeapon>().enabled = false;
+            player.GetComponentInChildren<BasicRangedWeapon>().enabled = false;
+        }
+            
+
         if (triggerActive && Input.GetKeyDown(KeyCode.E))
         {
             carriageUnlocked[number] = true;
             ShowPanel();
+            stopped = true;
         }
         else if(triggerActive && Input.GetKeyDown(KeyCode.Escape))
         {
@@ -87,19 +97,17 @@ public class CarriageInteraction : MonoBehaviour
         Camera.SetActive(false);
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
-        GameObject.Find("Player").GetComponent<PlayerMovement>().enabled = false;
-        //GameObject.Find("Player").GetComponent<PlayerMovement>().direction
-      
+
     }
     public void QuitCarriage()
     {
+        stopped = false;
         panel.SetActive(false);
         shop.SetActive(false);
         travel.SetActive(false);
         Camera.SetActive(true);
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-        GameObject.Find("Player").GetComponent<PlayerMovement>().enabled = true;
     }
 
     public void Teleport(int index)
