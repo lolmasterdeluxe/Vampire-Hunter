@@ -15,7 +15,7 @@ public class ChestInteraction : MonoBehaviour
     // Start is called before the first frame update
     public void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.transform.parent && other.transform.parent.CompareTag("Player"))
         {
             triggerActive = true;
         }
@@ -23,7 +23,7 @@ public class ChestInteraction : MonoBehaviour
 
     public void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.transform.parent && other.transform.parent.CompareTag("Player"))
         {
             triggerActive = false;
         }
