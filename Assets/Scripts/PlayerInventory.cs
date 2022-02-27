@@ -31,6 +31,30 @@ public class PlayerInventory : MonoBehaviour
     public Chestplate chestplate;
     public Leggings leggings;
     public Boots boots;
+    public void UseHotbar(int index)
+    {
+        if (hotbar[index] is MeleeWeapon)
+        {
+            foreach (Hit hit in FindObjectsOfType<Hit>())
+            {
+                if (hit.gameObject.CompareTag("Player Weapon"))
+                {
+                    hit.info = hotbar[index] as MeleeWeapon;
+                }
+            }
+            NotificationSystem.instance.Notify(hotbar[index].itemName, hotbar[index].itemImage, "Switched Melee");
+        }
+        if (hotbar[index] is RangedWeapon)
+        {
+            NotificationSystem.instance.Notify(hotbar[index].itemName, hotbar[index].itemImage, "Switched Ranged");
+        }
+        if (hotbar[index] is Potion)
+        {
+            (hotbar[index] as Potion).Use();
+            NotificationSystem.instance.Notify(hotbar[index].itemName, hotbar[index].itemImage, "Used Item");
+            hotbar[index] = null;
+        }
+    }
 
     public bool RemoveItem(Item item)
     {
