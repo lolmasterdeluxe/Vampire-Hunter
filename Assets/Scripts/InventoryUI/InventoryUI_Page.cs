@@ -10,6 +10,7 @@ public class InventoryUI_Page : MonoBehaviour
     public GameObject playerStatsPage;
     public GameObject weaponStatsPage;
     public GameObject armourStatsPage;
+    public GameObject usablesStatsPage;
     public enum TAB_TYPES 
     {
         ALL_TAB
@@ -30,6 +31,7 @@ public class InventoryUI_Page : MonoBehaviour
         armourStatsPage.SetActive(false);
         playerStatsPage.SetActive(false);
         weaponStatsPage.SetActive(false);
+        usablesStatsPage.SetActive(false);
         pageGO.SetActive(true);
         pageGO.GetComponent<InventoryPage>().UpdatePage(itemIndex);
     }
@@ -37,9 +39,11 @@ public class InventoryUI_Page : MonoBehaviour
     public void SelectItem(int itemIndex)
     {
         if (PlayerInventory.instance.slots[itemIndex] is Usables)
-            ChangePage(weaponStatsPage, itemIndex);
+            ChangePage(usablesStatsPage, itemIndex);
         else if (PlayerInventory.instance.slots[itemIndex] is Armour)
             ChangePage(armourStatsPage, itemIndex);
+        else if (PlayerInventory.instance.slots[itemIndex] is Weapon)
+            ChangePage(weaponStatsPage, itemIndex);
         else
             ChangePage(playerStatsPage);
     }
