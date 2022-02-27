@@ -94,7 +94,7 @@ public class CarriageInteraction : MonoBehaviour
     //}
     public void ShowPanel()
     {
-        
+        hpbar.SetActive(false);
         panel.SetActive(true);
         Camera.SetActive(false);
         Cursor.visible = true;
@@ -109,10 +109,12 @@ public class CarriageInteraction : MonoBehaviour
             statsText = textGameobject.GetComponent<Text>();
             statsText.text = "Hey hunter, what do you want.";
         }
+        PlayerStats.Health = PlayerStats.MaxHealth;
 
     }
     public void QuitCarriage()
     {
+        hpbar.SetActive(true);
         stopped = false;
         panel.SetActive(false);
         shop.SetActive(false);
