@@ -34,36 +34,21 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        /*if (Input.GetMouseButtonDown(0))
+        if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            FindAndUseWeapon(0);
-        }*/
-
-        //if (Input.GetKeyDown(KeyCode.Alpha1))
-        //{
-        //    FindAndUseWeapon(0);
-        //}
-        //if (Input.GetKeyDown(KeyCode.Alpha2))
-        //{
-        //    FindAndUseWeapon(1);
-        //}
-        //if (Input.GetKeyDown(KeyCode.Alpha3))
-        //{
-        //    FindAndUseWeapon(2);
-        //}
-        //if (Input.GetKeyDown(KeyCode.Alpha4))
-        //{
-        //    FindAndUseWeapon(3);
-        //}
+            PlayerInventory.instance.UseHotbar(0);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            PlayerInventory.instance.UseHotbar(1);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            PlayerInventory.instance.UseHotbar(2);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            PlayerInventory.instance.UseHotbar(3);
+        }
     }
-
-    //private void FindAndUseWeapon(int key)
-    //{ 
-    //    int itemID = GetComponent<PlayerInventory>().hotbar[key];
-    //    if (itemID != 0)
-    //    {
-    //        //Weapon weapon = (Weapon)FindObjectOfType<InventorySystem>().items[itemID];
-    //        ((Weapon)FindObjectOfType<InventorySystem>().items[itemID]).Attack(gameObject);
-    //    }
-    //}
 }
