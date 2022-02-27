@@ -27,7 +27,7 @@ public class ArmourStatsPage : InventoryPage
         itemImage.sprite = PlayerInventory.instance.slots[itemIndex].itemImage;
         itemName.text = PlayerInventory.instance.slots[itemIndex].itemName;
         itemDescription.text = PlayerInventory.instance.slots[itemIndex].itemDescription;
-        itemStats.text = "ill do this later \n 1 2 3 4 5 \n \n 6 7 8 9 0";
+        itemStats.text = "";
 
         armour.gameObject.SetActive(false);
         equipButton.GetComponentInChildren<TextMeshProUGUI>().text = "Equip";
@@ -38,7 +38,9 @@ public class ArmourStatsPage : InventoryPage
                 armour.gameObject.SetActive(true);
                 armour.sprite = PlayerInventory.instance.helmet.itemImage;
                 equipButton.GetComponentInChildren<TextMeshProUGUI>().text = "Replace";
+                itemStats.text = "--Current Weapon--" + "\nDefence: " + PlayerInventory.instance.helmet.armourPoints;
             }
+            itemStats.text += "\n--Selected--\n" + PlayerInventory.instance.slots[itemIndex].PrintStats();
         }
         else if (PlayerInventory.instance.slots[itemIndex] is Chestplate)
         {
@@ -47,7 +49,9 @@ public class ArmourStatsPage : InventoryPage
                 armour.gameObject.SetActive(true);
                 armour.sprite = PlayerInventory.instance.chestplate.itemImage;
                 equipButton.GetComponentInChildren<TextMeshProUGUI>().text = "Replace";
+                itemStats.text = "--Current Weapon--" + "\nDefence: " + PlayerInventory.instance.chestplate.armourPoints;
             }
+            itemStats.text += "\n--Selected--\n" + PlayerInventory.instance.slots[itemIndex].PrintStats();
         }
         else if (PlayerInventory.instance.slots[itemIndex] is Leggings)
         {
@@ -56,7 +60,9 @@ public class ArmourStatsPage : InventoryPage
                 armour.gameObject.SetActive(true);
                 armour.sprite = PlayerInventory.instance.leggings.itemImage;
                 equipButton.GetComponentInChildren<TextMeshProUGUI>().text = "Replace";
+                itemStats.text = "--Current Weapon--" + "\nDefence: " + PlayerInventory.instance.leggings.armourPoints;
             }
+            itemStats.text += "\n--Selected--\n" + PlayerInventory.instance.slots[itemIndex].PrintStats();
         }
         else if (PlayerInventory.instance.slots[itemIndex] is Boots)
         {
@@ -65,7 +71,9 @@ public class ArmourStatsPage : InventoryPage
                 armour.gameObject.SetActive(true);
                 armour.sprite = PlayerInventory.instance.boots.itemImage;
                 equipButton.GetComponentInChildren<TextMeshProUGUI>().text = "Replace";
+                itemStats.text = "--Current Weapon--" + "\nDefence: " + PlayerInventory.instance.boots.armourPoints;
             }
+            itemStats.text += "\n--Selected--\n" + PlayerInventory.instance.slots[itemIndex].PrintStats();
         }
     }
 

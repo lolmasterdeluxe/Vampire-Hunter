@@ -15,4 +15,10 @@ public class Chestplate : Armour
     {
         return (PlayerStats.Strength >= requiredStrength);
     }
+    public override string PrintStats()
+    {
+        return "Required Strength: " + requiredStrength
+            + "\nCurrent Strength: " + PlayerStats.Strength
+            + "\nDefence: +" + armourPoints;
+    }
 }

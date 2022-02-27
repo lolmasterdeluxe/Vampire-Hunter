@@ -15,4 +15,10 @@ public class Helmet : Armour
     {
         return (PlayerStats.Dexterity >= requiredDexterity);
     }
+    public override string PrintStats()
+    {
+        return "Required Dexterity: " + requiredDexterity
+            + "\nCurrent Dexterity: " + PlayerStats.Dexterity
+            + "\nDefence: +" + armourPoints;
+    }
 }

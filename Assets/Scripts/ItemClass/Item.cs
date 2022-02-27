@@ -15,4 +15,9 @@ public abstract class Item : ScriptableObject
     public Sprite itemImage;
 
     public GameObject model3D;
+
+    public virtual string PrintStats()
+    {
+        return "";
+    }
 }
