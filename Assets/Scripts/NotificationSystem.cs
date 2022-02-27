@@ -24,13 +24,13 @@ public class NotificationSystem : MonoBehaviour
     [SerializeField]
     GameObject notificationBox;
     [SerializeField]
-    GameObject requirementPopup;
+    GameObject popup;
 
     public void Start()
     {
         gameObject.SetActive(true);
         notificationPanel.SetActive(false);
-        requirementPopup.SetActive(false);
+        popup.SetActive(false);
     }
     public void Notify(string text, Sprite image, string title)
     {
@@ -52,7 +52,14 @@ public class NotificationSystem : MonoBehaviour
 
     public void ShowRequirementPopup()
     {
-        requirementPopup.SetActive(true);
-        requirementPopup.GetComponent<NotificationPopup>().timer = 1;
+        popup.SetActive(true);
+        popup.GetComponent<NotificationPopup>().timer = 1;
+        popup.GetComponent<NotificationPopup>().message.text = "Requirements not met";
+    }
+    public void ShowHealedPopup()
+    {
+        popup.SetActive(true);
+        popup.GetComponent<NotificationPopup>().timer = 1;
+        popup.GetComponent<NotificationPopup>().message.text = "Health fully replenished";
     }
 }
