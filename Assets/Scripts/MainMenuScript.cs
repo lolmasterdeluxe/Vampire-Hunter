@@ -18,7 +18,6 @@ public class MainMenuScript : MonoBehaviour
     }
     public void LoadScene(string scnName)
     {
-        Debug.Log("loaded");
         SceneManager.LoadScene(scnName);
     }
     public void QuitGame()
