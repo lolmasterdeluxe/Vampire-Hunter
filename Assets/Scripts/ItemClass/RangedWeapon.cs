@@ -18,4 +18,10 @@ public class RangedWeapon : Weapon
     {
         return (PlayerStats.Dexterity >= requiredDexterity);
     }
+    public override string PrintStats()
+    {
+        return "Required Dexterity: " + requiredDexterity
+            + "\nCurrent Dexterity: " + PlayerStats.Dexterity
+            + "\nDamage: " + damage;
+    }
 }

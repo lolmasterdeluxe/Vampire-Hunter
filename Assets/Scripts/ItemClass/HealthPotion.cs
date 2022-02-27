@@ -10,4 +10,9 @@ public class HealthPotion : Potion
     {
         Debug.Log("Heal the player for " + hp + " hp.");
     }
+
+    public override string PrintStats()
+    {
+        return "hp: +" + hp;
+    }
 }

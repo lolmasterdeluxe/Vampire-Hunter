@@ -27,7 +27,7 @@ public class WeaponStatsPage : InventoryPage
         itemImage.sprite = PlayerInventory.instance.slots[itemIndex].itemImage;
         itemName.text = PlayerInventory.instance.slots[itemIndex].itemName;
         itemDescription.text = PlayerInventory.instance.slots[itemIndex].itemDescription;
-        itemStats.text = "ill do this later \n 1 2 3 4 5 \n \n 6 7 8 9 0";
+        itemStats.text = "";
 
         weapon.gameObject.SetActive(false);
         equipButton.GetComponentInChildren<TextMeshProUGUI>().text = "Equip";
@@ -38,6 +38,8 @@ public class WeaponStatsPage : InventoryPage
                 weapon.gameObject.SetActive(true);
                 weapon.sprite = PlayerInventory.instance.meleeWeapon.itemImage;
                 equipButton.GetComponentInChildren<TextMeshProUGUI>().text = "Replace";
+                itemStats.text = "--Current Weapon--" + "\nDamage: " + PlayerInventory.instance.meleeWeapon.damage;
+                itemStats.text += "\n--Selected--\n" + PlayerInventory.instance.meleeWeapon.PrintStats();
             }
         }
         else if (PlayerInventory.instance.slots[itemIndex] is RangedWeapon)
@@ -47,6 +49,8 @@ public class WeaponStatsPage : InventoryPage
                 weapon.gameObject.SetActive(true);
                 weapon.sprite = PlayerInventory.instance.rangedWeapon.itemImage;
                 equipButton.GetComponentInChildren<TextMeshProUGUI>().text = "Replace";
+                itemStats.text = "--Current Weapon--" + "\nDamage: " + PlayerInventory.instance.rangedWeapon.damage;
+                itemStats.text += "\n--Selected--\n" + PlayerInventory.instance.rangedWeapon.PrintStats();
             }
         }
     }
