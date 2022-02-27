@@ -19,7 +19,7 @@ public class StamStatGUI : MonoBehaviour
     {
         //GameObject.Find("Stamina").GetComponent<PlayerStats>().Stamina -= 10.0f;;
         maxSTAM = PlayerStats.Endurance;
-        currSTAM = PlayerStats.Stamina;
+        currSTAM = PlayerStats.MaxStamina;
         progressbar.GetComponent<Image>().fillAmount = (currSTAM / maxSTAM);
         //progressbar.GetComponent<Image>().fillAmount = (currSTAM / maxSTAM);
     }

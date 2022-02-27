@@ -32,6 +32,18 @@ public class PlayerInventory : MonoBehaviour
     public Leggings leggings;
     public Boots boots;
 
+    public bool RemoveItem(Item item)
+    {
+        for (int i = 0; i < slots.Length; i++)
+        {
+            if (item.Equals(slots[i]))
+            {
+                slots[i] = null;
+                return true;
+            }
+        }
+        return false;
+    }
     public Armour GetArmourSlot(int index)
     {
         switch (index)

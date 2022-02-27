@@ -14,7 +14,7 @@ public class StatGUI : MonoBehaviour
     void Start()
     {
         maxHP = PlayerStats.Vitality;
-        currHP = PlayerStats.Health;
+        currHP = PlayerStats.MaxHealth;
     }
         
     // Update is called once per frame
