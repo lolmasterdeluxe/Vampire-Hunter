@@ -39,7 +39,7 @@ public class CarriageInteraction : MonoBehaviour
     
     public void OnTriggerEnter(Collider other)
     {
-        if ((other.transform.parent && other.transform.parent.CompareTag("Player"))
+        if ((other.transform.parent && other.transform.parent.CompareTag("Player")))
         {
             triggerActive = true;
         }
@@ -47,7 +47,7 @@ public class CarriageInteraction : MonoBehaviour
 
     public void OnTriggerExit(Collider other)
     {
-        if ((other.transform.parent && other.transform.parent.CompareTag("Player"))
+        if ((other.transform.parent && other.transform.parent.CompareTag("Player")))
         {
             triggerActive = false;
         }
