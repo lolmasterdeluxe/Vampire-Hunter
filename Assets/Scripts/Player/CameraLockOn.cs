@@ -51,7 +51,6 @@ public class CameraLockOn : MonoBehaviour
                 ScaleDistance = 1;
             TargetIcon.localScale = new Vector3(ScaleDistance, ScaleDistance, ScaleDistance);
         }
-
     }
 
     private void StartRotating()
@@ -97,7 +96,7 @@ public class CameraLockOn : MonoBehaviour
                     distance = curDistance;
                     for (int i = 0; i < TargetGroup.m_Targets.Length; i++)
                     {
-                        if (TargetGroup.m_Targets[i].target == null)
+                        if (TargetGroup.m_Targets[i].target == null || TargetGroup.m_Targets[i].target.CompareTag("Enemy"))
                         {
                             TargetGroup.m_Targets.SetValue(CinemachineTarget, i);
                         }

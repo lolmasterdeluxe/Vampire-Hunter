@@ -11,6 +11,7 @@ public class StamStatGUI : MonoBehaviour
     {
         PlayerStats.MaxStamina = PlayerStats.Endurance * 10;
         PlayerStats.Stamina = PlayerStats.MaxStamina;
+        FindObjectOfType<AudioManager>().Play("BGM");
     }
 
     // Update is called once per frame

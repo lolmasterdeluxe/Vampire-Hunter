@@ -17,6 +17,14 @@ public abstract class Weapon : Usables
     {
         if (target == null || !target.GetComponent<Health>()) return;
         Debug.Log("Deal damage: " + damage + ", to: " + target.name);
-        target.GetComponent<Health>().hp -= damage;
+        Debug.Log("HP of " + target.name + ": " + target.GetComponent<Health>().hp);
+
+        if (target.CompareTag("Player Animation"))
+        {
+            target.GetComponent<Health>().hp -= damage;
+            PlayerStats.Health -= damage;
+        }
+        else
+            target.GetComponent<Health>().hp -= damage;
     }
 }

@@ -113,6 +113,7 @@ public class PlayerMovement : MonoBehaviour
         {
             if (IsDodging[0])
             {
+                PlayerStats.Stamina -= 20;
                 m_Rigidbody.velocity *= 0;
                 transform.rotation = Quaternion.Euler(0f, transform.eulerAngles.y, 0f);
                 moveDir = Quaternion.Euler(0f, transform.eulerAngles.y, 0f) * (Vector3.forward);
@@ -123,6 +124,7 @@ public class PlayerMovement : MonoBehaviour
             }
             else if (IsDodging[1])
             {
+                PlayerStats.Stamina -= 30;
                 m_Rigidbody.velocity *= 0;
                 playerAnimation.Play("Roll");
                 moveDir = Quaternion.Euler(0f, transform.eulerAngles.y, 0f) * (Vector3.forward);
@@ -148,6 +150,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 if (IsDodging[2])
                 {
+                    PlayerStats.Stamina -= 25;
                     m_Rigidbody.velocity *= 0;
                     playerAnimation.Play("RollSideRight");
                     moveDir = Quaternion.Euler(0f, transform.eulerAngles.y, 0f) * (Vector3.right);
@@ -158,6 +161,7 @@ public class PlayerMovement : MonoBehaviour
                 }
                 else if (IsDodging[3])
                 {
+                    PlayerStats.Stamina -= 25;
                     m_Rigidbody.velocity *= 0;
                     playerAnimation.Play("RollSideLeft");
                     moveDir = Quaternion.Euler(0f, transform.eulerAngles.y, 0f) * (Vector3.left);
@@ -170,6 +174,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else if (IsDodging[0])
         {
+            PlayerStats.Stamina -= 20;
             transform.rotation = Quaternion.Euler(0f, transform.eulerAngles.y, 0f);
             moveDir = Quaternion.Euler(0f, transform.eulerAngles.y, 0f) * (-Vector3.forward);
             m_Rigidbody.AddForce((moveDir.normalized * 300) + (Vector3.up.normalized * 150));

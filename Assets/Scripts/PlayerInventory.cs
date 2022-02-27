@@ -31,6 +31,7 @@ public class PlayerInventory : MonoBehaviour
     public Chestplate chestplate;
     public Leggings leggings;
     public Boots boots;
+
     public void UseHotbar(int index)
     {
         if (hotbar[index] is MeleeWeapon)
@@ -120,6 +121,7 @@ public class PlayerInventory : MonoBehaviour
             Item temp = helmet;
             helmet = (Helmet)slots[slotIndex];
             slots[slotIndex] = temp;
+            UpdatePlayerDefenseStat();
             return true;
         }
         else if (slots[slotIndex] is Chestplate)
@@ -127,6 +129,7 @@ public class PlayerInventory : MonoBehaviour
             Item temp = chestplate;
             chestplate = (Chestplate)slots[slotIndex];
             slots[slotIndex] = temp;
+            UpdatePlayerDefenseStat();
             return true;
         }
         else if (slots[slotIndex] is Leggings)
@@ -134,6 +137,7 @@ public class PlayerInventory : MonoBehaviour
             Item temp = leggings;
             leggings = (Leggings)slots[slotIndex];
             slots[slotIndex] = temp;
+            UpdatePlayerDefenseStat();
             return true;
         }
         else if (slots[slotIndex] is Boots)
@@ -141,6 +145,7 @@ public class PlayerInventory : MonoBehaviour
             Item temp = boots;
             boots = (Boots)slots[slotIndex];
             slots[slotIndex] = temp;
+            UpdatePlayerDefenseStat();
             return true;
         }
 
@@ -165,32 +170,39 @@ public class PlayerInventory : MonoBehaviour
                 if (AddItem(helmet))
                 {
                     helmet = null;
-                    return true;
+                    break;
                 }
                 return false;
             case 1:
                 if (AddItem(chestplate))
                 {
                     chestplate = null;
-                    return true;
+                    break;
                 }
                 return false;
             case 2:
                 if (AddItem(leggings))
                 {
                     leggings = null;
-                    return true;
+                    break;
                 }
                 return false;
             case 3:
                 if (AddItem(boots))
                 {
                     boots = null;
-                    return true;
+                    break;
                 }
                 return false;
             default:
                 return false;
         }
+        UpdatePlayerDefenseStat();
+        return true;
+    }
+
+    public void UpdatePlayerDefenseStat()
+    {
+        PlayerStats.Defense = helmet.armourPoints + chestplate.armourPoints + leggings.armourPoints + boots.armourPoints;
     }
 }
