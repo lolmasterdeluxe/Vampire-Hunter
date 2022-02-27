@@ -4,24 +4,21 @@ using UnityEngine;
 
 public class PickUp : MonoBehaviour
 {
-    public Item holding;
-    //[SerializeField]
-    public GameObject placeholder;
-    
+    public Item holding;    
 
-    private void Awake()
-    {
-        if (holding != null && holding.model3D != null)
-        {
-            Debug.Log("has model");
-            Instantiate(holding.model3D, gameObject.transform);
-        }
-        else
-        {
-            Debug.Log("no model");
-            placeholder.SetActive(true);
-        }
-    }
+    //private void Awake()
+    //{
+    //    if (holding != null && holding.model3D != null)
+    //    {
+    //        Debug.Log("has model");
+    //        Instantiate(holding.model3D, gameObject.transform);
+    //    }
+    //    else
+    //    {
+    //        Debug.Log("no model");
+    //        placeholder.SetActive(true);
+    //    }
+    //}
 
     private void OnTriggerEnter(Collider other)
     {
