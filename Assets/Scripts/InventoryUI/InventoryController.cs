@@ -6,22 +6,21 @@ using UnityEngine;
  * Author: Ho Junliang 
  * Created: 15/2/2022
  */
-public class PlayerController : MonoBehaviour
+public class InventoryController : MonoBehaviour
 {
     public GameObject Inventory_UI;
 
     private void Awake()
     {
         //Inventory_UI = FindObjectOfType<InventoryUI>().gameObject;
-        Inventory_UI.SetActive(false);
+        Inventory_UI.SetActive(true);
     }
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.I))
         {
             Debug.Log("pressed I");
-            Inventory_UI.SetActive(!Inventory_UI.activeSelf);
-            if (Inventory_UI.activeSelf)
+            if (!Inventory_UI.GetComponent<InventoryUI>().IsDisplaying())
             {
                 Inventory_UI.GetComponent<InventoryUI>().Display();
                 Cursor.lockState = CursorLockMode.None;
@@ -29,6 +28,7 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
+                Inventory_UI.GetComponent<InventoryUI>().Hide();
                 Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;
             }
