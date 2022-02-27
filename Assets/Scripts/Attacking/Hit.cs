@@ -11,8 +11,7 @@ public class Hit : MonoBehaviour
 {
     [SerializeField]
     private Impact impact;
-    [SerializeField]
-    private MeleeWeapon info;
+    public MeleeWeapon info;
     void OnTriggerStay(Collider Other)
     {
         if (impact.Hit)
