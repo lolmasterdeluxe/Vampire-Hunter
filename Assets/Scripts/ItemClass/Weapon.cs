@@ -10,7 +10,9 @@ using UnityEngine;
 public abstract class Weapon : Usables
 {
     public int damage;
-    //public abstract void Attack(GameObject target);
+
+    // return true if requirements met
+    public abstract bool CheckRequiredStats();
     public void DealDamage(GameObject target, int damage)
     {
         if (target == null || !target.GetComponent<Health>()) return;

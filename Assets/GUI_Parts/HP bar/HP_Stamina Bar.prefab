@@ -86,8 +86,7 @@ GameObject:
   - component: {fileID: 6849226256559232254}
   - component: {fileID: 5754457282872545800}
   - component: {fileID: 4127575253753064992}
-  - component: {fileID: 3527904245194927278}
-  - component: {fileID: 5032442988523659410}
+  - component: {fileID: 5636334074546252329}
   m_Layer: 5
   m_Name: Staminabar
   m_TagString: Untagged
@@ -152,7 +151,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &3527904245194927278
+--- !u!114 &5636334074546252329
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -161,27 +160,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 3527904245194927266}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6733c1556035ff4d898e5dc14513516, type: 3}
+  m_Script: {fileID: 11500000, guid: 44d74fb64cf7c714a87c36c8a43668b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   progressbar: {fileID: 3527904245194927266}
-  curr: 30
-  max: 100
---- !u!114 &5032442988523659410
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3527904245194927266}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6733c1556035ff4d898e5dc14513516, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  progressbar: {fileID: 3527904245194927266}
-  curr: 100
-  max: 100
+  currSTAM: 0
+  maxSTAM: 0
 --- !u!1 &3527904245561878841
 GameObject:
   m_ObjectHideFlags: 0
@@ -193,7 +177,7 @@ GameObject:
   - component: {fileID: 2300230024559528354}
   - component: {fileID: 5908851970214282241}
   - component: {fileID: 366753632588604261}
-  - component: {fileID: 3527904245561878789}
+  - component: {fileID: 8017789849942450262}
   m_Layer: 5
   m_Name: Healthbar
   m_TagString: Untagged
@@ -258,7 +242,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &3527904245561878789
+--- !u!114 &8017789849942450262
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -267,12 +251,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 3527904245561878841}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6733c1556035ff4d898e5dc14513516, type: 3}
+  m_Script: {fileID: 11500000, guid: 61dfd2c704467794991a90a62c4b200e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   progressbar: {fileID: 3527904245561878841}
-  curr: 100
-  max: 100
+  currHP: 0
+  maxHP: 0
 --- !u!1 &3638776603145432751
 GameObject:
   m_ObjectHideFlags: 0

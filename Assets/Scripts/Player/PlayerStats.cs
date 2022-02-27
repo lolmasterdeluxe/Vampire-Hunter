@@ -25,9 +25,12 @@ public static class PlayerStats
 
     // Defense is the combined defense values of all of player's equipped armour
     public static float Defense = 12;
-    public static float Health = 12;
-    public static float Stamina = 12;
+    public static float MaxHealth;
+    public static float MaxStamina;
     public static float Weapon1Dmg = 12;
     public static float Weapon2Dmg = 12;
     public static float BloodEssence = 50000;
+
+    public static float Health;
+    public static float Stamina;
 }

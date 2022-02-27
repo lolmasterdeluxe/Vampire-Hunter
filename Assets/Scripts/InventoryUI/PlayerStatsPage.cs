@@ -115,8 +115,8 @@ public class PlayerStatsPage : InventoryPage
         statsStr += "\nStrength: " + PlayerStats.Strength;
         statsStr += "\nDexterity: " + PlayerStats.Dexterity;
         statsStr += "\nDefense: " + PlayerStats.Defense;
-        statsStr += "\nHealth: " + PlayerStats.Health;
-        statsStr += "\nStamina: " + PlayerStats.Stamina;
+        statsStr += "\nHealth: " + PlayerStats.MaxHealth;
+        statsStr += "\nStamina: " + PlayerStats.MaxStamina;
 
         return statsStr;
     }

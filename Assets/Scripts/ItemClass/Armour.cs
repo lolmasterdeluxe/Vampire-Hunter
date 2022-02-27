@@ -9,4 +9,7 @@ using UnityEngine;
 public abstract class Armour : Item
 {
     public int armourPoints;
+
+    // return true if requirements met
+    public abstract bool CheckRequiredStats();
 }

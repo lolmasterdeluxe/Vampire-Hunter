@@ -9,9 +9,12 @@ public class CageInteraction : MonoBehaviour
     [SerializeField]
     private GameObject target;
 
+    [SerializeField]
+    Key requiredKey;
+
     public void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.transform.parent && other.transform.parent.CompareTag("Player"))
         {
             triggerActive = true;
         }
@@ -29,11 +32,17 @@ public class CageInteraction : MonoBehaviour
         {
             if (!doorOpen)
             {
-                target.GetComponent<Animator>().SetTrigger("OpenDoor");
-                doorOpen = true;
+                if (PlayerInventory.instance.RemoveItem(requiredKey))
+                {
+                    NotificationSystem.instance.Notify(requiredKey.itemName, requiredKey.itemImage, "Item Used");
+                    target.GetComponent<Animator>().SetTrigger("OpenDoor");
+                    doorOpen = true;
+                }
+                else
+                {
+                    NotificationSystem.instance.ShowRequirementPopup();
+                }
             }
-            
         }
-        
     }
 }

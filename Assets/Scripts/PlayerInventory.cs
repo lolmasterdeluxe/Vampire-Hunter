@@ -32,6 +32,43 @@ public class PlayerInventory : MonoBehaviour
     public Leggings leggings;
     public Boots boots;
 
+    public void UseHotbar(int index)
+    {
+        if (hotbar[index] is MeleeWeapon)
+        {
+            foreach (Hit hit in FindObjectsOfType<Hit>())
+            {
+                if (hit.gameObject.CompareTag("Player Weapon"))
+                {
+                    hit.info = hotbar[index] as MeleeWeapon;
+                }
+            }
+            NotificationSystem.instance.Notify(hotbar[index].itemName, hotbar[index].itemImage, "Switched Melee");
+        }
+        if (hotbar[index] is RangedWeapon)
+        {
+            NotificationSystem.instance.Notify(hotbar[index].itemName, hotbar[index].itemImage, "Switched Ranged");
+        }
+        if (hotbar[index] is Potion)
+        {
+            (hotbar[index] as Potion).Use();
+            NotificationSystem.instance.Notify(hotbar[index].itemName, hotbar[index].itemImage, "Used Item");
+            hotbar[index] = null;
+        }
+    }
+
+    public bool RemoveItem(Item item)
+    {
+        for (int i = 0; i < slots.Length; i++)
+        {
+            if (item.Equals(slots[i]))
+            {
+                slots[i] = null;
+                return true;
+            }
+        }
+        return false;
+    }
     public Armour GetArmourSlot(int index)
     {
         switch (index)
@@ -65,6 +102,8 @@ public class PlayerInventory : MonoBehaviour
     {
         if (slots[slotIndex] is Usables)
         {
+            if (slots[slotIndex] is Weapon && !(slots[slotIndex] as Weapon).CheckRequiredStats()) 
+                return false;
             Item temp = hotbar[hotbarIndex];
             hotbar[hotbarIndex] = slots[slotIndex] as Usables;
             slots[slotIndex] = temp;
@@ -75,11 +114,14 @@ public class PlayerInventory : MonoBehaviour
     
     public bool EquipArmour(int slotIndex)
     {
+        if (slots[slotIndex] is Armour && !(slots[slotIndex] as Armour).CheckRequiredStats())
+            return false;
         if (slots[slotIndex] is Helmet)
         {
             Item temp = helmet;
             helmet = (Helmet)slots[slotIndex];
             slots[slotIndex] = temp;
+            UpdatePlayerDefenseStat();
             return true;
         }
         else if (slots[slotIndex] is Chestplate)
@@ -87,6 +129,7 @@ public class PlayerInventory : MonoBehaviour
             Item temp = chestplate;
             chestplate = (Chestplate)slots[slotIndex];
             slots[slotIndex] = temp;
+            UpdatePlayerDefenseStat();
             return true;
         }
         else if (slots[slotIndex] is Leggings)
@@ -94,6 +137,7 @@ public class PlayerInventory : MonoBehaviour
             Item temp = leggings;
             leggings = (Leggings)slots[slotIndex];
             slots[slotIndex] = temp;
+            UpdatePlayerDefenseStat();
             return true;
         }
         else if (slots[slotIndex] is Boots)
@@ -101,6 +145,7 @@ public class PlayerInventory : MonoBehaviour
             Item temp = boots;
             boots = (Boots)slots[slotIndex];
             slots[slotIndex] = temp;
+            UpdatePlayerDefenseStat();
             return true;
         }
 
@@ -125,32 +170,39 @@ public class PlayerInventory : MonoBehaviour
                 if (AddItem(helmet))
                 {
                     helmet = null;
-                    return true;
+                    break;
                 }
                 return false;
             case 1:
                 if (AddItem(chestplate))
                 {
                     chestplate = null;
-                    return true;
+                    break;
                 }
                 return false;
             case 2:
                 if (AddItem(leggings))
                 {
                     leggings = null;
-                    return true;
+                    break;
                 }
                 return false;
             case 3:
                 if (AddItem(boots))
                 {
                     boots = null;
-                    return true;
+                    break;
                 }
                 return false;
             default:
                 return false;
         }
+        UpdatePlayerDefenseStat();
+        return true;
+    }
+
+    public void UpdatePlayerDefenseStat()
+    {
+        PlayerStats.Defense = helmet.armourPoints + chestplate.armourPoints + leggings.armourPoints + boots.armourPoints;
     }
 }

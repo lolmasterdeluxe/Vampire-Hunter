@@ -17,3 +17,4 @@ MonoBehaviour:
   itemImage: {fileID: 21300000, guid: dae25edffd7869e4bb39b46243df3d9e, type: 3}
   model3D: {fileID: 6791099353202096359, guid: c9e649ccb03d1694b866c5c5b41d2818, type: 3}
   damage: 20
+  requiredStrength: 50
