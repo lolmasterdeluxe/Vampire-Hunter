@@ -6,26 +6,40 @@ using UnityEngine.UI;
 public class StamStatGUI : MonoBehaviour
 {
     public GameObject progressbar;
-    public float currSTAM;
-    public float maxSTAM;
     // Start is called before the first frame update
     void Start()
     {
-
+        PlayerStats.MaxStamina = PlayerStats.Endurance * 10;
+        PlayerStats.Stamina = PlayerStats.MaxStamina;
     }
 
     // Update is called once per frame
     void Update()
     {
+        
         //GameObject.Find("Stamina").GetComponent<PlayerStats>().Stamina -= 10.0f;;
         PlayerStats.MaxStamina = PlayerStats.Endurance * 10;
-        maxSTAM = PlayerStats.MaxStamina;
-        currSTAM = PlayerStats.Stamina;
-        if (Input.GetKeyDown(KeyCode.L))
+
+
+        if (Input.GetKeyDown(KeyCode.K))
         {
-            currSTAM += 1;
+            PlayerStats.Stamina -= 30;
+            //for (int i = 0; i < 30; i++)
+            //{
+            //    currSTAM--;
+            //}
         }
-        progressbar.GetComponent<Image>().fillAmount = (currSTAM / maxSTAM);
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            PlayerStats.Endurance++;
+        }
+
+
+        progressbar.GetComponent<Image>().fillAmount = (PlayerStats.Stamina / PlayerStats.MaxStamina);
         //progressbar.GetComponent<Image>().fillAmount = (currSTAM / maxSTAM);
+
+        PlayerStats.Stamina += (Time.deltaTime * (PlayerStats.Endurance - 7));
     }
+
+
 }
