@@ -26,6 +26,7 @@ public class PickUp : MonoBehaviour
                 PlayerStats.BloodEssence += bloodEssence;
                 NotificationSystem.instance.Notify("Blood Essence", bloodEssenceSprite, "Picked Up");
             }
+            FindObjectOfType<AudioManager>().Play("itempickup");
         }
     }
 }

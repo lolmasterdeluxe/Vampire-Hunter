@@ -54,7 +54,6 @@ public class InventoryUI_Page : MonoBehaviour
     }
     public void UpdateScrollView(int tab)
     {
-        FindObjectOfType<AudioManager>().Play("click");
         UpdateScrollView((TAB_TYPES)tab);
     }
     public void UpdateScrollView(TAB_TYPES tab)
