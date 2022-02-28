@@ -33,16 +33,26 @@ public class Health : MonoBehaviour
             GetComponent<Animator>().Play("Flinch");
             CurrentPoise = MaxPoise;
         }
-        if (hp <= 0 && FSM_Script.enabled)
+        if (hp <= 0 && !GetComponent<Animator>().GetBool("Die"))
         {
-            GameObject BloodEssence = Instantiate(Pickup, transform.parent);
             if (gameObject.CompareTag("Player Animation"))
-                BloodEssence.GetComponent<PickUp>().bloodEssence = (int)PlayerStats.BloodEssence;
+            {
+                if (PlayerStats.Health > 0)
+                    hp = PlayerStats.Health;    
+                else
+                {
+                    GameObject BloodEssence = Instantiate(Pickup, transform.parent.position, Quaternion.Euler(0,0,0));
+                    BloodEssence.GetComponent<PickUp>().bloodEssence = (int)PlayerStats.BloodEssence;
+                }
+            }
             else
+            {
+                GameObject BloodEssence = Instantiate(Pickup, transform.parent);
                 BloodEssence.GetComponent<PickUp>().bloodEssence = BloodEssenceToDrop;
-            GetComponent<Animator>().SetBool("Die", true);
-            FSM_Script.enabled = false;
-            GetComponentInParent<NavMeshAgent>().enabled = false;
+                GetComponent<Animator>().SetBool("Die", true);
+                FSM_Script.enabled = false;
+                GetComponentInParent<NavMeshAgent>().enabled = false;
+            }
         }
     }
 

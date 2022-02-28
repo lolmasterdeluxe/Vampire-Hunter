@@ -76,10 +76,6 @@ public class BasicRangedWeapon : MonoBehaviour
                     {
                         Debug.Log("Enemy hit with shotgun!");
                         info.DealDamage(hit.collider.gameObject, info.damage);
-                        if (!hit.collider.gameObject.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Idle") && !hit.collider.gameObject.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Walk") && hit.collider.transform.parent.name != "Vampire")
-                        {
-                            hit.collider.gameObject.GetComponent<Animator>().Play("Flinch");
-                        }
                     }
                 }
             }

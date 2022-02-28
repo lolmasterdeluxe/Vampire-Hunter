@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using TMPro;
 /**
  * Author: Ho Junliang 
  * Created: 15/2/2022
@@ -13,6 +13,7 @@ public class InventoryUI : MonoBehaviour
 
     public Image meleeWeapon;
     public Image rangedWeapon;
+    public TextMeshProUGUI bloodEssenceText;
 
     private void Awake()
     {
@@ -21,6 +22,13 @@ public class InventoryUI : MonoBehaviour
         rangedWeapon.gameObject.SetActive(true);
         Hide();
     }
+
+    private void Update()
+    {
+        // this hurts
+        bloodEssenceText.text = PlayerStats.BloodEssence.ToString();
+    }
+
     public void Display()
     {
         page.SetActive(false);

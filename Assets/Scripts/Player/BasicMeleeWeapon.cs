@@ -48,7 +48,7 @@ public class BasicMeleeWeapon : MonoBehaviour
         {
             lungeDir = Quaternion.Euler(0f, Parent.GetComponent<Transform>().eulerAngles.y, 0f) * (Vector3.forward);
             Parent.GetComponent<Rigidbody>().AddForce((lungeDir.normalized * 200));
-            PlayerStats.Stamina -= 20;
+            PlayerStats.Stamina -= 30;
             lunge = false;
         }
         if (!playerCamera.LockOn)
