@@ -33,7 +33,7 @@ public class CarriageInteraction : MonoBehaviour
     private bool stopped = false;
     private GameObject textGameobject;
     private Text statsText;
-    bool[] carriageUnlocked = { CarriageStats.carriage1, CarriageStats.carriage2 };
+    bool[] carriageUnlocked = { CarriageStats.carriage1, CarriageStats.carriage2, CarriageStats.carriage3, CarriageStats.carriage4, CarriageStats.carriage5 };
     float[] tempstatsArr = new float[7];
     float[] statsArr = { PlayerStats.Vitality, PlayerStats.Endurance, PlayerStats.Strength, PlayerStats.Dexterity
     ,PlayerStats.BloodEssence,PlayerStats.MaxHealth,PlayerStats.MaxStamina};
@@ -64,7 +64,13 @@ public class CarriageInteraction : MonoBehaviour
             player.GetComponentInChildren<BasicMeleeWeapon>().enabled = false;
             player.GetComponentInChildren<BasicRangedWeapon>().enabled = false;
         }
-
+        if (Input.GetKeyDown(KeyCode.U))
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                carriageUnlocked[i] = true;
+            }
+        }
 
         if (triggerActive && Input.GetKeyDown(KeyCode.E))
         {
