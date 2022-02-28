@@ -69,6 +69,7 @@ public class BasicMeleeWeapon : MonoBehaviour
         if (comboStep == 0)
         {
             Parent.GetComponent<Rigidbody>().velocity *= 0;
+            FindObjectOfType<AudioManager>().Play("sweep1");
             playerAnimation.Play("Attack1");
             comboStep = 1;
             Debug.Log("Melee Weapon Attack.");
@@ -93,21 +94,25 @@ public class BasicMeleeWeapon : MonoBehaviour
     {
         if (comboStep == 2)
         {
+            FindObjectOfType<AudioManager>().Play("sweep2");
             Parent.GetComponent<Rigidbody>().velocity *= 0;
             playerAnimation.Play("Attack2");
         }
         if (comboStep == 3)
         {
+            FindObjectOfType<AudioManager>().Play("sweep3");
             Parent.GetComponent<Rigidbody>().velocity *= 0;
             playerAnimation.Play("Attack3");
         }
         if (comboStep == 4)
         {
+            FindObjectOfType<AudioManager>().Play("sweep4");
             Parent.GetComponent<Rigidbody>().velocity *= 0;
             playerAnimation.Play("Attack4");
         }
         if (comboStep == 5)
         {
+            FindObjectOfType<AudioManager>().Play("sweep5");
             Parent.GetComponent<Rigidbody>().velocity *= 0;
             playerAnimation.Play("Attack5");
         }
