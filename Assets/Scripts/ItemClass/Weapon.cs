@@ -20,9 +20,13 @@ public abstract class Weapon : Item
         Debug.Log("HP of " + target.name + ": " + target.GetComponent<Health>().hp);
 
         if (target.CompareTag("Player Animation"))
-            PlayerStats.Health -= damage;
+        {
+            int DamageTaken = (int)(damage / (1 + (PlayerStats.Defense/100)));
+            PlayerStats.Health -= DamageTaken;
+        }
         target.GetComponent<Health>().hp -= damage;
         target.GetComponent<Health>().CurrentPoise -= damage;
+
     }
     public override string PrintShortStats()
     {
