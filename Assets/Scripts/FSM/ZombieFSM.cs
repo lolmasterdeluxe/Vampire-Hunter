@@ -22,6 +22,7 @@ public class ZombieFSM : CFSM
     private float DistanceBtwPlayer, DistanceToGoal;
     private Vector3 goal;
     private bool SetPatrolPoint = false;
+    private bool PlaySound = false;
 
     // Update is called once per frame
     private void Awake()
@@ -34,7 +35,17 @@ public class ZombieFSM : CFSM
     private void Update()
     {
         if (zombieAnimation.GetCurrentAnimatorStateInfo(0).IsName("Flinch"))
+        {
+
+            PlayAudio();
             return;
+        }
+        else
+        {
+            PlaySound = false;
+        }
+            
+
         DistanceBtwPlayer = Vector3.Distance(transform.position, Player.GetComponent<Transform>().position);
         DistanceToGoal = Vector3.Distance(transform.position, goal);
         switch (CurrentFSM)
@@ -73,13 +84,14 @@ public class ZombieFSM : CFSM
                 }
                 FSMCounter += Time.deltaTime;
                 break;
-            case FSM.ATTACK:    
+            case FSM.ATTACK:
                 if (!zombieAnimation.GetCurrentAnimatorStateInfo(0).IsName("Attack" + Attack))
                 {
                     if (FSMCounter > AttackCooldown)
                     {
                         if (DistanceBtwPlayer <= AttackRange)
                         {
+                            FindObjectOfType<AudioManager>().Play("zombieattack");
                             agent.destination = Player.transform.position;
                             Attack = Random.Range(1, 4);
                             zombieAnimation.Play("Attack" + Attack);
@@ -104,7 +116,7 @@ public class ZombieFSM : CFSM
                         CurrentFSM = FSM.IDLE;
                         FSMCounter = 0;
                     }
-                   
+
                 }
                 FSMCounter += Time.deltaTime;
                 break;
@@ -112,5 +124,14 @@ public class ZombieFSM : CFSM
                 break;
 
         }
+    }
+    private void PlayAudio()
+    {
+        if (!PlaySound)
+        {
+            PlaySound = true;
+            FindObjectOfType<AudioManager>().Play("zombiehurt");
+        }
+        
     }
 }
