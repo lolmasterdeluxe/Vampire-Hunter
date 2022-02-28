@@ -69,10 +69,14 @@ public class TriggerDeath : MonoBehaviour
                 Cursor.visible = true;
                 Cursor.lockState = CursorLockMode.None;
 
-                player.GetComponent<PlayerMovement>().enabled = false;
-                player.GetComponent<CameraLockOn>().enabled = false;
+                
                 player.GetComponentInChildren<BasicMeleeWeapon>().enabled = false;
                 player.GetComponentInChildren<BasicRangedWeapon>().enabled = false;
+                GetComponent<Animator>().SetBool("Die", true);
+                GetComponentInParent<PlayerMovement>().enabled = false;
+                GetComponentInParent<CameraLockOn>().enabled = false;
+                GetComponentInParent<InventoryUI>().enabled = false;
+                GetComponent<Collider>().enabled = false;
 
                 trigger.SetActive(true);
                 if (faded == false)
@@ -122,10 +126,15 @@ public class TriggerDeath : MonoBehaviour
         Camera.SetActive(true);
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-        player.GetComponent<PlayerMovement>().enabled = true;
-        player.GetComponent<CameraLockOn>().enabled = true;
+
         player.GetComponentInChildren<BasicMeleeWeapon>().enabled = true;
         player.GetComponentInChildren<BasicRangedWeapon>().enabled = true;
+
+        GetComponent<Animator>().SetBool("Die", false);
+        GetComponentInParent<PlayerMovement>().enabled = true;
+        GetComponentInParent<CameraLockOn>().enabled = true;
+        GetComponentInParent<InventoryUI>().enabled = true;
+        GetComponent<Collider>().enabled = true;
     }
     public void Quitgame()
     {
