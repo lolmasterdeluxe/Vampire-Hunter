@@ -5,11 +5,13 @@ using UnityEngine;
 /**
  * Author: Li Zeyu
  * Created: 17/2/2022
+ * Editor: Muhammad Rifdi bin Sabbri
+ * Edited: 20/2/2022
  */
 
 public class ChestInteraction : MonoBehaviour
 {
-    private bool triggerActive = false;
+    private bool triggerActive = false, IsChestOpen = false;
     [SerializeField]
     private GameObject target;
     [SerializeField]
@@ -35,21 +37,9 @@ public class ChestInteraction : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (triggerActive && Input.GetKeyDown(KeyCode.E))
+        if (triggerActive && Input.GetKeyDown(KeyCode.E) && !IsChestOpen)
         {
             ChestOpen();
-            //if(item1.itemName != string.Empty)
-            //{
-            //    Debug.Log("output1");
-            //    PlayerInventory.instance.AddItem(item1);
-            //    NotificationSystem.instance.Notify(item1.itemName, item1.itemImage, "Item Added");
-            //}
-            //if (item2.itemName != string.Empty)
-            //{
-            //    Debug.Log("output2");
-            //    PlayerInventory.instance.AddItem(item2);
-            //    NotificationSystem.instance.Notify(item2.itemName, item2.itemImage, "Item Added");
-            //}
         }
     }
     void ChestOpen()
@@ -64,5 +54,6 @@ public class ChestInteraction : MonoBehaviour
         }
         target.GetComponent<Animation>()["ChestAnim"].speed = 1.0f;
         target.GetComponent<Animation>().Play("ChestAnim");
+        IsChestOpen = true;
     }
 }

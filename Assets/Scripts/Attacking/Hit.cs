@@ -20,7 +20,6 @@ public class Hit : MonoBehaviour
             {
                 if (Other.CompareTag("Enemy Animation"))
                 {
-                    Other.GetComponent<Animator>().Play("Flinch");
                     info.DealDamage(Other.gameObject, info.damage); 
                     impact.Hit = false;
                 }
@@ -29,7 +28,6 @@ public class Hit : MonoBehaviour
             {
                 if (Other.CompareTag("Player Animation"))
                 {
-                    Other.GetComponent<Animator>().Play("Flinch");
                     info.DealDamage(Other.gameObject, info.damage);
                     impact.Hit = false;
                 }
