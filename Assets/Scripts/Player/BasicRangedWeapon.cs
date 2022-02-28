@@ -49,6 +49,8 @@ public class BasicRangedWeapon : MonoBehaviour
 
     private void Update()
     {
+        if (Parent.GetComponentInChildren<Animator>().GetBool("Die"))
+            return;
         if (Input.GetMouseButtonDown(1))
         {
             Animator.Play("Shoot");

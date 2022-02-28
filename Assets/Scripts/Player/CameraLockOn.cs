@@ -111,7 +111,7 @@ public class CameraLockOn : MonoBehaviour
                 }
             }
         }
-        if (((targetDistance > DetectionRange + 5) || (LockOn && (Input.GetKeyUp("f")))) || (CinemachineTarget.target != null && CinemachineTarget.target.GetComponentInChildren<Health>().hp <= 0))
+        if (((targetDistance > DetectionRange + 5) || (LockOn && (Input.GetKeyUp("f")))) || (CinemachineTarget.target != null && CinemachineTarget.target.GetComponentInChildren<Health>().hp <= 0) || GetComponentInChildren<Animator>().GetBool("Die"))
         {
             for (int i = 0; i < TargetGroup.m_Targets.Length; i++)
             {

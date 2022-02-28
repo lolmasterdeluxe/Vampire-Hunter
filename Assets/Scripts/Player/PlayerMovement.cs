@@ -44,6 +44,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        if (GetComponentInChildren<Animator>().GetBool("Die"))
+            return;
+
         IsGrounded = Physics.Raycast(Body.GetComponent<Transform>().position, Vector3.down, distToGround + 0.3f);
 
         horizontal = Input.GetAxisRaw("Horizontal");

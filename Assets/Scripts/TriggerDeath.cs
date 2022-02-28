@@ -23,6 +23,8 @@ public class TriggerDeath : MonoBehaviour
     private GameObject hpbar;
     [SerializeField]
     private GameObject Title;
+    [SerializeField]
+    private InventoryUI Inventory_UI;
 
     private bool faded = false;
     private bool won = false;
@@ -70,13 +72,10 @@ public class TriggerDeath : MonoBehaviour
                 Cursor.lockState = CursorLockMode.None;
 
                 
-                player.GetComponentInChildren<BasicMeleeWeapon>().enabled = false;
-                player.GetComponentInChildren<BasicRangedWeapon>().enabled = false;
-                GetComponent<Animator>().SetBool("Die", true);
-                GetComponentInParent<PlayerMovement>().enabled = false;
-                GetComponentInParent<CameraLockOn>().enabled = false;
-                GetComponentInParent<InventoryUI>().enabled = false;
-                GetComponent<Collider>().enabled = false;
+                player.GetComponentInChildren<Animator>().SetBool("Die", true);
+                player.GetComponent<InventoryController>().enabled = false;
+                Inventory_UI.GetComponent<InventoryUI>().Hide();
+                player.GetComponentInChildren<Collider>().enabled = false;
 
                 trigger.SetActive(true);
                 if (faded == false)
@@ -127,14 +126,10 @@ public class TriggerDeath : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
 
-        player.GetComponentInChildren<BasicMeleeWeapon>().enabled = true;
-        player.GetComponentInChildren<BasicRangedWeapon>().enabled = true;
-
-        GetComponent<Animator>().SetBool("Die", false);
-        GetComponentInParent<PlayerMovement>().enabled = true;
-        GetComponentInParent<CameraLockOn>().enabled = true;
-        GetComponentInParent<InventoryUI>().enabled = true;
-        GetComponent<Collider>().enabled = true;
+        player.GetComponentInChildren<Animator>().SetBool("Die", false);
+        player.GetComponent<InventoryController>().enabled = true;
+        player.GetComponentInChildren<Collider>().enabled = true;
+        Debug.Log("Player name: " + player.GetComponentInChildren<Animator>().name);
     }
     public void Quitgame()
     {

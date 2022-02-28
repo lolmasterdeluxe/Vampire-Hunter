@@ -33,6 +33,8 @@ public class BasicMeleeWeapon : MonoBehaviour
 
     private void Update()
     {
+        if (Parent.GetComponentInChildren<Animator>().GetBool("Die"))
+            return;
         horizontal = Input.GetAxisRaw("Horizontal");
         vertical = Input.GetAxisRaw("Vertical");
         direction = new Vector3(horizontal, 0f, vertical).normalized;
