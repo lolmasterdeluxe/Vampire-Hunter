@@ -35,14 +35,13 @@ public class VampireFSM : CFSM
     {
         if (vampireAnimation.GetCurrentAnimatorStateInfo(0).IsName("Flinch"))
         {
-
+            ComboReset();
             PlayAudio();
             return;
         }
         else
-        {
             PlaySound = false;
-        }
+
         DistanceBtwPlayer = Vector3.Distance(Body.transform.position, Player.GetComponent<Transform>().position);
         switch (CurrentFSM)
         {
@@ -122,6 +121,7 @@ public class VampireFSM : CFSM
                 break;
 
         }
+
     }
     private void FixedUpdate()
     {
