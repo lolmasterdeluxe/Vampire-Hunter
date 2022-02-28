@@ -22,7 +22,7 @@ public class CultistFSM : CFSM
     private float DistanceBtwPlayer, DistanceToGoal;
     private Vector3 goal;
     private bool SetPatrolPoint = false;
-
+    private bool PlaySound = false;
     private bool comboPossible, lunge = false;
     private int comboStep = 0, attack_type;
 
@@ -35,7 +35,15 @@ public class CultistFSM : CFSM
     private void Update()
     {
         if (cultistAnimation.GetCurrentAnimatorStateInfo(0).IsName("Flinch"))
+        {
+
+            PlayAudio();
             return;
+        }
+        else
+        {
+            PlaySound = false;
+        }
         DistanceBtwPlayer = Vector3.Distance(Body.transform.position, Player.GetComponent<Transform>().position);
         DistanceToGoal = Vector3.Distance(Body.transform.position, goal);
         switch (CurrentFSM)
@@ -80,6 +88,7 @@ public class CultistFSM : CFSM
                     if (DistanceBtwPlayer <= AttackRange)
                     {
                         //Debug.Log("Attack Type: " + attack_type);
+                        FindObjectOfType<AudioManager>().Play("cultistattack");
                         Attack_();
                     }
                     else if (DistanceBtwPlayer >= AttackRange)
@@ -169,5 +178,15 @@ public class CultistFSM : CFSM
     public void Lunge()
     {
         lunge = true;
+    }
+
+    private void PlayAudio()
+    {
+        if (!PlaySound)
+        {
+            PlaySound = true;
+            FindObjectOfType<AudioManager>().Play("cultisthurt");
+        }
+
     }
 }

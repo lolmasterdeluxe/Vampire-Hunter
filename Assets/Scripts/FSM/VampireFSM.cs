@@ -21,7 +21,7 @@ public class VampireFSM : CFSM
     private float DistanceBtwPlayer;
     private Vector3 goal, lungeDir;
     private bool SetPatrolPoint = false, ChargeAttack_ = false, LockOnPlayer = false;
-
+    private bool PlaySound = false;
     private bool comboPossible, lunge = false;
     private int comboStep = 0, attack_type;
 
@@ -34,7 +34,15 @@ public class VampireFSM : CFSM
     private void Update()
     {
         if (vampireAnimation.GetCurrentAnimatorStateInfo(0).IsName("Flinch"))
+        {
+
+            PlayAudio();
             return;
+        }
+        else
+        {
+            PlaySound = false;
+        }
         DistanceBtwPlayer = Vector3.Distance(Body.transform.position, Player.GetComponent<Transform>().position);
         switch (CurrentFSM)
         {
@@ -75,6 +83,7 @@ public class VampireFSM : CFSM
                     {
                         if (DistanceBtwPlayer <= AttackRange)
                         {
+                            FindObjectOfType<AudioManager>().Play("vampireattack");
                             //Debug.Log("Attack Type: " + attack_type);
                             Attack_();
                         }
@@ -215,5 +224,15 @@ public class VampireFSM : CFSM
     public void Lunge()
     {
         lunge = true;
+    }
+
+    private void PlayAudio()
+    {
+        if (!PlaySound)
+        {
+            PlaySound = true;
+            FindObjectOfType<AudioManager>().Play("vampirehurt");
+        }
+
     }
 }
