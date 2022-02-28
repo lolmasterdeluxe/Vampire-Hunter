@@ -113,7 +113,7 @@ public class CameraLockOn : MonoBehaviour
                 }
             }
         }
-        if ((targetDistance > DetectionRange + 5) || (LockOn && (Input.GetKeyUp("o"))))
+        if ((targetDistance > DetectionRange + 5) || (LockOn && (Input.GetKeyUp("f"))))
         {
             for (int i = 0; i < TargetGroup.m_Targets.Length; i++)
             {
