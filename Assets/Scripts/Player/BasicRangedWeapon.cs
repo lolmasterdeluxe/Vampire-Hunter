@@ -10,8 +10,8 @@ using UnityEngine;
  */
 public class BasicRangedWeapon : MonoBehaviour
 {
-    public RangedWeapon info;
-
+    [SerializeField]
+    private RangedWeapon info;
     [SerializeField]
     private GameObject Parent;
     [SerializeField]
@@ -55,11 +55,8 @@ public class BasicRangedWeapon : MonoBehaviour
         }
     }
 
-    public void Attack(GameObject target)
+    public void Attack()
     {
-        Debug.Log("Ranged Weapon Attack.");
-        //WeaponInfo weaponInfo = (WeaponInfo)itemInfo;
-
         for (int i = 0; i < NumberOfBullets; ++i)
         {
             if (!ShootDelayTrue || LastShootTime + ShootDelay < Time.time)
@@ -74,7 +71,15 @@ public class BasicRangedWeapon : MonoBehaviour
                     StartCoroutine(SpawnTrail(trail, hit));
 
                     LastShootTime = Time.time;
-                    info.DealDamage(target, info.damage);
+                    if (hit.collider.CompareTag("Enemy Animation"))
+                    {
+                        Debug.Log("Enemy hit with shotgun!");
+                        info.DealDamage(hit.collider.gameObject, info.damage);
+                        if (!hit.collider.gameObject.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Idle") && !hit.collider.gameObject.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Walk") && hit.collider.transform.parent.name != "Vampire")
+                        {
+                            hit.collider.gameObject.GetComponent<Animator>().Play("Flinch");
+                        }
+                    }
                 }
             }
         }

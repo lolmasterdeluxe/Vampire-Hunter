@@ -237,6 +237,11 @@ public class CarriageInteraction : MonoBehaviour
         tempstatsArr[4] = 0;
         TAdding(10);
         ShowStats();
+        PlayerStats.Vitality = statsArr[0];
+        PlayerStats.Stamina = statsArr[1];
+        PlayerStats.Strength = statsArr[2];
+        PlayerStats.Dexterity = statsArr[3];
+        PlayerStats.Health = PlayerStats.MaxHealth;
     }
     public void ShowStats()
     {
