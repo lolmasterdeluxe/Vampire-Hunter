@@ -17,3 +17,4 @@ MonoBehaviour:
   itemImage: {fileID: 21300000, guid: 0e7073b873373a346a2166e6abacc604, type: 3}
   model3D: {fileID: 0}
   armourPoints: 3
+  requiredDexterity: 1
