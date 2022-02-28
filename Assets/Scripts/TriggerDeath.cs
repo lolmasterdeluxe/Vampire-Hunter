@@ -37,10 +37,13 @@ public class TriggerDeath : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.T))
         {
-            //PlayerStats.Health = 0;
             CagesOpened = 10;
+        }
+        if (Input.GetKeyDown(KeyCode.Y))
+        {
+            PlayerStats.Health = 0;
         }
         if (!won)
         {
