@@ -103,9 +103,9 @@ public class CarriageInteraction : MonoBehaviour
         Camera.SetActive(false);
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
-        if (carriageUnlocked[number - 1] == false)
+        if (carriageUnlocked[number] == false)
         {
-            carriageUnlocked[number - 1] = true;
+            carriageUnlocked[number] = true;
         }
         else {
 
