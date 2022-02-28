@@ -21,4 +21,8 @@ public class Helmet : Armour
             + "\nCurrent Dexterity: " + PlayerStats.Dexterity
             + "\nDefence: +" + armourPoints;
     }
+    public override string PrintShortStats()
+    {
+        return base.PrintShortStats() + " / Req Dex: " + requiredDexterity;
+    }
 }

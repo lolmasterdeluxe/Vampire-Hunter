@@ -24,4 +24,8 @@ public class RangedWeapon : Weapon
             + "\nCurrent Dexterity: " + PlayerStats.Dexterity
             + "\nDamage: " + damage;
     }
+    public override string PrintShortStats()
+    {
+        return base.PrintShortStats() + " / Req Dex: " + requiredDexterity;
+    }
 }

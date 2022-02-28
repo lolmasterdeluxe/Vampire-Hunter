@@ -20,4 +20,9 @@ public abstract class Item : ScriptableObject
     {
         return "";
     }
+
+    public virtual string PrintShortStats()
+    {
+        return "";
+    }
 }
