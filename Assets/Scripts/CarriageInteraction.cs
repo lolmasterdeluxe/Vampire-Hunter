@@ -241,6 +241,7 @@ public class CarriageInteraction : MonoBehaviour
         PlayerStats.Stamina = statsArr[1];
         PlayerStats.Strength = statsArr[2];
         PlayerStats.Dexterity = statsArr[3];
+        PlayerStats.BloodEssence = statsArr[4];
         PlayerStats.Health = PlayerStats.MaxHealth;
     }
     public void ShowStats()
