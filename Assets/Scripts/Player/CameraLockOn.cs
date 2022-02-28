@@ -30,8 +30,7 @@ public class CameraLockOn : MonoBehaviour
 
     private void Start()
     {
-        if (Enemies == null)
-            Enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        Enemies = GameObject.FindGameObjectsWithTag("Enemy");
     }
 
     // Update is called once per frame
@@ -71,7 +70,6 @@ public class CameraLockOn : MonoBehaviour
         while (time < 1)
         {
             transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, time);
-
             time += Time.deltaTime * LockOnSpeed;
             yield return null;
         }
@@ -87,7 +85,7 @@ public class CameraLockOn : MonoBehaviour
             foreach (GameObject Enemy in Enemies)
             {
                 float curDistance = Vector3.Distance(Enemy.transform.position, transform.position);
-                if (curDistance < distance && RenderExtension.IsVisibleFrom(Enemy.GetComponentInChildren<Renderer>(), MainCamera))
+                if (curDistance < distance && RenderExtension.IsVisibleFrom(Enemy.GetComponentInChildren<Renderer>(), MainCamera) && Enemy.GetComponentInChildren<Health>().hp > 0)
                 {
                     CinemachineTarget.target = Enemy.transform;
                     CinemachineTarget.weight = 1;

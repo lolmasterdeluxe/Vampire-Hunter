@@ -48,6 +48,7 @@ public class Health : MonoBehaviour
             else
             {
                 GameObject BloodEssence = Instantiate(Pickup, transform.parent);
+                BloodEssence.GetComponent<PickUp>().holding = null;
                 BloodEssence.GetComponent<PickUp>().bloodEssence = BloodEssenceToDrop;
                 GetComponent<Animator>().SetBool("Die", true);
                 FSM_Script.enabled = false;

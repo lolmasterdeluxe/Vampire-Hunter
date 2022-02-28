@@ -47,8 +47,10 @@ public class BasicMeleeWeapon : MonoBehaviour
         if (lunge)
         {
             lungeDir = Quaternion.Euler(0f, Parent.GetComponent<Transform>().eulerAngles.y, 0f) * (Vector3.forward);
-            Parent.GetComponent<Rigidbody>().AddForce((lungeDir.normalized * 200));
+            Parent.GetComponent<Rigidbody>().AddForce((lungeDir.normalized * 300));
             PlayerStats.Stamina -= 30;
+            int SoundRandom = Random.Range(1, 6);
+            FindObjectOfType<AudioManager>().Play("sweep" + SoundRandom);
             lunge = false;
         }
         if (!playerCamera.LockOn)
@@ -69,7 +71,6 @@ public class BasicMeleeWeapon : MonoBehaviour
         if (comboStep == 0)
         {
             Parent.GetComponent<Rigidbody>().velocity *= 0;
-            FindObjectOfType<AudioManager>().Play("sweep1");
             playerAnimation.Play("Attack1");
             comboStep = 1;
             Debug.Log("Melee Weapon Attack.");
@@ -94,25 +95,21 @@ public class BasicMeleeWeapon : MonoBehaviour
     {
         if (comboStep == 2)
         {
-            FindObjectOfType<AudioManager>().Play("sweep2");
             Parent.GetComponent<Rigidbody>().velocity *= 0;
             playerAnimation.Play("Attack2");
         }
         if (comboStep == 3)
         {
-            FindObjectOfType<AudioManager>().Play("sweep3");
             Parent.GetComponent<Rigidbody>().velocity *= 0;
             playerAnimation.Play("Attack3");
         }
         if (comboStep == 4)
         {
-            FindObjectOfType<AudioManager>().Play("sweep4");
             Parent.GetComponent<Rigidbody>().velocity *= 0;
             playerAnimation.Play("Attack4");
         }
         if (comboStep == 5)
         {
-            FindObjectOfType<AudioManager>().Play("sweep5");
             Parent.GetComponent<Rigidbody>().velocity *= 0;
             playerAnimation.Play("Attack5");
         }
