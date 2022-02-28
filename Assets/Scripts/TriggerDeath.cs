@@ -12,12 +12,20 @@ public class TriggerDeath : MonoBehaviour
     [SerializeField]
     private Image img;
     [SerializeField]
+    private Image winimg;
+    [SerializeField]
     private GameObject trigger;
+    [SerializeField]
+    private GameObject wintrigger;
     [SerializeField]
     private GameObject Camera;
     [SerializeField]
     private GameObject hpbar;
+    [SerializeField]
+    private GameObject Title;
 
+    private bool faded = false;
+    private bool won = false;
     public static int lastCarriage = 0;
     public static int CagesOpened = 0;
     // Start is called before the first frame update
@@ -32,49 +40,73 @@ public class TriggerDeath : MonoBehaviour
         //if (Input.GetKeyDown(KeyCode.E))
         //{
         //    PlayerStats.Health = 0;
+        //    //CagesOpened = 10;
         //}
-        if (PlayerStats.Health <= 0)
+        if (!won)
         {
-            hpbar.SetActive(false);
-            Camera.SetActive(false);
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.None;
+            if (CagesOpened >= 10)
+            {
+                hpbar.SetActive(false);
+                Camera.SetActive(false);
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
+                ///trigger.SetActive(true);
+                wintrigger.SetActive(true);
+                if (faded == false)
+                {
+                    StartCoroutine(FadeWinImage());
+                    faded = true;
+                }
 
-            player.GetComponent<PlayerMovement>().enabled = false;
-            player.GetComponent<CameraLockOn>().enabled = false;
-            player.GetComponentInChildren<BasicMeleeWeapon>().enabled = false;
-            player.GetComponentInChildren<BasicRangedWeapon>().enabled = false;
+            }
+            else if (PlayerStats.Health <= 0)
+            {
+                hpbar.SetActive(false);
+                Camera.SetActive(false);
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
 
-            trigger.SetActive(true);
-            Debug.Log("dead");
-            StartCoroutine(FadeImage(false));
-            
+                player.GetComponent<PlayerMovement>().enabled = false;
+                player.GetComponent<CameraLockOn>().enabled = false;
+                player.GetComponentInChildren<BasicMeleeWeapon>().enabled = false;
+                player.GetComponentInChildren<BasicRangedWeapon>().enabled = false;
+
+                trigger.SetActive(true);
+                if (faded == false)
+                {
+                    StartCoroutine(FadeImage());
+                    faded = true;
+                }
+            }
         }
+        
     }
 
-    IEnumerator FadeImage(bool fadeAway)
+    IEnumerator FadeImage()
     {
-        if (fadeAway)
+        
+        for(float i=0; i <= 1; i += (Time.deltaTime*0.25f))
         {
-            //Debug.Log("faded");
-            for (float i = 1; i >= 0; i -= (Time.deltaTime * 0.25f))
-            {
-                img.color = new Color(0,0,0, i);
-               
-                yield return null;
-            }
+            img.color = new Color(0,0,0, i);
+            yield return null;
         }
-        else
-        {
-            for(float i=0; i <= 1; i += (Time.deltaTime*0.25f))
-            {
-                img.color = new Color(0,0,0, i);
-                yield return null;
-            }
-        }
+        
     }
+    IEnumerator FadeWinImage()
+    {
+
+        for (float i = 0; i <= 1; i += (Time.deltaTime * 0.5f))
+        {
+            winimg.color = new Color(0.717f, 0.670f, 0.077f, i);
+            yield return null;
+        }
+
+    }
+
     public void Respawn()
     {
+        faded = false;
+
         trigger.SetActive(false);
         string target = "Carriage (" + (lastCarriage+1) + ")";
         GameObject travelDestination = GameObject.Find(target);
@@ -95,5 +127,17 @@ public class TriggerDeath : MonoBehaviour
     public void Quitgame()
     {
         SceneManager.LoadScene("MainMenu");
+    }
+    public void FreeRoam()
+    {
+        Title.SetActive(true);
+        won = true;
+        faded = false;
+        hpbar.SetActive(true);
+        Camera.SetActive(true);
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        ///trigger.SetActive(true);
+        wintrigger.SetActive(false);
     }
 }

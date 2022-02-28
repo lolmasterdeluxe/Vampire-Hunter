@@ -52,7 +52,6 @@ public class InventoryUI : MonoBehaviour
 
     public bool IsDisplaying()
     {
-        Debug.Log((hud.activeSelf || page.activeSelf));
         return (hud.activeSelf || page.activeSelf);
     }
 }

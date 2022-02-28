@@ -33,22 +33,31 @@ public class InventoryController : MonoBehaviour
                 Cursor.visible = false;
             }
         }
-
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        else if (Inventory_UI.GetComponent<InventoryUI>().IsDisplaying())
         {
-            PlayerInventory.instance.UseHotbar(0);
+            gameObject.GetComponent<PlayerMovement>().enabled = false;
+            gameObject.GetComponent<CameraLockOn>().enabled = false;
+            gameObject.GetComponentInChildren<BasicMeleeWeapon>().enabled = false;
+            gameObject.GetComponentInChildren<BasicRangedWeapon>().enabled = false;
         }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
+        else
         {
-            PlayerInventory.instance.UseHotbar(1);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            PlayerInventory.instance.UseHotbar(2);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            PlayerInventory.instance.UseHotbar(3);
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                PlayerInventory.instance.UseHotbar(0);
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                PlayerInventory.instance.UseHotbar(1);
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha3))
+            {
+                PlayerInventory.instance.UseHotbar(2);
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha4))
+            {
+                PlayerInventory.instance.UseHotbar(3);
+            }
         }
     }
 }

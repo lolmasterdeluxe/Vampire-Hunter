@@ -61,6 +61,7 @@ public class BasicRangedWeapon : MonoBehaviour
         {
             if (!ShootDelayTrue || LastShootTime + ShootDelay < Time.time)
             {
+                FindObjectOfType<AudioManager>().Play("shotgunshoot");
                 ShootingSystem.Play();
                 Vector3 direction = GetDirection();
 
