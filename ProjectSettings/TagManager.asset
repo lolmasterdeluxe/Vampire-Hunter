@@ -9,6 +9,7 @@ TagManager:
   - Player Animation
   - Player Weapon
   - Enemy Weapon
+  - NPC
   layers:
   - Default
   - TransparentFX
