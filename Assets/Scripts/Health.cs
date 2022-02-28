@@ -38,16 +38,11 @@ public class Health : MonoBehaviour
             if (gameObject.CompareTag("Player Animation"))
             {
                 if (PlayerStats.Health > 0)
-                    hp = PlayerStats.Health;
+                    hp = PlayerStats.Health;    
                 else
                 {
                     GameObject BloodEssence = Instantiate(Pickup, transform.parent.position, Quaternion.Euler(0,0,0));
                     BloodEssence.GetComponent<PickUp>().bloodEssence = (int)PlayerStats.BloodEssence;
-                    GetComponent<Animator>().SetBool("Die", true);
-                    GetComponentInParent<PlayerMovement>().enabled = false;
-                    GetComponentInParent<CameraLockOn>().enabled = false;
-                    GetComponentInParent<InventoryUI>().enabled = false;
-                    GetComponent<Collider>().enabled = false;
                 }
             }
             else
