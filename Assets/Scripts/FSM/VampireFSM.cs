@@ -34,7 +34,10 @@ public class VampireFSM : CFSM
     private void Update()
     {
         if (vampireAnimation.GetCurrentAnimatorStateInfo(0).IsName("Flinch"))
+        {
+            ComboReset();
             return;
+        }
         DistanceBtwPlayer = Vector3.Distance(Body.transform.position, Player.GetComponent<Transform>().position);
         switch (CurrentFSM)
         {
