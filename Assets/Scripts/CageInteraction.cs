@@ -2,6 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/**
+ * Author: Li Zeyu
+ * Created: 25/2/2022
+ */
+
 public class CageInteraction : MonoBehaviour
 {
     private bool triggerActive = false;
