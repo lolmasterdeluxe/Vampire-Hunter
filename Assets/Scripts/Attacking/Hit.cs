@@ -20,6 +20,7 @@ public class Hit : MonoBehaviour
             {
                 if (Other.CompareTag("Enemy Animation"))
                 {
+                    FindObjectOfType<AudioManager>().Play("hit");
                     Other.GetComponent<Animator>().Play("Flinch");
                     info.DealDamage(Other.gameObject, info.damage); 
                     impact.Hit = false;
@@ -29,6 +30,7 @@ public class Hit : MonoBehaviour
             {
                 if (Other.CompareTag("Player Animation"))
                 {
+                    FindObjectOfType<AudioManager>().Play("playerhurt");
                     Other.GetComponent<Animator>().Play("Flinch");
                     info.DealDamage(Other.gameObject, info.damage);
                     impact.Hit = false;
