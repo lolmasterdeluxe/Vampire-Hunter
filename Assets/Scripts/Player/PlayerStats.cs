@@ -29,7 +29,7 @@ public static class PlayerStats
     public static float MaxStamina;
     public static float Weapon1Dmg = 12;
     public static float Weapon2Dmg = 12;
-    public static float BloodEssence = 50000;
+    public static float BloodEssence = 0;
 
     public static float Health;
     public static float Stamina;

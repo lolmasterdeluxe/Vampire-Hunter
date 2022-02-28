@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ea9831a265e36164bade6da28e02bd0b, type: 3}
-  m_Name: New Chestplate
+  m_Name: Iron Chestplate
   m_EditorClassIdentifier: 
   itemName: Iron Chestplate
   itemDescription: Strong and Sturdy
