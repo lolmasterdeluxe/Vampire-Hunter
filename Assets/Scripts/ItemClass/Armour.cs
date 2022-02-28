@@ -12,4 +12,9 @@ public abstract class Armour : Item
 
     // return true if requirements met
     public abstract bool CheckRequiredStats();
+
+    public override string PrintShortStats()
+    {
+        return "Def: " + armourPoints;
+    }
 }

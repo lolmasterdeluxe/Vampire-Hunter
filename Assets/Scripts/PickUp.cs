@@ -4,30 +4,27 @@ using UnityEngine;
 
 public class PickUp : MonoBehaviour
 {
-    public Item holding;    
-
-    //private void Awake()
-    //{
-    //    if (holding != null && holding.model3D != null)
-    //    {
-    //        Debug.Log("has model");
-    //        Instantiate(holding.model3D, gameObject.transform);
-    //    }
-    //    else
-    //    {
-    //        Debug.Log("no model");
-    //        placeholder.SetActive(true);
-    //    }
-    //}
+    public Item holding;
+    public int bloodEssence;
+    [SerializeField]
+    Sprite bloodEssenceSprite;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.transform.parent && other.transform.parent.CompareTag("Player"))
         {
-            if (PlayerInventory.instance.AddItem(holding))
+            if (holding)
             {
-                NotificationSystem.instance.Notify(holding.itemName, holding.itemImage, "Picked Up");
-                Destroy(gameObject);
+                if (PlayerInventory.instance.AddItem(holding))
+                {
+                    NotificationSystem.instance.Notify(holding.itemName, holding.itemImage, "Picked Up");
+                    Destroy(gameObject);
+                }
+            }
+            else
+            {
+                PlayerStats.BloodEssence += bloodEssence;
+                NotificationSystem.instance.Notify("Blood Essence", bloodEssenceSprite, "Picked Up");
             }
         }
     }

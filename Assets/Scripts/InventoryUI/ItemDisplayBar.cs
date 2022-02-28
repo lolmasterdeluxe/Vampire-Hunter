@@ -19,7 +19,7 @@ public class ItemDisplayBar : MonoBehaviour
         image.sprite = PlayerInventory.instance.slots[itemIndex].itemImage;
         image.preserveAspect = true;
         itemName.text = PlayerInventory.instance.slots[itemIndex].itemName;
-        stats.text = "ill do this later";
+        stats.text = PlayerInventory.instance.slots[itemIndex].PrintShortStats();
     }
 
     public void SelectSelf()
