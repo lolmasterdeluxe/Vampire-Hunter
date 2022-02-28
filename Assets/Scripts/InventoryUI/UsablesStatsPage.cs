@@ -53,6 +53,7 @@ public class UsablesStatsPage : InventoryPage
     }
     public void SelectHotbarSlot(int slot)
     {
+        FindObjectOfType<AudioManager>().Play("click");
         selectedHotbarSlot = slot;
         selectFrame.SetActive(true);
         selectFrame.transform.position = hotbar[slot].transform.position;

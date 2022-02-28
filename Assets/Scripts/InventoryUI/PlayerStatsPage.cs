@@ -78,6 +78,7 @@ public class PlayerStatsPage : InventoryPage
     public void SelectSlot(int slotIndex)
     {
         SelectedSlot = slotIndex;
+        FindObjectOfType<AudioManager>().Play("click");
         if (slotIndex < 4)
         {
             if (PlayerInventory.instance.hotbar[slotIndex] == null) return;

@@ -93,6 +93,7 @@ public class PlayerMovement : MonoBehaviour
         // Check if player is rolling, disable some colliders
         if (playerAnimation.GetCurrentAnimatorStateInfo(0).IsName("Roll") || playerAnimation.GetCurrentAnimatorStateInfo(0).IsName("RollSideRight") || playerAnimation.GetCurrentAnimatorStateInfo(0).IsName("RollSideLeft"))
         {
+            FindObjectOfType<AudioManager>().Play("roll");
             Head.GetComponent<Collider>().enabled = false;
             MeleeScript.enabled = false;
             RangedScript.enabled = false;
@@ -124,6 +125,7 @@ public class PlayerMovement : MonoBehaviour
             }
             else if (IsDodging[1])
             {
+                
                 PlayerStats.Stamina -= 30;
                 m_Rigidbody.velocity *= 0;
                 playerAnimation.Play("Roll");
@@ -152,6 +154,7 @@ public class PlayerMovement : MonoBehaviour
                 {
                     PlayerStats.Stamina -= 25;
                     m_Rigidbody.velocity *= 0;
+                    
                     playerAnimation.Play("RollSideRight");
                     moveDir = Quaternion.Euler(0f, transform.eulerAngles.y, 0f) * (Vector3.right);
                     m_Rigidbody.AddForce(moveDir.normalized * 250);
@@ -163,6 +166,7 @@ public class PlayerMovement : MonoBehaviour
                 {
                     PlayerStats.Stamina -= 25;
                     m_Rigidbody.velocity *= 0;
+                    
                     playerAnimation.Play("RollSideLeft");
                     moveDir = Quaternion.Euler(0f, transform.eulerAngles.y, 0f) * (Vector3.left);
                     m_Rigidbody.AddForce(moveDir.normalized * 250);
