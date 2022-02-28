@@ -27,4 +27,8 @@ public abstract class Weapon : Item
         else
             target.GetComponent<Health>().hp -= damage;
     }
+    public override string PrintShortStats()
+    {
+        return "Dmg: " + damage;
+    }
 }

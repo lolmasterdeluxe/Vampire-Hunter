@@ -21,4 +21,8 @@ public class Leggings : Armour
             + "\nCurrent Dexterity: " + PlayerStats.Dexterity
             + "\nDefence: +" + armourPoints;
     }
+    public override string PrintShortStats()
+    {
+        return base.PrintShortStats() + " / Req Dex: " + requiredDexterity;
+    }
 }
