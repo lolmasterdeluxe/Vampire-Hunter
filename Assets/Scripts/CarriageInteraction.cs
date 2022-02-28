@@ -27,18 +27,18 @@ public class CarriageInteraction : MonoBehaviour
     private int number;
     [SerializeField]
     private GameObject hpbar;
-    
-    
+
+
 
     private bool stopped = false;
     private GameObject textGameobject;
     private Text statsText;
-    bool[] carriageUnlocked = { CarriageStats.carriage1, CarriageStats.carriage2};
+    bool[] carriageUnlocked = { CarriageStats.carriage1, CarriageStats.carriage2 };
     float[] tempstatsArr = new float[7];
     float[] statsArr = { PlayerStats.Vitality, PlayerStats.Endurance, PlayerStats.Strength, PlayerStats.Dexterity
     ,PlayerStats.BloodEssence,PlayerStats.MaxHealth,PlayerStats.MaxStamina};
-    string[] textArr = { "Vit", "End", "Str", "Dex" ,"BE","MH","MS"};
-    
+    string[] textArr = { "Vit", "End", "Str", "Dex", "BE", "MH", "MS" };
+
     public void OnTriggerEnter(Collider other)
     {
         if ((other.transform.parent && other.transform.parent.CompareTag("Player")))
@@ -69,7 +69,7 @@ public class CarriageInteraction : MonoBehaviour
         if (triggerActive && Input.GetKeyDown(KeyCode.E))
         {
             ShowPanel();
-            Debug.Log("open");       
+            Debug.Log("open");
             stopped = true;
         }
         else if (triggerActive && Input.GetKeyDown(KeyCode.Escape))
@@ -96,18 +96,19 @@ public class CarriageInteraction : MonoBehaviour
     //}
     public void ShowPanel()
     {
+        FindObjectOfType<AudioManager>().Play("click");
         TriggerDeath.lastCarriage = number;
         hpbar.SetActive(false);
         panel.SetActive(true);
         Camera.SetActive(false);
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
-        if (carriageUnlocked[number - 1] == false)
+        if (carriageUnlocked[number] == false)
         {
-            carriageUnlocked[number - 1] = true;
+            carriageUnlocked[number] = true;
         }
         else {
-            
+
             textGameobject = GameObject.Find("CarriageText");
             statsText = textGameobject.GetComponent<Text>();
             statsText.text = "Hey hunter, what do you want.";
@@ -117,6 +118,7 @@ public class CarriageInteraction : MonoBehaviour
     }
     public void QuitCarriage()
     {
+        FindObjectOfType<AudioManager>().Play("click");
         hpbar.SetActive(true);
         stopped = false;
         panel.SetActive(false);
@@ -134,11 +136,12 @@ public class CarriageInteraction : MonoBehaviour
 
     public void Teleport(int index)
     {
+        FindObjectOfType<AudioManager>().Play("click");
         string target = "Carriage (" + index + ")";
         GameObject travelDestination = GameObject.Find(target);
 
 
-        if (carriageUnlocked[index-1] == true)
+        if (carriageUnlocked[index - 1] == true)
         {
             Vector3 targetPosition = travelDestination.transform.position + new Vector3(0, 0, 5);
             player.transform.position = targetPosition;
@@ -150,12 +153,13 @@ public class CarriageInteraction : MonoBehaviour
             statsText = textGameobject.GetComponent<Text>();
             statsText.text = "Location locked";
         }
-        
+
     }
 
     public void TAdding(int tInt)
     {
-        if(tInt == 10)
+        FindObjectOfType<AudioManager>().Play("click");
+        if (tInt == 10)
         {
             for (int i = 0; i < 4; i++)
             {
@@ -168,7 +172,7 @@ public class CarriageInteraction : MonoBehaviour
             statsText.text = "Thanks.";
 
         }
-        else if ((tempstatsArr[4] - MoneyCost(tempstatsArr[tInt]+1 + statsArr[tInt])) < 0)
+        else if ((tempstatsArr[4] - MoneyCost(tempstatsArr[tInt] + 1 + statsArr[tInt])) < 0)
         {
             textGameobject = GameObject.Find("CarriageText");
             statsText = textGameobject.GetComponent<Text>();
@@ -195,11 +199,12 @@ public class CarriageInteraction : MonoBehaviour
             statsText.text = (int)MoneyCost(tempstatsArr[tInt] + 1 + statsArr[tInt]) + "";
             PrintHpSta();
         }
-       
-      
+
+
     }
-    public  void ClearAll()
+    public void ClearAll()
     {
+        FindObjectOfType<AudioManager>().Play("click");
         textGameobject = GameObject.Find("CarriageText");
         statsText = textGameobject.GetComponent<Text>();
         statsText.text = "Take your time.";
@@ -222,6 +227,7 @@ public class CarriageInteraction : MonoBehaviour
     }
     public void ConfirmPurchase()
     {
+        FindObjectOfType<AudioManager>().Play("click");
         for (int i = 0; i < 4; i++)
         {
             statsArr[i] += tempstatsArr[i];
@@ -270,8 +276,14 @@ public class CarriageInteraction : MonoBehaviour
 
         textGameobject = GameObject.Find("MST");
         statsText = textGameobject.GetComponent<Text>();
-        statsText.text = "Max Stamina: "+(tempstatsArr[1] + statsArr[1]) * 10 ;
-        
+        statsText.text = "Max Stamina: " + (tempstatsArr[1] + statsArr[1]) * 10;
+
     }
-    
+
+    public void Makesound()
+    {
+        FindObjectOfType<AudioManager>().Play("click");
+    }
 }
+    
+
