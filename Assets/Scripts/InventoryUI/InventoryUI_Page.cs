@@ -38,6 +38,7 @@ public class InventoryUI_Page : MonoBehaviour
 
     public void SelectItem(int itemIndex)
     {
+        FindObjectOfType<AudioManager>().Play("click");
         if (PlayerInventory.instance.slots[itemIndex] is Usables)
             ChangePage(usablesStatsPage, itemIndex);
         else if (PlayerInventory.instance.slots[itemIndex] is Armour)
@@ -53,6 +54,7 @@ public class InventoryUI_Page : MonoBehaviour
     }
     public void UpdateScrollView(int tab)
     {
+        FindObjectOfType<AudioManager>().Play("click");
         UpdateScrollView((TAB_TYPES)tab);
     }
     public void UpdateScrollView(TAB_TYPES tab)
