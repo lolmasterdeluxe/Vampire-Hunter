@@ -37,6 +37,7 @@ public class VampireFSM : CFSM
         {
             ComboReset();
             PlayAudio();
+            FSMCounter = AttackCooldown;
             return;
         }
         else
@@ -82,7 +83,6 @@ public class VampireFSM : CFSM
                     {
                         if (DistanceBtwPlayer <= AttackRange)
                         {
-                            FindObjectOfType<AudioManager>().Play("vampireattack");
                             //Debug.Log("Attack Type: " + attack_type);
                             Attack_();
                         }
@@ -119,7 +119,6 @@ public class VampireFSM : CFSM
                 break;
             default:
                 break;
-
         }
 
     }
@@ -131,6 +130,7 @@ public class VampireFSM : CFSM
             {
                 agent.destination = Player.transform.position;
                 agent.velocity += (Quaternion.Euler(0f, transform.eulerAngles.y, 0f) * Vector3.forward).normalized * 5;
+                FindObjectOfType<AudioManager>().Play("vampireattack");
                 lunge = false;
             }
             else
@@ -139,6 +139,7 @@ public class VampireFSM : CFSM
                 lungeDir = Quaternion.Euler(0f, transform.parent.eulerAngles.y, 0f) * (Vector3.forward);
                 transform.parent.GetComponent<Rigidbody>().AddForce((lungeDir.normalized * 1000));
                 attack_type = Random.Range(1, 3);
+                FindObjectOfType<AudioManager>().Play("vampireattack");
                 LockOnPlayer = false;
                 lunge = false;
             }

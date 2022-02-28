@@ -87,7 +87,7 @@ public class CameraLockOn : MonoBehaviour
             foreach (GameObject Enemy in Enemies)
             {
                 float curDistance = Vector3.Distance(Enemy.transform.position, transform.position);
-                if (curDistance < distance && RenderExtension.IsVisibleFrom(Enemy.GetComponentInChildren<Renderer>(), MainCamera))
+                if (curDistance < distance && RenderExtension.IsVisibleFrom(Enemy.GetComponentInChildren<Renderer>(), MainCamera) && Enemy.GetComponentInChildren<Health>().hp > 0)
                 {
                     CinemachineTarget.target = Enemy.transform;
                     CinemachineTarget.weight = 1;
@@ -113,7 +113,7 @@ public class CameraLockOn : MonoBehaviour
                 }
             }
         }
-        if ((targetDistance > DetectionRange + 5) || (LockOn && (Input.GetKeyUp("f"))))
+        if ((targetDistance > DetectionRange + 5) || (LockOn && (Input.GetKeyUp("f"))) || CinemachineTarget.target.GetComponentInChildren<Health>().hp <= 0)
         {
             for (int i = 0; i < TargetGroup.m_Targets.Length; i++)
             {

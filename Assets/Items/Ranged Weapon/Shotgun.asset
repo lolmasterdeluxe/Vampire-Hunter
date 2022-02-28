@@ -16,5 +16,6 @@ MonoBehaviour:
   itemDescription: 'Great short range option for an uncultured gentleman '
   itemImage: {fileID: 21300000, guid: 9f0846907a2378647a8dace1395b62bd, type: 3}
   model3D: {fileID: 6702860733087160932, guid: ff00123985955cf4e85b5fc32b287077, type: 3}
-  damage: 10
+  damage: 5
+  requiredDexterity: 0
   range: 2
