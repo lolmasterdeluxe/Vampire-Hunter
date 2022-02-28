@@ -67,6 +67,7 @@ public class InventoryUI_HUD : MonoBehaviour
     }
     public void Select(int i)
     {
+        FindObjectOfType<AudioManager>().Play("click");
         //option to equip
         switch (i)
         {

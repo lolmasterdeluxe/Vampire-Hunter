@@ -40,6 +40,7 @@ public class PlayerInventory : MonoBehaviour
         {
             hotbar[index].Use();
             NotificationSystem.instance.Notify(hotbar[index].itemName, hotbar[index].itemImage, "Used Item");
+            FindObjectOfType<AudioManager>().Play("drinkpotion");
             hotbar[index] = null;
         }
     }
@@ -95,6 +96,7 @@ public class PlayerInventory : MonoBehaviour
             Item temp = meleeWeapon;
             meleeWeapon = slots[slotIndex] as MeleeWeapon;
             slots[slotIndex] = temp;
+            FindObjectOfType<AudioManager>().Play("axeequip");
             return true;
         }
         else
@@ -102,6 +104,7 @@ public class PlayerInventory : MonoBehaviour
             Item temp = rangedWeapon;
             rangedWeapon = slots[slotIndex] as RangedWeapon;
             slots[slotIndex] = temp;
+            FindObjectOfType<AudioManager>().Play("shotgunequip");
             return true;
         }
     }
@@ -112,6 +115,7 @@ public class PlayerInventory : MonoBehaviour
             Item temp = hotbar[hotbarIndex];
             hotbar[hotbarIndex] = slots[slotIndex] as Potion;
             slots[slotIndex] = temp;
+            FindObjectOfType<AudioManager>().Play("potionequip");
             return true;
         }
         return false;
@@ -127,6 +131,7 @@ public class PlayerInventory : MonoBehaviour
             helmet = (Helmet)slots[slotIndex];
             slots[slotIndex] = temp;
             UpdatePlayerDefenseStat();
+            FindObjectOfType<AudioManager>().Play("equipleather");
             return true;
         }
         else if (slots[slotIndex] is Chestplate)
@@ -135,6 +140,7 @@ public class PlayerInventory : MonoBehaviour
             chestplate = (Chestplate)slots[slotIndex];
             slots[slotIndex] = temp;
             UpdatePlayerDefenseStat();
+            FindObjectOfType<AudioManager>().Play("equipiron");
             return true;
         }
         else if (slots[slotIndex] is Leggings)
@@ -143,6 +149,7 @@ public class PlayerInventory : MonoBehaviour
             leggings = (Leggings)slots[slotIndex];
             slots[slotIndex] = temp;
             UpdatePlayerDefenseStat();
+            FindObjectOfType<AudioManager>().Play("equipleather");
             return true;
         }
         else if (slots[slotIndex] is Boots)
@@ -151,6 +158,7 @@ public class PlayerInventory : MonoBehaviour
             boots = (Boots)slots[slotIndex];
             slots[slotIndex] = temp;
             UpdatePlayerDefenseStat();
+            FindObjectOfType<AudioManager>().Play("equipleather");
             return true;
         }
 
@@ -162,6 +170,7 @@ public class PlayerInventory : MonoBehaviour
         if (AddItem(hotbar[hotbarIndex]))
         {
             hotbar[hotbarIndex] = null;
+            FindObjectOfType<AudioManager>().Play("itempickup");
             return true;
         }
         return false;
@@ -203,6 +212,7 @@ public class PlayerInventory : MonoBehaviour
                 return false;
         }
         UpdatePlayerDefenseStat();
+        FindObjectOfType<AudioManager>().Play("equipleather");
         return true;
     }
 
