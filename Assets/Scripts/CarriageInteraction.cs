@@ -27,6 +27,8 @@ public class CarriageInteraction : MonoBehaviour
     private int number;
     [SerializeField]
     private GameObject hpbar;
+    
+    
 
     private bool stopped = false;
     private GameObject textGameobject;
@@ -111,7 +113,7 @@ public class CarriageInteraction : MonoBehaviour
             statsText.text = "Hey hunter, what do you want.";
         }
         PlayerStats.Health = PlayerStats.MaxHealth;
-
+        NotificationSystem.instance.ShowHealedPopup();
     }
     public void QuitCarriage()
     {

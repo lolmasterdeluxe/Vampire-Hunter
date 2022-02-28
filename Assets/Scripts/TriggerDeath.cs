@@ -19,7 +19,7 @@ public class TriggerDeath : MonoBehaviour
     private GameObject hpbar;
 
     public static int lastCarriage = 0;
-
+    public static int CagesOpened = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,10 +29,10 @@ public class TriggerDeath : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            PlayerStats.Health = 0;
-        }
+        //if (Input.GetKeyDown(KeyCode.E))
+        //{
+        //    PlayerStats.Health = 0;
+        //}
         if (PlayerStats.Health <= 0)
         {
             hpbar.SetActive(false);

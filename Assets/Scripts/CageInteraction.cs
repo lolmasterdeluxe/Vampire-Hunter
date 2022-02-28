@@ -32,6 +32,7 @@ public class CageInteraction : MonoBehaviour
                     NotificationSystem.instance.Notify(requiredKey.itemName, requiredKey.itemImage, "Item Used");
                     target.GetComponent<Animator>().SetTrigger("OpenDoor");
                     doorOpen = true;
+                    TriggerDeath.CagesOpened += 1;
                 }
                 else
                 {
