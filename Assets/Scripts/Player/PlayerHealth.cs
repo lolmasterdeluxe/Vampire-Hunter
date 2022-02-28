@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
+    private bool PlaySound = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,15 +17,27 @@ public class PlayerHealth : MonoBehaviour
     {
         PlayerStats.MaxHealth = PlayerStats.Vitality * 10;
 
-        if (Input.GetKeyDown(KeyCode.K))
-            PlayerStats.Health -= 30;
-
-        if (Input.GetKeyDown(KeyCode.P))
-            PlayerStats.Vitality++;
 
         if (PlayerStats.Health > PlayerStats.MaxHealth)
             PlayerStats.Health = PlayerStats.MaxHealth;
-        else if (PlayerStats.Health < 0)
+        else if (PlayerStats.Health <= 0)
+        {
+            playdeathsound();
             PlayerStats.Health = 0;
+        }
+        else
+        {
+            PlaySound = false; 
+        
+        }
+            
     }
+    void playdeathsound()
+    {
+        if (!PlaySound)
+        {
+            PlaySound = true;
+            FindObjectOfType<AudioManager>().Play("playerdeath");
+        }
+    }    
 }
