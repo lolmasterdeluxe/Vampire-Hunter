@@ -94,6 +94,7 @@ public class CarriageInteraction : MonoBehaviour
     //}
     public void ShowPanel()
     {
+        TriggerDeath.lastCarriage = number;
         hpbar.SetActive(false);
         panel.SetActive(true);
         Camera.SetActive(false);
@@ -122,18 +123,22 @@ public class CarriageInteraction : MonoBehaviour
         Camera.SetActive(true);
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+
+        player.GetComponent<PlayerMovement>().enabled = true;
+        player.GetComponent<CameraLockOn>().enabled = true;
+        player.GetComponentInChildren<BasicMeleeWeapon>().enabled = true;
+        player.GetComponentInChildren<BasicRangedWeapon>().enabled = true;
     }
 
     public void Teleport(int index)
     {
         string target = "Carriage (" + index + ")";
-        //Debug.Log("target" + target);
         GameObject travelDestination = GameObject.Find(target);
 
 
         if (carriageUnlocked[index-1] == true)
         {
-            Vector3 targetPosition = travelDestination.transform.position + new Vector3(5, 0, 0);
+            Vector3 targetPosition = travelDestination.transform.position + new Vector3(0, 0, 5);
             player.transform.position = targetPosition;
             QuitCarriage();
         }
