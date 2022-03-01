@@ -70,7 +70,6 @@ public class TriggerDeath : MonoBehaviour
                 Camera.SetActive(false);
                 Cursor.visible = true;
                 Cursor.lockState = CursorLockMode.None;
-
                 
                 player.GetComponentInChildren<Animator>().SetBool("Die", true);
                 player.GetComponent<InventoryController>().enabled = false;

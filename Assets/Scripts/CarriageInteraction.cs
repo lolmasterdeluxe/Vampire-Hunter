@@ -28,8 +28,6 @@ public class CarriageInteraction : MonoBehaviour
     [SerializeField]
     private GameObject hpbar;
 
-
-
     private bool stopped = false;
     private GameObject textGameobject;
     private Text statsText;
@@ -266,7 +264,7 @@ public class CarriageInteraction : MonoBehaviour
         tempstatsArr[4] = statsArr[4];
         textGameobject = GameObject.Find("BET");
         statsText = textGameobject.GetComponent<Text>();
-        statsText.text = (int)tempstatsArr[4] + "";
+        statsText.text = (int)PlayerStats.BloodEssence + "";
     }
     private float MoneyCost(float input)
     {

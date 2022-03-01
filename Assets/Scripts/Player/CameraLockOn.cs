@@ -111,7 +111,7 @@ public class CameraLockOn : MonoBehaviour
                 }
             }
         }
-        if (((targetDistance > DetectionRange + 5) || (LockOn && (Input.GetKeyUp("f")))) || (CinemachineTarget.target != null && CinemachineTarget.target.GetComponentInChildren<Health>().hp <= 0) || GetComponentInChildren<Animator>().GetBool("Die"))
+        if (((targetDistance > DetectionRange + 5) || (LockOn && (Input.GetKeyUp("f")))) || (CinemachineTarget.target != null && CinemachineTarget.target.GetComponentInChildren<Health>().hp <= 0) || GetComponentInChildren<Animator>().GetBool("Die") || Input.GetKeyUp("i"))
         {
             for (int i = 0; i < TargetGroup.m_Targets.Length; i++)
             {
@@ -124,7 +124,7 @@ public class CameraLockOn : MonoBehaviour
                     FollowCamera.SetActive(true);
                     LockOnCamera.SetActive(false);
                     TargetIcon.gameObject.SetActive(false);
-                    return;
+                    Enemies = GameObject.FindGameObjectsWithTag("Enemy");
                 }
             }
         }

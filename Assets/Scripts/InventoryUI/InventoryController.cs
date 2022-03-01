@@ -29,6 +29,9 @@ public class InventoryController : MonoBehaviour
             else
             {
                 Inventory_UI.GetComponent<InventoryUI>().Hide();
+                gameObject.GetComponent<PlayerMovement>().enabled = true;
+                gameObject.GetComponentInChildren<BasicMeleeWeapon>().enabled = true;
+                gameObject.GetComponentInChildren<BasicRangedWeapon>().enabled = true;
                 Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;
             }
@@ -36,7 +39,6 @@ public class InventoryController : MonoBehaviour
         else if (Inventory_UI.GetComponent<InventoryUI>().IsDisplaying())
         {
             gameObject.GetComponent<PlayerMovement>().enabled = false;
-            gameObject.GetComponent<CameraLockOn>().enabled = false;
             gameObject.GetComponentInChildren<BasicMeleeWeapon>().enabled = false;
             gameObject.GetComponentInChildren<BasicRangedWeapon>().enabled = false;
         }

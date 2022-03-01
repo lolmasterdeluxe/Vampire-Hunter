@@ -26,7 +26,8 @@ public class InventoryUI : MonoBehaviour
     private void Update()
     {
         // this hurts
-        bloodEssenceText.text = PlayerStats.BloodEssence.ToString();
+        // (Junliang u suck at displaying blood essence)
+        bloodEssenceText.SetText(PlayerStats.BloodEssence.ToString());
     }
 
     public void Display()

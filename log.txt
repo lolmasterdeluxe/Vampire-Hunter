@@ -1,0 +1,258 @@
+Author : lolmaster deluxe Commit : Game loop completed albeit with minor bugs
+Author : lolmaster deluxe Commit : Death finally works but respawn has some problem
+Author : lolmaster deluxe Commit : Merge branch 'master' of https://github.com/lolmasterdeluxe/Vampire-Hunter
+Author : lolmaster deluxe Commit : Fixed camera lockon (finally) and fixed melee sound effect so it matches up with the lunge
+Author : number10203 Commit : update
+Author : lolmaster deluxe Commit : Added enemies to some floors
+Author : lolmaster deluxe Commit : Merge branch 'master' of https://github.com/lolmasterdeluxe/Vampire-Hunter
+Author : lolmaster deluxe Commit : Added waypoints for most floors
+Author : EvanQP Commit : Merge branch 'master' of https://github.com/lolmasterdeluxe/Vampire-Hunter
+Author : EvanQP Commit : all items are now placed
+Author : number10203 Commit : carriage
+Author : number10203 Commit : Merge branch 'master' of https://github.com/lolmasterdeluxe/Vampire-Hunter
+Author : number10203 Commit : smol change
+Author : EvanQP Commit : Merge branch 'master' of https://github.com/lolmasterdeluxe/Vampire-Hunter
+Author : EvanQP Commit : new carriages and item pick ups in scene
+Author : JLT3k Commit : Merge branch 'master' of https://github.com/lolmasterdeluxe/Vampire-Hunter
+Author : JLT3k Commit : added a very fast way to show currency
+Author : lolmaster deluxe Commit : Updated health script to not ammend player's death changes
+Author : lolmaster deluxe Commit : Merge branch 'master' of https://github.com/lolmasterdeluxe/Vampire-Hunter
+Author : lolmaster deluxe Commit : Made slave a prefab and ammended the lock on abit (currently broken)
+Author : number10203 Commit : EndscreenFix
+Author : lolmaster deluxe Commit : Merge branch 'master' of https://github.com/lolmasterdeluxe/Vampire-Hunter
+Author : lolmaster deluxe Commit : Updated pickup prefab and its spawn. Updated health class to cater for either enemy or player
+Author : EvanQP Commit : Merge branch 'master' of https://github.com/lolmasterdeluxe/Vampire-Hunter
+Author : EvanQP Commit : player death sound plays once
+Author : JLT3k Commit : Merge branch 'master' of https://github.com/lolmasterdeluxe/Vampire-Hunter
+Author : JLT3k Commit : added more sounds
+Author : EvanQP Commit : Merge branch 'master' of https://github.com/lolmasterdeluxe/Vampire-Hunter
+Author : EvanQP Commit : added player death and roll sound
+Author : lolmaster deluxe Commit : Fixed merge error for hit
+Author : lolmaster deluxe Commit : Added enemy death and blood essence drops
+Author : JLT3k Commit : Merge branch 'master' of https://github.com/lolmasterdeluxe/Vampire-Hunter
+Author : JLT3k Commit : added sound
+Author : EvanQP Commit : added player hit  and shotgun sound
+Author : EvanQP Commit : Merge branch 'master' of https://github.com/lolmasterdeluxe/Vampire-Hunter
+Author : EvanQP Commit : added potion equip and melee weapon swing sound
+Author : number10203 Commit : Merge branch 'master' of https://github.com/lolmasterdeluxe/Vampire-Hunter
+Author : number10203 Commit : travel fix
+Author : EvanQP Commit : Merge branch 'master' of https://github.com/lolmasterdeluxe/Vampire-Hunter
+Author : EvanQP Commit : Merge branch 'master' of https://github.com/lolmasterdeluxe/Vampire-Hunter
+Author : JLT3k Commit : Merge branch 'master' of https://github.com/lolmasterdeluxe/Vampire-Hunter
+Author : JLT3k Commit : locks player when in inv
+Author : EvanQP Commit : added more items and sounds to carriage
+Author : number10203 Commit : fix
+Author : number10203 Commit : Merge branch 'master' of https://github.com/lolmasterdeluxe/Vampire-Hunter
+Author : number10203 Commit : Win Screen
+Author : lolmaster deluxe Commit : Fixed merge error through visual studio?
+Author : lolmaster deluxe Commit : Merge error fix
+Author : lolmaster deluxe Commit : Update vampire FSM to reset combo after getting flinched
+Author : lolmaster deluxe Commit : Added shotgun damage, fix camera lock on keys
+Author : number10203 Commit : Merge branch 'master' of https://github.com/lolmasterdeluxe/Vampire-Hunter
+Author : number10203 Commit : smol change
+Author : EvanQP Commit : Merge branch 'master' of https://github.com/lolmasterdeluxe/Vampire-Hunter
+Author : EvanQP Commit : tied sound sfx to the mobs
+Author : number10203 Commit : merge
+Author : number10203 Commit : DeathScreen
+Author : JLT3k Commit : can add blood essence to pickup now
+Author : JLT3k Commit : health potion actually heals
+Author : JLT3k Commit : Merge branch 'master' of https://github.com/lolmasterdeluxe/Vampire-Hunter
+Author : JLT3k Commit : Added Short stats
+Author : lolmaster deluxe Commit : Merge branch 'master' of https://github.com/lolmasterdeluxe/Vampire-Hunter
+Author : lolmaster deluxe Commit : Merge branch 'master' of https://github.com/lolmasterdeluxe/Vampire-Hunter
+Author : JLT3k Commit : Modified popup notification
+Author : lolmaster deluxe Commit : Added slaves and cages
+Author : EvanQP Commit : Merge branch 'master' of https://github.com/lolmasterdeluxe/Vampire-Hunter
+Author : EvanQP Commit : more sound sfx
+Author : number10203 Commit : merge
+Author : number10203 Commit : merge
+Author : number10203 Commit : carriage update
+Author : JLT3k Commit : Main Scene changes
+Author : JLT3k Commit : Merge branch 'master' of https://github.com/lolmasterdeluxe/Vampire-Hunter
+Author : JLT3k Commit : print stats + array size expansion
+Author : EvanQP Commit : Merge branch 'master' of https://github.com/lolmasterdeluxe/Vampire-Hunter
+Author : EvanQP Commit : reset audio object to origin
+Author : EvanQP Commit : added alll the sfx to be used
+Author : lolmaster deluxe Commit : Hello?
+Author : lolmaster deluxe Commit : Updated Number's chest
+Author : lolmaster deluxe Commit : Merge branch 'master' of https://github.com/lolmasterdeluxe/Vampire-Hunter
+Author : lolmaster deluxe Commit : Improved number's chest prefab
+Author : JLT3k Commit : Changes to the main scene
+Author : JLT3k Commit : Merge branch 'master' of https://github.com/lolmasterdeluxe/Vampire-Hunter
+Author : JLT3k Commit : added two slots to inventory
+Author : lolmaster deluxe Commit : Placed number's carriages inside and change lock on to F
+Author : lolmaster deluxe Commit : Merge branch 'master' of https://github.com/lolmasterdeluxe/Vampire-Hunter
+Author : lolmaster deluxe Commit : Ported evan's health and stamina mechanics into another script
+Author : number10203 Commit : Merge branch 'master' of https://github.com/lolmasterdeluxe/Vampire-Hunter
+Author : number10203 Commit : chest update
+Author : lolmaster deluxe Commit : Merge branch 'master' of https://github.com/lolmasterdeluxe/Vampire-Hunter
+Author : lolmaster deluxe Commit : Added fully working vampire and fixed camera lock on
+Author : EvanQP Commit : Merge branch 'master' of https://github.com/lolmasterdeluxe/Vampire-Hunter
+Author : JLT3k Commit : armour points updates to stat class
+Author : EvanQP Commit : Merge branch 'master' of https://github.com/lolmasterdeluxe/Vampire-Hunter
+Author : EvanQP Commit : added audio manager and bgm
+Author : number10203 Commit : Merge branch 'master' of https://github.com/lolmasterdeluxe/Vampire-Hunter
+Author : number10203 Commit : commit
+Author : EvanQP Commit : Merge branch 'master' of https://github.com/lolmasterdeluxe/Vampire-Hunter
+Author : EvanQP Commit : health and stam bar update
+Author : JLT3k Commit : Merge branch 'master' of https://github.com/lolmasterdeluxe/Vampire-Hunter
+Author : JLT3k Commit : Can change weapon info now
+Author : EvanQP Commit : Merge branch 'master' of https://github.com/lolmasterdeluxe/Vampire-Hunter
+Author : EvanQP Commit : edit the hp gui
+Author : number10203 Commit : merge
+Author : number10203 Commit : Merge branch 'master' of https://github.com/lolmasterdeluxe/Vampire-Hunter
+Author : number10203 Commit : Timestopincarriage
+Author : JLT3k Commit : added pickup particle effect
+Author : JLT3k Commit : merge
+Author : JLT3k Commit : Merge branch 'master' of https://github.com/lolmasterdeluxe/Vampire-Hunter
+Author : JLT3k Commit : Modified notification system
+Author : number10203 Commit : fix chest carriage bug
+Author : number10203 Commit : merge
+Author : number10203 Commit : added stamina and health to playerstats to fix bug
+Author : JLT3k Commit : Added key item
+Author : EvanQP Commit : renamed to fix error from player stat
+Author : number10203 Commit : merrrge
+Author : number10203 Commit : merge
+Author : number10203 Commit : carriage change
+Author : JLT3k Commit : Merge branch 'master' of https://github.com/lolmasterdeluxe/Vampire-Hunter
+Author : JLT3k Commit : +Required stats to weapon and armour
+Author : lolmaster deluxe Commit : Merge branch 'master' of https://github.com/lolmasterdeluxe/Vampire-Hunter
+Author : lolmaster deluxe Commit : Working enemy lock on with icon
+Author : EvanQP Commit : health and stamina bar ui
+Author : lolmaster deluxe Commit : Merging
+Author : lolmaster deluxe Commit : Re-organised files and added evan's UI (HP+stamina bar)
+Author : number10203 Commit : error fix
+Author : number10203 Commit : merrrrge
+Author : number10203 Commit : merge
+Author : number10203 Commit : New carriage
+Author : lolmaster deluxe Commit : Someone effed up my cultist prefab so i fixed him
+Author : lolmaster deluxe Commit : merging2
+Author : lolmaster deluxe Commit : merging
+Author : lolmaster deluxe Commit : Added flinching for player and enemies + knockback and collider for damage recognition
+Author : JLT3k Commit : Merge branch 'master' of https://github.com/lolmasterdeluxe/Vampire-Hunter
+Author : JLT3k Commit : added notification system
+Author : number10203 Commit : merge
+Author : number10203 Commit : mergw
+Author : number10203 Commit : Cage added
+Author : JLT3k Commit : Merge branch 'master' of https://github.com/lolmasterdeluxe/Vampire-Hunter
+Author : JLT3k Commit : added scrollview to stats
+Author : number10203 Commit : mergin
+Author : JLT3k Commit : merge
+Author : number10203 Commit : merge
+Author : number10203 Commit : CarriageNew
+Author : lolmaster deluxe Commit : Merge 2
+Author : lolmaster deluxe Commit : Merge
+Author : lolmaster deluxe Commit : Added cultist
+Author : JLT3k Commit : added potions and unequip function
+Author : lolmaster deluxe Commit : removed rigidbody interpolation for smoother lock on
+Author : lolmaster deluxe Commit : Fixed climbing stairs and improved lock on
+Author : lolmaster deluxe Commit : Made player a prefab
+Author : lolmaster deluxe Commit : Merge branch 'master' of https://github.com/lolmasterdeluxe/Vampire-Hunter
+Author : lolmaster deluxe Commit : Added rigidbody go up stairs
+Author : JLT3k Commit : merge
+Author : JLT3k Commit : Merge branch 'master' of https://github.com/lolmasterdeluxe/Vampire-Hunter
+Author : JLT3k Commit : Added Inventory UI and Equipping System
+Author : number10203 Commit : New Carriage model
+Author : number10203 Commit : fix
+Author : number10203 Commit : Merge branch 'master' of https://github.com/lolmasterdeluxe/Vampire-Hunter
+Author : number10203 Commit : smol change to carriage
+Author : lolmaster deluxe Commit : Merge branch 'master' of https://github.com/lolmasterdeluxe/Vampire-Hunter
+Author : lolmaster deluxe Commit : Pushed dragonslayer with scene for people who lost player object
+Author : number10203 Commit : wat
+Author : number10203 Commit : Merge branch 'master' of https://github.com/lolmasterdeluxe/Vampire-Hunter
+Author : lolmaster deluxe Commit : Added scuffed side rolling
+Author : number10203 Commit : Merge branch 'master' of https://github.com/lolmasterdeluxe/Vampire-Hunter
+Author : number10203 Commit : carriage upgrade
+Author : lolmaster deluxe Commit : Deleted the duplicate scene and unpacked player prefab and deleted it
+Author : lolmaster deluxe Commit : Still have assets
+Author : lolmaster deluxe Commit : Adding back assets
+Author : lolmaster deluxe Commit : Added scuffed lock on (not fully implemented)
+Author : number10203 Commit : merge2
+Author : number10203 Commit : merge
+Author : number10203 Commit : Carriage update
+Author : EvanQP Commit : Merge branch 'master' of https://github.com/lolmasterdeluxe/Vampire-Hunter
+Author : EvanQP Commit : Create Game.unity.meta
+Author : EvanQP Commit : Merge branch 'master' of https://github.com/lolmasterdeluxe/Vampire-Hunter
+Author : JLT3k Commit : doing some sketchy shit
+Author : JLT3k Commit : Merge branch 'master' of https://github.com/lolmasterdeluxe/Vampire-Hunter
+Author : JLT3k Commit : Added Pickup and font
+Author : EvanQP Commit : Merge branch 'master' of https://github.com/lolmasterdeluxe/Vampire-Hunter
+Author : EvanQP Commit : Added HP and stam bar to canvas
+Author : lolmaster deluxe Commit : Deleting stuff
+Author : lolmaster deluxe Commit : Merging
+Author : lolmaster deluxe Commit : Added zombie, patrol AI and navmesh
+Author : JLT3k Commit : Merge branch 'master' of https://github.com/lolmasterdeluxe/Vampire-Hunter
+Author : JLT3k Commit : Restructure the entire item class structure again.
+Author : EvanQP Commit : Merge branch 'master' of https://github.com/lolmasterdeluxe/Vampire-Hunter
+Author : EvanQP Commit : New Lighting and bonfire effects
+Author : JLT3k Commit : merge
+Author : JLT3k Commit : Merge branch 'master' of https://github.com/lolmasterdeluxe/Vampire-Hunter
+Author : JLT3k Commit : I made some changes 2-3 days ago and idk what they are
+Author : EvanQP Commit : Merge branch 'master' of https://github.com/lolmasterdeluxe/Vampire-Hunter
+Author : EvanQP Commit : Skybox addition
+Author : lolmaster deluxe Commit : made variables in playerstats public
+Author : lolmaster deluxe Commit : Added playerstat class and changed some player attack functions
+Author : lolmaster deluxe Commit : merging
+Author : lolmaster deluxe Commit : Merging
+Author : lolmaster deluxe Commit : Improved player attack + shoot animations and added rolling
+Author : number10203 Commit : Merge branch 'master' of https://github.com/lolmasterdeluxe/Vampire-Hunter
+Author : number10203 Commit : thirdperson in suntemple
+Author : JLT3k Commit : Updated Inventory UI
+Author : EvanQP Commit : replaced the map
+Author : lolmaster deluxe Commit : Put evan's map into Map folder
+Author : lolmaster deluxe Commit : idk something
+Author : lolmaster deluxe Commit : changing some gitignore
+Author : lolmaster deluxe Commit : Merging everything
+Author : EvanQP Commit : added editor user settings to the git ignore
+Author : EvanQP Commit : Number's stuff
+Author : EvanQP Commit : Merge branch 'master' of https://github.com/lolmasterdeluxe/Vampire-Hunter
+Author : JLT3k Commit : Merge branch 'master' of https://github.com/lolmasterdeluxe/Vampire-Hunter
+Author : JLT3k Commit : small Inventory UI update
+Author : EvanQP Commit : Updated Project setting for improved lighting
+Author : EvanQP Commit : Added Level Base
+Author : number10203 Commit : Chest
+Author : lolmaster deluxe Commit :  Added shotgun mechanics, animations and effects
+Author : lolmaster deluxe Commit : Added axe collider
+Author : lolmaster deluxe Commit : Merge branch 'master' of https://github.com/lolmasterdeluxe/Vampire-Hunter
+Author : lolmaster deluxe Commit : Added gun animation
+Author : number10203 Commit : Fix everything
+Author : JLT3k Commit : Merge branch 'master' of https://github.com/lolmasterdeluxe/Vampire-Hunter
+Author : JLT3k Commit : Changed some stuff in script
+Author : lolmaster deluxe Commit : Merging again
+Author : lolmaster deluxe Commit : merging
+Author : lolmaster deluxe Commit : Updated scene and axe animation
+Author : number10203 Commit : merge
+Author : number10203 Commit : mergeing
+Author : number10203 Commit : Carriage update
+Author : JLT3k Commit : Merge branch 'master' of https://github.com/lolmasterdeluxe/Vampire-Hunter
+Author : JLT3k Commit : Item Class Structure mostly complete
+Author : lolmaster deluxe Commit : merging again
+Author : lolmaster deluxe Commit : merging
+Author : lolmaster deluxe Commit : Added weapons and weapon animations
+Author : JLT3k Commit : Merge branch 'master' of https://github.com/lolmasterdeluxe/Vampire-Hunter
+Author : JLT3k Commit : Recovered most of the things lost
+Author : lolmaster deluxe Commit : updated something
+Author : lolmaster deluxe Commit : Improved player movement and added dodging + rolling
+Author : lolmaster deluxe Commit : Im a red pill heuhue
+Author : lolmaster deluxe Commit : merging? idk
+Author : lolmaster deluxe Commit : Added basic dodging
+Author : number10203 Commit : revert
+Author : number10203 Commit : Revert "test"
+Author : number10203 Commit : test
+Author : lolmaster deluxe Commit : Update gitignore to not ignore obj files
+Author : lolmaster deluxe Commit : added zeyu's cube to environment hierarchy
+Author : lolmaster deluxe Commit : Merge branch 'master' of https://github.com/lolmasterdeluxe/Vampire-Hunter
+Author : lolmaster deluxe Commit : Added basic player movement
+Author : number10203 Commit : first commit
+Author : JLT3k Commit : Merge branch 'master' of https://github.com/lolmasterdeluxe/Vampire-Hunter
+Author : JLT3k Commit : Update SimplePlayerControls.cs
+Author : lolmaster deluxe Commit : deleted terrain
+Author : JLT3k Commit : +Player
+Author : lolmaster deluxe Commit : Update scene
+Author : lolmaster deluxe Commit : Push test (terrain)
+Author : JLT3k Commit : Update Game.unity
+Author : JLT3k Commit : Create TimelineSettings.asset
+Author : JLT3k Commit : Update EditorUserSettings.asset
+Author : lolmaster deluxe Commit : Changed unity version and scene name
+Author : lolmaster deluxe Commit : Added Unity project
+Author : lolmaster deluxe Commit : Initial commit
