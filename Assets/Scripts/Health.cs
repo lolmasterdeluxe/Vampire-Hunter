@@ -17,6 +17,8 @@ public class Health : MonoBehaviour
     private int BloodEssenceToDrop;
     [SerializeField]
     private GameObject Pickup;
+    [SerializeField]
+    private Item Item;
     [HideInInspector]
     public float CurrentPoise;
 
@@ -47,6 +49,11 @@ public class Health : MonoBehaviour
             }
             else
             {
+                if (transform.parent.name.Substring(0, 7) == "Vampire")
+                {
+                    GameObject Key = Instantiate(Pickup, transform.parent);
+                    Key.GetComponent<PickUp>().holding = Item;
+                }
                 GameObject BloodEssence = Instantiate(Pickup, transform.parent);
                 BloodEssence.GetComponent<PickUp>().holding = null;
                 BloodEssence.GetComponent<PickUp>().bloodEssence = BloodEssenceToDrop;

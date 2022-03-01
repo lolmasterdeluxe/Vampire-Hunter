@@ -3,10 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+/**
+ * Author: Muhammad Rifdi bin Sabbri
+ * Created: 27/2/2022
+ */
+
 public class SlaveFSM : CFSM
 {
     [SerializeField]
     private GameObject Body;
+    [SerializeField]
+    private CageInteraction Cage;
     private NavMeshAgent agent;
 
     [SerializeField]
@@ -26,7 +33,7 @@ public class SlaveFSM : CFSM
         {
             case FSM.IDLE:
                 agent.velocity *= 0;
-                if (FSMCounter > 2)
+                if (FSMCounter > 2 && Cage.doorOpen)
                 {
                     CurrentFSM = FSM.PATROL;
                     FSMCounter = 0;

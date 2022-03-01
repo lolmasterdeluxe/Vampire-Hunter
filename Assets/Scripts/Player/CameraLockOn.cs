@@ -118,13 +118,13 @@ public class CameraLockOn : MonoBehaviour
                 if (TargetGroup.m_Targets[i].target == CinemachineTarget.target)
                 {
                     targetDistance = 0;
-                    TargetEnemy = null;
                     TargetGroup.m_Targets.SetValue(null, i);
                     LockOn = false;
                     TargetLockOn = false;
                     FollowCamera.SetActive(true);
                     LockOnCamera.SetActive(false);
                     TargetIcon.gameObject.SetActive(false);
+                    return;
                 }
             }
         }

@@ -10,7 +10,8 @@ using UnityEngine;
 public class CageInteraction : MonoBehaviour
 {
     private bool triggerActive = false;
-    private bool doorOpen = false;
+    [HideInInspector]
+    public bool doorOpen = false;
     [SerializeField]
     private GameObject target;
 

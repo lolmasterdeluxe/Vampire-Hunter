@@ -544,6 +544,7 @@ GameObject:
   - component: {fileID: 3946394730380421142}
   - component: {fileID: 3946394730380421141}
   - component: {fileID: 3946394730380421131}
+  - component: {fileID: 3775284623966439793}
   m_Layer: 0
   m_Name: Body
   m_TagString: Enemy Animation
@@ -697,6 +698,24 @@ MonoBehaviour:
   DetectionRange: 20
   AttackRange: 5
   AttackCooldown: 2
+--- !u!114 &3775284623966439793
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3946394730380421130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79fb4eee7cc21ef4e947d527908ef822, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hp: 100
+  MaxPoise: 40
+  BloodEssenceToDrop: 2000
+  Pickup: {fileID: 2527279802079035019, guid: b4e72c1b6787c6a44b5089c0b1784aae, type: 3}
+  Item: {fileID: 11400000, guid: 395bf3b4328088c4d854e9ea8f5d6025, type: 2}
+  CurrentPoise: 0
 --- !u!1 &3946394730391639281
 GameObject:
   m_ObjectHideFlags: 0
@@ -1029,7 +1048,6 @@ GameObject:
   - component: {fileID: 3946394730709964741}
   - component: {fileID: 3946394730709964750}
   - component: {fileID: 3946394730709964740}
-  - component: {fileID: 3946394730709964747}
   m_Layer: 0
   m_Name: Vampire
   m_TagString: Enemy
@@ -1090,20 +1108,6 @@ NavMeshAgent:
   m_BaseOffset: 0.9
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &3946394730709964747
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3946394730709964742}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 79fb4eee7cc21ef4e947d527908ef822, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHp: 50
-  hp: 0
 --- !u!1 &3946394731528818551
 GameObject:
   m_ObjectHideFlags: 0
